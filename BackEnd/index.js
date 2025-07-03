@@ -1,6 +1,5 @@
 const Funcionarios = require('./Model/Funcionario');
 
-
 async function testar() {
   try {
     // Criar novo usuário
@@ -15,6 +14,5 @@ async function testar() {
     console.error('Erro durante o teste:', err);
   }
 }
-
 
 testar();
