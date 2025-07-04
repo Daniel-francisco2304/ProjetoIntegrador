@@ -12,6 +12,8 @@ function FuncionarioForm({ onAdd }) {
     try {
       await axios.post('http://localhost:3001/funcionarios', { nome, email, senha });
       setNome('');
+      setSenha('');
+      setEmail('');
       if (onAdd) onAdd(); // recarrega a tabela depois de adicionar
     } catch (err) {
       console.error('Erro ao adicionar funcionário:', err);
@@ -34,7 +36,7 @@ function FuncionarioForm({ onAdd }) {
       /><input
         value={senha}
         onChange={(x) => setSenha(x.target.value)}
-        placeholder="Nome do funcionário"
+        placeholder="Senha do funcionário"
         required
       />
       <button type="submit">Adicionar</button>

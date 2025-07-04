@@ -1,13 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const Funcionario = require('../model/Funcionario');
+const Funcionario = require('../Model/Funcionario');
 
-router.get('/', (req, res) => {
-  Funcionario.listarTodos((err, results) => {
-    if (err) return res.status(500).json({ erro: 'Erro ao buscar funcionários' });
-    res.json(results);
-  });
+router.get('/', async (req, res) => {
+  const { q } = req.query;
+  console.log('Recebido q:', q)
+
+  try {
+    const rows = await Funcionario.selecFuncionario(q);
+    console.log('Funcionários retornados:', rows);
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erro: 'Erro ao buscar funcionários' });
+  }
 });
+
 
 router.post('/', async (req, res) => {
   const { nome, email, senha } = req.body;

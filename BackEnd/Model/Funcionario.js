@@ -78,6 +78,28 @@ class Funcionario {
             callback(null, results)
         })
     }
+
+    static async selecFuncionario(param) {
+        let sql = 'SELECT * FROM tb_funcionario WHERE TRUE';
+        const valores = [];
+
+        if (param) {
+            const isEmail = param.includes('@') || param.includes('.');
+            if (isEmail) {
+                sql += ' AND email LIKE ? ORDER BY email';
+            } else {
+                sql += ' AND nome LIKE ? ORDER BY nome';
+            }
+            valores.push(`%${param}%`);
+        }
+
+        try {
+            const rows = await Connection.query(sql, valores);
+            return rows;
+        } catch (err) {
+            throw err; // deixa o controller lidar com o erro
+        }
+    }
     //#endregion
 }
 
