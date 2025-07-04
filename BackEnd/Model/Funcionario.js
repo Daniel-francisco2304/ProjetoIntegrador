@@ -2,7 +2,7 @@ const Connection = require('../Config/Connection');
 const md5 = require('md5');
 
 class Funcionario {
-    constructor(id, nome) {
+    constructor(id, nome, email, senha) {
         this._id = id;
         this._nome = nome;
         this._email = email;
@@ -46,7 +46,7 @@ class Funcionario {
         // resultado = [ { total: 1 } ] se encontrou
         return resultado[0].total; // retorna 0 (inválido) ou 1 (válido)
     }
-    
+
     static async criarfuncionario(nome, email, senha) {
         const Connection = require('../Config/Connection');
         const resultado = await Connection.query(
@@ -72,7 +72,7 @@ class Funcionario {
     }
 
     static async listarTodos(callback) {
-        const sql = 'SELECT * FROM tb_funcionario;';
+        const sql = 'SELECT * FROM tb_funcionario ;';
         Connection.query(sql, (err, results) => {
             if (err) return callback(err);
             callback(null, results)

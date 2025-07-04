@@ -1,10 +1,8 @@
 // src/pages/Home.js
 import React from 'react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Home() {
-    const [usuario, setUsuario] = useState(null);
     return (
         <div style={styles.container}>
             <h1 style={styles.title}>Sistema SGST</h1>

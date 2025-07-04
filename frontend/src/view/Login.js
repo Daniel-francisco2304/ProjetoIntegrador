@@ -19,7 +19,7 @@ function Login() {
 
             if (res.data.sucesso) {
                 // Redireciona para a página principal após login
-                navigate('/');
+                navigate('/Home');
             } else {
                 setErro('Credenciais inválidas');
             }

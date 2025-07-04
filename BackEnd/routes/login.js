@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Funcionario = require('../model/Funcionario');
+const Funcionario = require('../Model/Funcionario');
 
 router.post('/', async (req, res) => {
   const { email, senha } = req.body;
@@ -10,6 +10,7 @@ router.post('/', async (req, res) => {
 
     if (total === 1) {
       res.json({ sucesso: true });
+      console.log('Login realizado com sucesso');
     } else {
       res.status(401).json({ erro: 'Credenciais inválidas' });
     }
