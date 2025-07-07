@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
 import axios from 'axios';
+
+const option = [
+  { value: 'nome', label: 'nome' },
+  { value: 'email', label: 'email' },
+  { value: 'date', label: 'inscrição' }
+]
 
 function FuncionarioTable() {
   const [lista, setLista] = useState([]);
   const [param, setParam] = useState('');
+  const [filtro, setFiltro] = useState(option[0]);
 
   useEffect(() => {
     carregarFuncionarios('');
@@ -13,8 +21,6 @@ function FuncionarioTable() {
     const endpoint = searchParam
       ? `http://localhost:3001/funcionarios?q=${param}`
       : 'http://localhost:3001/funcionarios';
-
-    console.log('Buscando em:', endpoint);
 
     axios.get(endpoint)
       .then(res => setLista(res.data))
@@ -48,8 +54,6 @@ function FuncionarioTable() {
       <form onSubmit={(e) => {
         e.preventDefault();
         carregarFuncionarios(param);
-        console.log('FORM FOI ENVIADO ');
-        console.log('Formulário enviado, param:', param);
       }}>
         <input
           value={param}
@@ -57,34 +61,42 @@ function FuncionarioTable() {
           placeholder="Buscar por nome ou email"
         />
         <button type='submit'>Buscar</button>
+        <Select
+          options={option}
+          defaultValue={option[0]}
+          value={filtro}
+          onChange={setFiltro}
+        />
       </form>
 
       <table border="1" cellPadding={8}>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Nome</th>
+            <th>Email</th>
+            <th>Cargo</th>
             <th>Ação</th>
           </tr>
         </thead>
- <tbody>
-  {Array.isArray(lista) && lista.length > 0 ? (
-    lista.map((func, i) => (
-      <tr key={i}>
-        <td>{func.id}</td>
-        <td>{func.nome}</td>
-        <td>
-          <button onClick={() => editarFuncionario(func.id)}>Editar</button>{' '}
-          <button onClick={() => excluirFuncionario(func.id)}>Excluir</button>
-        </td>
-      </tr>
-    ))
-  ) : (
-    <tr>
-      <td colSpan="3">Nenhum funcionário encontrado ou erro ao buscar</td>
-    </tr>
-  )}
-</tbody>
+        <tbody>
+          {Array.isArray(lista) && lista.length > 0 ? (
+            lista.map((func, i) => (
+              <tr key={i}>
+                <td>{func.f_nome}</td>
+                <td>{func.email}</td>
+                <td>{func.c_nome}</td>
+                <td>
+                  <button onClick={() => editarFuncionario(func.id)}>Editar</button>{' '}
+                  <button onClick={() => excluirFuncionario(func.id)}>Excluir</button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3">Nenhum funcionário encontrado ou erro ao buscar</td>
+            </tr>
+          )}
+        </tbody>
       </table>
     </div>
   );

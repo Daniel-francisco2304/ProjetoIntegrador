@@ -1,7 +1,7 @@
 const Connection = require('../Config/Connection');
 const md5 = require('md5');
 
-class Funcionario {
+class Epi {
     constructor(id, nome, email, senha, cargo) {
         this._id = id;
         this._nome = nome;
@@ -87,7 +87,7 @@ class Funcionario {
     }
 
     static async selecFuncionario(param) {
-        let sql = 'SELECT f.id, f.nome AS f_nome, f.email, c.nome AS c_nome FROM db_sgst.tb_funcionario f LEFT JOIN tb_cargo c ON f.id_cargo = c.id WHERE TRUE';
+        let sql = 'SELECT f.nome AS f_nome, f.email, c.nome AS c_nome FROM db_sgst.tb_funcionario f LEFT JOIN tb_cargo c ON f.id_cargo = c.id WHERE TRUE';
         const valores = [];
 
         if (param) {
@@ -95,11 +95,11 @@ class Funcionario {
             if (isEmail) {
                 sql += ' AND email LIKE ? ORDER BY email';
             } else {
-                sql += ' AND f.nome LIKE ? ORDER BY f.nome';
+                sql += ' AND nome LIKE ? ORDER BY nome';
             }
             valores.push(`%${param}%`);
         }
-        
+
         try {
             const rows = await Connection.query(sql, valores);
             return rows;
@@ -110,4 +110,4 @@ class Funcionario {
     //#endregion
 }
 
-module.exports = Funcionario;
+module.exports = Epi;
