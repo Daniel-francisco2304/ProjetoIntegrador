@@ -14,3 +14,13 @@ Meu projeto pretende desenvolver, até Novembro de 2025 um sistema completo, doc
 8 - Detectar os acidentes em comum;
 
 Cada parte deverá ser entregue em datas não determinadas, porém todas serão entregue dentro do prazo final.
+
+Pacotes utilizados:
+#Back End
+* npm install mysql2
+* npm install express cors
+* npm install -g nodemon
+* npm install md5
+
+#Front End
+* npm install axios
