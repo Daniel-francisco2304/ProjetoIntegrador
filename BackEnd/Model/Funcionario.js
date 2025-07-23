@@ -86,18 +86,26 @@ class Funcionario {
         })
     }
 
-    static async selecFuncionario(param) {
+    static async selecFuncionario(param, filtro) {
         let sql = 'SELECT f.id, f.nome AS f_nome, f.email, c.nome AS c_nome FROM db_sgst.tb_funcionario f LEFT JOIN tb_cargo c ON f.id_cargo = c.id WHERE TRUE';
         const valores = [];
 
         if (param) {
             const isEmail = param.includes('@') || param.includes('.');
             if (isEmail) {
-                sql += ' AND email LIKE ? ORDER BY email';
+                sql += ' AND email LIKE ? ';
             } else {
-                sql += ' AND f.nome LIKE ? ORDER BY f.nome';
+                sql += ' AND f.nome LIKE ? ';
             }
             valores.push(`%${param}%`);
+        }
+
+        const colunas = ['f.nome', 'email', 'dt_contratacao'];
+
+        if (colunas.includes(filtro)) {
+            sql += ` ORDER BY ${filtro}`;
+        } else {
+            sql += ` ORDER BY f.nome`; // padrão de segurança
         }
         
         try {

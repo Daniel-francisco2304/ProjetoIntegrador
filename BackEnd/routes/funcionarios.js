@@ -3,11 +3,11 @@ const router = express.Router();
 const Funcionario = require('../Model/Funcionario');
 
 router.get('/', async (req, res) => {
-  const { q } = req.query;
-  console.log('Recebido q:', q)
+  const { q, f } = req.query;
+  console.log('Recebido f:', f)
 
   try {
-    const rows = await Funcionario.selecFuncionario(q);
+    const rows = await Funcionario.selecFuncionario(q, f);
     console.log('Funcionários retornados:', rows);
     res.json(rows);
   } catch (err) {

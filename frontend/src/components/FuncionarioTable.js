@@ -3,9 +3,9 @@ import Select from 'react-select';
 import axios from 'axios';
 
 const option = [
-  { value: 'nome', label: 'nome' },
+  { value: 'f.nome', label: 'nome' },
   { value: 'email', label: 'email' },
-  { value: 'date', label: 'inscrição' }
+  { value: '', label: 'inscrição' }
 ]
 
 function FuncionarioTable() {
@@ -19,9 +19,9 @@ function FuncionarioTable() {
 
   const carregarFuncionarios = (searchParam = '') => {
     const endpoint = searchParam
-      ? `http://localhost:3001/funcionarios?q=${param}`
+      ? `http://localhost:3001/funcionarios?q=${param}&f=${filtro.value}`
       : 'http://localhost:3001/funcionarios';
-
+    console.log(filtro.value)
     axios.get(endpoint)
       .then(res => setLista(res.data))
       .catch(err => {
@@ -47,7 +47,7 @@ function FuncionarioTable() {
   const editarFuncionario = (id) => {
     alert(`Editar funcionário com ID ${id}`);
   };
-
+  //console.log(filtro)
   return (
     <div>
       <h2>Funcionários</h2>
@@ -67,6 +67,7 @@ function FuncionarioTable() {
           value={filtro}
           onChange={setFiltro}
         />
+
       </form>
 
       <table border="1" cellPadding={8}>
