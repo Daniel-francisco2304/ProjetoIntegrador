@@ -1,0 +1,8 @@
+/****
+/*Ideias Merdas de Funcionalidades:
+/*1 - Um botão(?) mostrando a quantidade/periodo/latencia(?) de acidente nas regiões cadastradas;
+/*2 - Base de notificações para o usuario;
+/*2.1 - Um off Canvas a direita mostrando as notificações para o usuario;
+/*2.2 - Pipovers para as notificações;
+/*2.3 - Sempre que um novo usuario for cadastrado será mostrado para o administrador geral.
+/*2.3.1 - Será mostrado a hora, quem cadastrou e o cargo do cadastrado e do cadastrador.
