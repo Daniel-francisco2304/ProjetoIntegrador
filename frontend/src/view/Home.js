@@ -4,27 +4,30 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import MyButton from '../components/MyButton';
 import OffCanvas from '../components/offcanvas';
+import OffCanvasRight from '../components/OffCanvasRight';
 import Navbar from '../components/navbar';
 
 function Home() {
     const [menuOpen, setMenuOpen] = useState(false);
     const toggleMenu = () => setMenuOpen(!menuOpen);
+    const [isNotifOpen, setIsNotifOpen] = useState(false);
+    const toggleNotif = () => setIsNotifOpen(!isNotifOpen);
+
     return (
         <div style={styles.container}>
-            <OffCanvas />    <div>
-                <Navbar toggleMenu={toggleMenu} />
-                <OffCanvas isOpen={menuOpen} toggleMenu={toggleMenu} />
-                <div style={{ paddingTop: '70px', textAlign: 'center' }}>
-                    <h2>Bem-vindo à Home!</h2>
-                    <p>Use o menu lateral para navegar.</p>
-                </div>
-            </div>
-            <h1 style={styles.title}>Sistema SGST</h1>
-            <div style={styles.menu}>
-                <Link to="/funcionarios" style={styles.button}>Funcionários</Link>
-                <MyButton title="á" />
-                <button style={styles.button} onClick={() => alert('Funcionalidade ainda não implementada')}>Produtos</button>
-                <button style={styles.button} onClick={() => alert('Deslogado com sucesso!')}>Sair</button>
+            <div>
+                <Navbar
+                    toggleMenu={toggleMenu}
+                    toggleNotif={toggleNotif}
+                />
+                <OffCanvas
+                    isOpen={menuOpen}
+                    toggleMenu={toggleMenu}
+                />
+                <OffCanvasRight
+                    isOpen={isNotifOpen}
+                    toggleNotif={toggleNotif}
+                />
             </div>
         </div>
     );

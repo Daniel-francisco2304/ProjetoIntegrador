@@ -2,7 +2,7 @@
 function MyButton(props) {
     return (
         <button
-            style={style.mybotton|| props.color}
+            style={style.mybotton || props.color}
             onClick={props.action}
             value={props.value}
             onChange={props.onChange}

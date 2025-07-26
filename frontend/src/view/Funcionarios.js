@@ -1,51 +1,70 @@
 // src/pages/Funcionarios.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import FuncionarioForm from '../components/FuncionarioForm';
 import FuncionarioTable from '../components/FuncionarioTable';
+import OffCanvas from '../components/offcanvas';
+import OffCanvasRight from '../components/OffCanvasRight';
+import Navbar from '../components/navbar';
 
 function Funcionarios() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const toggleNotif = () => setIsNotifOpen(!isNotifOpen);
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Gestão de Funcionários</h1>
+      <div>
+        <Navbar
+          toggleMenu={toggleMenu}
+          toggleNotif={toggleNotif}
+        />
+        <OffCanvas
+          isOpen={menuOpen}
+          toggleMenu={toggleMenu}
+        />
+        <OffCanvasRight
+          isOpen={isNotifOpen}
+          toggleNotif={toggleNotif}
+        />
 
-      <nav style={styles.nav}>
-        <Link to="/funcionarios/cadastrar" style={styles.link}>Cadastrar Funcionário</Link>
-        <Link to="/funcionarios/listar" style={styles.link}>Listar Funcionários</Link>
-      </nav>
-
-      <Routes>
-        <Route path="cadastrar" element={<FuncionarioForm />} />
-        <Route path="listar" element={<FuncionarioTable />} />
-        <Route path="/" element={<div>Bem-vindo ao módulo de funcionários!</div>} />
-      </Routes>
+      </div>
+      <div style={styles.title}>
+        <Routes>
+          <Route path="cadastrar" element={<FuncionarioForm />} style={styles.button} />
+          <Route path="listar" element={<FuncionarioTable />} style={styles.button} />
+          <Route path="/" element={<div>Bem-vindo ao módulo de funcionários!</div>} />
+        </Routes>
+      </div>
     </div>
   );
 }
 
 const styles = {
   container: {
-    fontFamily: 'Arial',
-    padding: '20px',
-    maxWidth: '800px',
-    margin: '0 auto'
+    textAlign: 'center',
   },
   title: {
-    textAlign: 'center'
+    fontSize: '2.5rem',
+    marginBottom: '2rem',
   },
-  nav: {
+  menu: {
     display: 'flex',
-    justifyContent: 'center',
-    gap: '20px',
-    marginBottom: '20px'
+    flexDirection: 'column',
+    gap: '1rem',
+    alignItems: 'center',
   },
-  link: {
+  button: {
+    padding: '1rem 2rem',
+    fontSize: '1rem',
+    cursor: 'pointer',
     textDecoration: 'none',
     color: 'white',
     backgroundColor: '#007BFF',
-    padding: '10px 20px',
-    borderRadius: '5px'
-  }
+    border: 'none',
+    borderRadius: '8px',
+    minWidth: '200px',
+  },
 };
 
 export default Funcionarios;

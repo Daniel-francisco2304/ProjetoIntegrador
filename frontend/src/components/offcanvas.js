@@ -10,8 +10,8 @@ const OffCanvas = ({ isOpen, toggleMenu }) => {
             <button onClick={toggleMenu} style={styles.closeButton}>×</button>
             <div style={styles.menuContent}>
                 <nav style={styles.nav}>
-                    <Link to="" style={styles.link} onClick={toggleMenu}><i class="bi bi-house-fill"></i> Home</Link>
-                    <Link to="" style={styles.link} onClick={toggleMenu}><i class="bi bi-person-lines-fill"></i> Funcionários</Link>
+                    <Link to="/Home" style={styles.link} onClick={toggleMenu}><i class="bi bi-house-fill"></i> Home</Link>
+                    <Link to="/funcionarios" style={styles.link} onClick={toggleMenu}><i class="bi bi-person-lines-fill"></i> Funcionários</Link>
                     <Link to="" style={styles.link} onClick={toggleMenu}><i class="bi bi-headset-vr"></i> Produtos</Link>
                 </nav>
                 <div style={styles.out}>
@@ -32,7 +32,7 @@ const styles = {
         backgroundColor: '#65a765',
         color: 'white',
         padding: '1rem',
-        transition: 'transform 0.2s ease-in-out',
+        transition: 'transform 0.3s ease-in-out',
         zIndex: 999,
         display: 'flex',
         flexDirection: 'column',
