@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
 
   try {
     const rows = await Funcionario.selecFuncionario(q, f);
-    console.log('Funcionários retornados:', rows);
+    //console.log('Funcionários retornados:', rows);
     res.json(rows);
   } catch (err) {
     console.error(err);

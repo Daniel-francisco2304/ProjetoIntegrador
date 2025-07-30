@@ -27,14 +27,6 @@ function Funcionarios() {
           isOpen={isNotifOpen}
           toggleNotif={toggleNotif}
         />
-
-      </div>
-      <div style={styles.title}>
-        <Routes>
-          <Route path="cadastrar" element={<FuncionarioForm />} style={styles.button} />
-          <Route path="listar" element={<FuncionarioTable />} style={styles.button} />
-          <Route path="/" element={<div>Bem-vindo ao módulo de funcionários!</div>} />
-        </Routes>
       </div>
     </div>
   );
@@ -47,23 +39,13 @@ const styles = {
   title: {
     fontSize: '2.5rem',
     marginBottom: '2rem',
+    marginTop:'5rem',
   },
   menu: {
     display: 'flex',
     flexDirection: 'column',
     gap: '1rem',
     alignItems: 'center',
-  },
-  button: {
-    padding: '1rem 2rem',
-    fontSize: '1rem',
-    cursor: 'pointer',
-    textDecoration: 'none',
-    color: 'white',
-    backgroundColor: '#007BFF',
-    border: 'none',
-    borderRadius: '8px',
-    minWidth: '200px',
   },
 };
 

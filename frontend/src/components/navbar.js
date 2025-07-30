@@ -6,7 +6,7 @@ const Navbar = ({ toggleMenu, toggleNotif }) => {
         <header style={styles.navbar}>
             <button style={styles.menuButton} onClick={toggleMenu}>☰</button>
                 <h1 style={styles.title}>
-                    <Link to="" style={styles.link}>SGTST</Link>
+                    <Link to="/Home" style={styles.link}>SGTST</Link>
                 </h1>
             <button onClick={toggleNotif} style={styles.icon}>
                 <i className="bi bi-bell-fill"></i>

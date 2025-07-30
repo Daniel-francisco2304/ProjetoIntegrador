@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
@@ -17,18 +18,18 @@ function FuncionarioTable() {
     carregarFuncionarios('');
   }, []);
 
-  const carregarFuncionarios = (searchParam = '') => {
+  function carregarFuncionarios(searchParam = '') {
     const endpoint = searchParam
       ? `http://localhost:3001/funcionarios?q=${param}&f=${filtro.value}`
       : 'http://localhost:3001/funcionarios';
-    console.log(filtro.value)
+    console.log(filtro.value);
     axios.get(endpoint)
       .then(res => setLista(res.data))
       .catch(err => {
         console.error('Erro ao buscar funcionários:', err);
         setLista([]);
       });
-  };
+  }
 
   const excluirFuncionario = (id) => {
     if (window.confirm('Tem certeza que deseja excluir este funcionário?')) {
