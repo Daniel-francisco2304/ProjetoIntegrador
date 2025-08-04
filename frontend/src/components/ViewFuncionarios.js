@@ -41,7 +41,7 @@ const ViewFuncionario = () => {
                 ) : (
                     funcionarios.map((func, index) => (
                         <div key={func.id || index} style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>
-                            <strong>{func.f_nome}</strong><br />
+                            <strong>{func.f_nome} </strong>
                             <span>{func.email}</span>
                         </div>
                     ))
