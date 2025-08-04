@@ -1,55 +1,48 @@
 // src/pages/Login.js
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { auth } from '../services/firebaseCloud';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import MyButton from '../components/MyButton';
 
 function Login() {
+    const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [erro, setErro] = useState(null);
-    const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        setErro(null);
-
+    async function login(email, senha) {
         try {
-            const res = await axios.post('http://localhost:3001/login', { email, senha });
-
-            if (res.data.sucesso) {
-                // Redireciona para a página principal após login
-                navigate('/Home');
-            } else {
-                setErro('Credenciais inválidas');
-            }
-        } catch (err) {
-            setErro('Erro ao tentar logar');
+            await signInWithEmailAndPassword(auth, email, senha);
+            //console.log('Logado');
+            navigate('/Home')
+        } catch (error) {
+            alert(error)
         }
-    };
+    }
 
     return (
         <div style={styles.container}>
             <h2>Login</h2>
-            <form onSubmit={handleLogin} style={styles.form}>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    style={styles.input}
-                />
-                <input
-                    type="password"
-                    placeholder="Senha"
-                    value={senha}
-                    onChange={(e) => setSenha(e.target.value)}
-                    required
-                    style={styles.input}
-                />
-                <button type="submit" style={styles.button}>Entrar</button>
-                {erro && <p style={{ color: 'red' }}>{erro}</p>}
-            </form>
+            <text>
+                Email
+            </text><br />
+
+            <input
+                placeholder='Digite seu Email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            /><br />
+
+            <text>
+                Senha
+            </text><br />
+
+            <input
+                placeholder='Digite sua Senha'
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+            /><br /><br />
+            <MyButton title='Acessar'/>
         </div>
     );
 }
