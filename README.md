@@ -23,4 +23,5 @@ Pacotes utilizados:
 * npm install md5
 
 #Front End
-* npm install axios
+* npm install axios;
+* npm install firebase;

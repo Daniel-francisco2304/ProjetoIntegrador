@@ -13,7 +13,6 @@ function Login() {
     async function login(email, senha) {
         try {
             await signInWithEmailAndPassword(auth, email, senha);
-            //console.log('Logado');
             navigate('/Home')
         } catch (error) {
             alert(error)
@@ -21,58 +20,47 @@ function Login() {
     }
 
     return (
-        <div style={styles.container}>
-            <h2>Login</h2>
-            <text>
-                Email
-            </text><br />
+        <div style={styles.page}>
+            <div style={styles.container}>
+                <h2>Login</h2>
+                <label>Email</label><br />
+                <input
+                    placeholder='Digite seu Email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                /><br />
 
-            <input
-                placeholder='Digite seu Email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            /><br />
+                <label>Senha</label><br />
+                <input
+                    type="password"
+                    placeholder='Digite sua Senha'
+                    value={senha}
+                    onChange={(e) => setSenha(e.target.value)}
+                /><br /><br />
 
-            <text>
-                Senha
-            </text><br />
-
-            <input
-                placeholder='Digite sua Senha'
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-            /><br /><br />
-            <MyButton title='Acessar'/>
+                <MyButton title='Acessar' onClick={() => login(email, senha)} />
+            </div>
         </div>
     );
 }
 
 const styles = {
+    page: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh', // ocupa a tela inteira
+        backgroundColor: '#f7f7f7'
+    },
     container: {
         maxWidth: '400px',
-        margin: '50px auto',
+        width: '100%',
         padding: '20px',
         textAlign: 'center',
         border: '1px solid #ccc',
         borderRadius: '10px',
-        boxShadow: '0 0 10px #ccc'
-    },
-    form: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '15px'
-    },
-    input: {
-        padding: '10px',
-        fontSize: '16px'
-    },
-    button: {
-        padding: '10px',
-        fontSize: '16px',
-        backgroundColor: '#007BFF',
-        color: 'white',
-        border: 'none',
-        borderRadius: '5px'
+        boxShadow: '0 0 10px #ccc',
+        backgroundColor: '#fff'
     }
 };
 

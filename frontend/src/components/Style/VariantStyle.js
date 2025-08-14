@@ -20,26 +20,42 @@ export const variantStyles = {
 }
 
 export const sizeStyles = {
-  sm: {
-    padding: "6px 12px",
-    fontSize: "0.8rem",
-  },
-  md: {
-    padding: "10px 20px",
-    fontSize: "1rem",
-  },
-  lg: {
-    padding: "14px 28px",
-    fontSize: "1.2rem",
-  },
+    sm: {
+        padding: "6px 12px",
+        fontSize: "0.8rem",
+    },
+    md: {
+        padding: "10px 20px",
+        fontSize: "1rem",
+    },
+    lg: {
+        padding: "14px 28px",
+        fontSize: "1.2rem",
+    },
+
+    smStrong: {
+        fontWeight:"bold",
+        padding: "6px 12px",
+        fontSize: "0.8rem",
+    },
+    mdStrong: {
+        fontWeight:"bold",
+        padding: "10px 20px",
+        fontSize: "1rem",
+    },
+    lgStrong: {
+        fontWeight:"bold",
+        padding: "14px 28px",
+        fontSize: "1.2rem",
+    },
 };
 
 export const textStyles = {
     default: {
-        color: "white",
+        color: "#fff",
     },
     primary: {
-        color: "black",
+        color: "#000",
     },
     secondary: {
         color: "#6c757d",
