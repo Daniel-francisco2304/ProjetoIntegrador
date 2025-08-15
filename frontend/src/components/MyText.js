@@ -1,42 +1,40 @@
 import React from "react";
-import { variantStyles, sizeStyles, textStyles } from "./Style/VariantStyle";
+import { sizeStyles, textStyles } from "./Style/VariantStyle";
 
 function MyText(props) {
     const {
-        title,
         text,
+        title,
         onClick,
         dir,
         style: customStyle,
-        variant = "default",
         size = "md",
+        variant = "default",
         disabled = false,
     } = props;
 
     const baseStyle = {
-        border: "none",
-        borderRadius: "4px",
-        cursor: "pointer",
-        minWidth: "120px",
+        display: "inline-block",
+   //     cursor: disabled ? "not-allowed" : "pointer",
     };
 
     const combinedStyle = {
         ...baseStyle,
         ...sizeStyles[size],
-        ...textStyles[text],
+        ...textStyles[variant],
         ...customStyle,
     };
 
     return (
-        <text
+        <span
             style={combinedStyle}
             onClick={onClick}
             title={title}
-            disabled={disabled}
             dir={dir}
+            aria-disabled={disabled}
         >
-            {text}
-        </text>
+            {text || props.children}
+        </span>
     );
 }
 

@@ -34,28 +34,28 @@ export const sizeStyles = {
     },
 
     smStrong: {
-        fontWeight:"bold",
+        fontWeight: "bold",
         padding: "6px 12px",
         fontSize: "0.8rem",
     },
     mdStrong: {
-        fontWeight:"bold",
+        fontWeight: "bold",
         padding: "10px 20px",
         fontSize: "1rem",
     },
     lgStrong: {
-        fontWeight:"bold",
+        fontWeight: "bold",
         padding: "14px 28px",
         fontSize: "1.2rem",
-    },
-};
+    }
+}
 
 export const textStyles = {
     default: {
-        color: "#fff",
+        color: "#000",
     },
     primary: {
-        color: "#000",
+        color: "#fff",
     },
     secondary: {
         color: "#6c757d",
@@ -68,5 +68,43 @@ export const textStyles = {
     },
     warning: {
         color: "#ffc107"
+    }
+}
+
+export const inputSizeStyles = {
+    sm: {
+        padding: "6px 10px",
+        fontSize: "14px",
+    },
+    md: {
+        padding: "8px 12px",
+        fontSize: "16px",
+    },
+    lg: {
+        padding: "10px 14px",
+        fontSize: "18px",
+    }
+}
+
+export const inputVariantStyles = {
+    default: {
+        border: "1px solid #ccc",
+        backgroundColor: "#fff",
+        color: "#000",
+    },
+    primary: {
+        border: "1px solid #007bff",
+        backgroundColor: "#e6f0ff",
+        color: "#007bff",
+    },
+    success: {
+        border: "1px solid #28a745",
+        backgroundColor: "#e6ffed",
+        color: "#28a745",
+    },
+    danger: {
+        border: "1px solid #dc3545",
+        backgroundColor: "#ffe6e9",
+        color: "#dc3545",
     }
 }

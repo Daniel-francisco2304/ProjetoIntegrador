@@ -6,6 +6,8 @@ import OffCanvasRight from '../components/OffCanvasRight';
 import Navbar from '../components/navbar';
 import ViewFuncionario from '../components/ViewFuncionarios';
 import MyText from '../components/MyText';
+import MyInput from '../components/MyInput.js';
+
 function Home() {
     const [menuOpen, setMenuOpen] = useState(false);
     const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -28,10 +30,9 @@ function Home() {
                     toggleNotif={toggleNotif}
                 />
             </div>
-            <ViewFuncionario/>
-            <MyText 
-            variant
-            text={"texto"}/>
+            <ViewFuncionario />
+            <MyText text="Texte" />
+            <MyInput placeholder=" "/>
         </div>
     );
 }
