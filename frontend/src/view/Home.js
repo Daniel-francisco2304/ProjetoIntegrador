@@ -7,6 +7,7 @@ import Navbar from '../components/navbar';
 import ViewFuncionario from '../components/ViewFuncionarios';
 import MyText from '../components/MyText';
 import MyInput from '../components/MyInput.js';
+import MyContainer from '../components/MyContainer.js';
 
 function Home() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -31,8 +32,10 @@ function Home() {
                 />
             </div>
             <ViewFuncionario />
-            <MyText text="Texte" />
-            <MyInput placeholder=" "/>
+            <MyContainer styleSet="card">
+                <MyText text="Texte" variant="warning" />
+                <MyInput placeholder="alguma coisa" />
+            </MyContainer>
         </div>
     );
 }

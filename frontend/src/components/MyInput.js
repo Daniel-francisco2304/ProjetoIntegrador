@@ -21,7 +21,9 @@ function MyInput(props) {
     const baseStyle = {
         borderRadius: "4px",
         outline: "none",
-        width: "100%",
+        width: "80%",
+        marginLeft: "10%",
+        marginRight: "10%",
         boxSizing: "border-box",
         transition: "0.2s",
         fontFamily: "Arial, sans-serif",

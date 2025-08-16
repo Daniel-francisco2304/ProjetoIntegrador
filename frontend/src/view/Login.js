@@ -1,48 +1,45 @@
 // src/pages/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../services/firebaseCloud';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import MyButton from '../components/MyButton';
-
-function Login() {
+import MyInput from '../components/MyInput';
+import MyButton from '../components/MyButton'
+import { Login } from '../model/login';
+function LoginScreen() {
     const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    async function login(email, senha) {
-        try {
-            await signInWithEmailAndPassword(auth, email, senha);
-            navigate('/Home')
-        } catch (error) {
-            alert(error)
-        }
+    function handleLogin(email, senha) {
+        if(Login(email,senha)) navigate('/Home')
     }
+
 
     return (
         <div style={styles.page}>
             <div style={styles.container}>
                 <h2>Login</h2>
                 <label>Email</label><br />
-                <input
+                <MyInput
                     placeholder='Digite seu Email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 /><br />
 
                 <label>Senha</label><br />
-                <input
+                <MyInput
                     type="password"
                     placeholder='Digite sua Senha'
                     value={senha}
                     onChange={(e) => setSenha(e.target.value)}
                 /><br /><br />
 
-                <MyButton title='Acessar' onClick={() => login(email, senha)} />
+                <MyButton title='Acessar' onClick={() => { handleLogin(email, senha) }} />
             </div>
         </div>
     );
 }
+
+export default LoginScreen;
 
 const styles = {
     page: {
@@ -64,4 +61,3 @@ const styles = {
     }
 };
 
-export default Login;
