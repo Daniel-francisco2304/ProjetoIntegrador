@@ -68,18 +68,59 @@ export const textStyles = {
         color: "#ffc107"
     }
 }
+export const linkStyles = {
+    default: {
+        color: "#000",
+        textDecoration: "underline",
+        cursor: "pointer",
+    },
+    primary: {
+        color: "#007bff",
+        textDecoration: "underline",
+        cursor: "pointer",
+    },
+    secondary: {
+        color: "#6c757d",
+        textDecoration: "underline",
+        cursor: "pointer",
+    },
+    success: {
+        color: "#28a745",
+        textDecoration: "underline",
+        cursor: "pointer",
+    },
+    danger: {
+        color: "#dc3545",
+        textDecoration: "underline",
+        cursor: "pointer",
+    },
+    warning: {
+        color: "#ffc107",
+        textDecoration: "underline",
+        cursor: "pointer",
+    }
+};
 export const inputSizeStyles = {
     sm: {
         padding: "6px 10px",
         fontSize: "14px",
+        width: "70%",
+        //marginLeft: "15%",
+        //marginRight: "15%",
     },
     md: {
         padding: "8px 12px",
         fontSize: "16px",
+        width: "80%",
+        //marginLeft: "10%",
+        //marginRight: "10%",
     },
     lg: {
         padding: "10px 14px",
         fontSize: "18px",
+        width: "90%",
+        //marginLeft: "5%",
+        //marginRight: "5%",
     }
 }
 export const inputVariantStyles = {
@@ -145,23 +186,7 @@ export const containerVariantStyles = {
         backgroundColor: "#ffe6e9",
         border: "1px solid #dc3545",
         borderRadius: 8
-    }
-};
-export const containerSizeStyles = {
-    sm: {
-        padding: "10px",
-        gap: "10px"
     },
-    md: {
-        padding: "20px",
-        gap: "20px"
-    },
-    lg: {
-        padding: "30px",
-        gap: "30px"
-    }
-};
-export const containerStyleSets = {
     card: {
         backgroundColor: "#fff",
         border: "1px solid #ccc",
@@ -174,6 +199,36 @@ export const containerStyleSets = {
         borderRadius: 8,
         padding: "20px",
     },
+    clean: {
+        backgroundColor: "#ffffff",
+        border: "none",
+        borderRadius: "8px",
+        padding: "20px",
+    },
+};
+export const containerSizeStyles = {
+    sm: {
+        padding: "10px",
+        gap: "10px",
+        width: "70%",
+        //marginLeft: "15%",
+        //marginRight: "15%",
+    },
+    md: {
+        padding: "20px",
+        gap: "20px",
+        width: "80%",
+        //marginLeft: "10%",
+        //marginRight: "10%",
+    },
+    lg: {
+        padding: "30px",
+        gap: "30px",
+        width: "90%",
+        alingSelf:"center"
+        //marginLeft: "5%",
+        //marginRight: "5%",
+    }
 };
 
 /*

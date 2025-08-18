@@ -4,9 +4,9 @@ class Connection {
     constructor() {
         this.Connection = mysql.createConnection({
             host: 'localhost',
-            user: 'td187899_sgtst',
-            password: 'WEAkZ7tXZNk5mgYz7JAM',
-            database: 'td187899_sgtst',
+            user: 'root',
+            password: '',
+            database: 'phpmyadmin',
         });
 
         this.Connection.connect((err) => {

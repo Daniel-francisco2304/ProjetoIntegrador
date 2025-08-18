@@ -5,6 +5,8 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import Funcionarios from './view/Funcionarios';
 import Home from './view/Home';
 import Login from './view/Login';
+import ResetScreen from './view/ResetPassword';
+import EpiScreen from './view/Epi';
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/Home" element={<Home />} />
+        <Route path="/Epi" element={<EpiScreen />} />
+        <Route path="/ResetPassword" element={<ResetScreen />} />
         <Route path="/funcionarios/*" element={<Funcionarios />} />
       </Routes>
     </Router>

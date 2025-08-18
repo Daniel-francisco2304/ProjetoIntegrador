@@ -1,5 +1,5 @@
 import React from "react";
-import { sizeStyles, textStyles } from "./Style/VariantStyle";
+import { sizeStyles, textStyles, linkStyles } from "./Style/VariantStyle";
 
 function MyText(props) {
     const {
@@ -10,18 +10,21 @@ function MyText(props) {
         style: customStyle,
         size = "md",
         variant = "default",
+        link = "none",
         disabled = false,
     } = props;
 
     const baseStyle = {
         display: "inline-block",
-   //     cursor: disabled ? "not-allowed" : "pointer",
+        cursor: disabled ? "pointer" : "default",
+        //pointerEvents: disabled ? "none" : "auto",
     };
 
     const combinedStyle = {
         ...baseStyle,
         ...sizeStyles[size],
         ...textStyles[variant],
+        ...linkStyles[link],
         ...customStyle,
     };
 
