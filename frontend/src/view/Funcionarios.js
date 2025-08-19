@@ -33,8 +33,8 @@ function Funcionarios() {
       </div><br /><br /><br /><br />
       <MyContainer size='lg' variant='success'>
         <MyInput size='md' />
-        <MyButton size='md' title='aaaaaa'>
-          <IoSearchOutline />
+        <MyButton size='md'>
+          <IoSearchOutline size={30} color="white" />
         </MyButton>
       </MyContainer>
     </div>

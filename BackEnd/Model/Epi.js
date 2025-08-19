@@ -2,112 +2,42 @@ const Connection = require('../Config/Connection');
 const md5 = require('md5');
 
 class Epi {
-    constructor(id, nome, email, senha, cargo) {
-        this._id = id;
-        this._nome = nome;
-        this._email = email;
-        this._senha = senha;
-        this._cargo = cargo;
-    }
-    //#region Atributos
-    get id() {
-        return this._id;
-    }
-    set id(id) {
-        this._id = id;
-    }
-    get nome() {
-        return this._nome;
-    }
-    set nome(nome) {
-        this._nome = nome;
-    }
-    get email() {
-        return this._email;
-    }
-    set email(email) {
-        this._email = email;
-    }
-    get senha() {
-        return this._senha;
-    }
-    set senha(senha) {
-        this._senha = senha;
-    }
-    get cargo() {
-        return this._cargo;
-    }
-    set cargo(cargo) {
-        this._cargo = cargo;
-    }
-    //#endregion
+    constructor(id, nome, idForn, forn, idCa, Ca, idEst, est, idAloc, dtAloc, dvAloc) {
+        this._id = id;          //id do epi
+        this._nome = nome;      //nome do epi
 
-    //#region Métodos
+        this._idForn = idForn;  //id do fornecedor
+        this._forn = forn;      //fornecedor
 
-    static async loginFuncionario(email, senha) {
-        const resultado = await Connection.query(
-            'SELECT COUNT(*) AS total FROM tb_funcionario WHERE email = ? AND senha = ?',
-            [email, md5(senha)]
-        );
+        this._idCa = idCa;      //id do Ca
+        this._Ca = Ca;          //Ca
 
-        // resultado = [ { total: 1 } ] se encontrou
-        return resultado[0].total; // retorna 0 (inválido) ou 1 (válido)
+        this._idEst = idEst;    //id do Estado
+        this._est = est;        //Estado de uso
+
+        this._idUni = idUni;    //id do Estado
+        this._est = est;        //Estado de uso
+
+        this._idAloc = idAloc   //id da alocação
+        this._dtAloc = dtAloc   //data da alocação
+        this._dvAloc = dvAloc   //data da devolução do EPI
     }
-
-    static async criarfuncionario(nome, email, senha) {
+    static async criarNomeEpi(nome) {
         const Connection = require('../Config/Connection');
-        const resultado = await Connection.query(
-            'INSERT INTO tb_funcionario (nome,email,senha) VALUES (?,?,?)',
-            [nome, email, md5(senha)]
-        );
-        return resultado.insertId;
-    }
-
-    static async alterarfuncionario(nome, id) {
-        const Connection = require('../Config/Connection');
-        const resultado = await Connection.query(
-            'UPDATE tb_funcionario SET nome = (?) WHERE id = (?)',
-            [nome, id]
-        );
-        return resultado.insertId;
-    }
-
-    static async excluirFuncionario(id) {
-        const sql = 'DELETE FROM tb_funcionario WHERE id = ?';
-        const resultado = await Connection.query(sql, [id]);
-        return resultado.affectedRows;
-    }
-
-    static async listarTodos(callback) {
-        const sql = 'SELECT * FROM tb_funcionario ;';
-        Connection.query(sql, (err, results) => {
-            if (err) return callback(err);
-            callback(null, results)
-        })
-    }
-
-    static async selecFuncionario(param) {
-        let sql = 'SELECT f.nome AS f_nome, f.email, c.nome AS c_nome FROM db_sgst.tb_funcionario f LEFT JOIN tb_cargo c ON f.id_cargo = c.id WHERE TRUE';
-        const valores = [];
-
-        if (param) {
-            const isEmail = param.includes('@') || param.includes('.');
-            if (isEmail) {
-                sql += ' AND email LIKE ? ORDER BY email';
-            } else {
-                sql += ' AND nome LIKE ? ORDER BY nome';
-            }
-            valores.push(`%${param}%`);
-        }
 
         try {
-            const rows = await Connection.query(sql, valores);
-            return rows;
+            const [resultado] = await Connection.query(
+                'INSERT INTO tb_epi (nome) VALUES (?)',
+                [nome]
+            );
+
+            return resultado.insertId; // retorna o ID do novo registro
         } catch (err) {
-            throw err; // deixa o controller lidar com o erro
+            console.error("Erro ao inserir EPI:", err);
+            throw err;
         }
     }
-    //#endregion
+
 }
 
 module.exports = Epi;

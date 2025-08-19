@@ -42,22 +42,11 @@ class Funcionario {
     }
     //#endregion
 
-    //#region Métodos
-
-    static async loginFuncionario(email, senha) {
-        const resultado = await Connection.query(
-            'SELECT COUNT(*) AS total FROM tb_funcionario WHERE email = ? AND senha = ?',
-            [email, md5(senha)]
-        );
-
-        // resultado = [ { total: 1 } ] se encontrou
-        return resultado[0].total; // retorna 0 (inválido) ou 1 (válido)
-    }
-
+    //#region Método
     static async criarfuncionario(nome, email, senha) {
         const Connection = require('../Config/Connection');
         const resultado = await Connection.query(
-            'INSERT INTO tb_funcionario (nome,email,senha) VALUES (?,?,?)',
+            'INSERT INTO tb_funcionario (nome,email) VALUES (?,?,?)',
             [nome, email, md5(senha)]
         );
         return resultado.insertId;
