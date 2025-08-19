@@ -3,7 +3,7 @@ use td187899_sgtst;
 
 create table if not exists tb_epi(
 id int not null primary key auto_increment,
-nome varchar(50) not null
+nome varchar(50) not null unique
 );
 create table if not exists tb_fornecedor(
 id int not null primary key auto_increment,
