@@ -1,39 +1,140 @@
+import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export function MyCanva() {
+    const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
     return (
-        <div style={style.container}>
-            <text
-                style={style.hamburger}
-                onClick={() => { alert() }}>
-                <GiHamburgerMenu size={30} color="white" />
-            </text>
-            <text style={style.hamburger}>
-                SGTST
-            </text>
-            <text
-                style={style.hamburger}
-                onClick={() => { alert() }}>
-                <GiHamburgerMenu size={30} color="white" />
-            </text>
+        <div style={style.view}>
+            <div style={style.container}>
+                <text style={style.hamburger}>
+                    <GiHamburgerMenu
+                        size={30}
+                        color="white"
+                        onClick={() => { setIsOpen(!isOpen) }}
+                    />
+                </text>
+                <h3
+                    style={style.hamburger}
+                    onClick={() => { navigate("/Home") }}
+                >
+                    SGTST
+                </h3>
+                <text
+                    style={style.hamburger}
+                    onClick={() => { alert() }}>
+                    <GiHamburgerMenu size={30} color="white" />
+                </text>
+            </div>
+            <div>
+                <AnimatePresence>
+                    {
+                        isOpen && (
+                            <motion.div
+                                style={style.offCavas}
+                                initial={{ x: -300, opacity: 1 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                exit={{ x: -400, duration: 0.15, opacity: 1 }}
+                                transition={{ duration: 0.35, type: "tween", }}
+                            >
+                                <text
+                                    style={style.link}
+                                    onClick={() => { navigate("/Funcionarios") }}
+                                >
+                                    <i className="bi bi-person-lines-fill" style={style.icon}></i>
+                                    Funcionarios
+                                </text>
+                                <text
+                                    style={style.link}
+                                    onClick={() => { navigate("/epi") }}
+                                >
+                                    <i className="bi bi-headset-vr" style={style.icon}></i>
+                                    EPI's
+                                </text>
+                                <text
+                                    style={style.link}
+                                    onClick={() => { navigate("/Home") }}
+                                >
+                                    <i className="bi bi-exclamation-triangle-fill" style={style.icon}></i>
+                                    Acidentes
+                                </text>
+                                <text
+                                    style={style.linkOut}
+                                    onClick={() => { navigate("/") }}
+                                >
+                                    <i className="bi bi-box-arrow-right" style={style.icon}></i>
+                                    Sair
+                                </text>
+                            </motion.div>
+                        )
+                    }
+                </AnimatePresence>
+            </div>
         </div>
     );
 }
-
 const style = {
+    view: {
+        width: '100%',
+    },
     container: {
-        display:'flex',
-        justifyContent: 'space-between',
         backgroundColor: '#65a765',
-        width:'100%',
+        color: '#fff',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     hamburger: {
-        //flex: 1,
-        display:'flex',
+        display: 'flex',
         justifyContent: 'flex-start',
-        alignItems:'center',
-        padding:'1rem',
-        marginLeft:10,
-        marginRight:10,
-    }
+        alignItems: 'center',
+        padding: '0.5 rem',
+        cursor: "pointer",
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    offCavas: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: '#65a765',
+        position: 'fixed',
+        height: '100%',
+        alignItems: 'center',
+        width: '20%',
+    },
+    link: {
+        display: 'flex',
+        flexDirection: 'row',
+        borderTop: "1px solid #d3d3d3",
+        borderBottom: "1px solid #d3d3d3",
+        padding: "1rem 4rem",
+        cursor: "pointer",
+        fontSize: '1rem',
+        fontWeight: "bold",
+        color: '#fff',
+        width: "100px",
+        alignItems: 'center',
+        textAlign: "center",
+    },
+    linkOut: {
+        borderTop: "1px solid #d3d3d3",
+        borderBottom: "1px solid #d3d3d3",
+        padding: "1rem 4rem",
+        cursor: "pointer",
+        fontSize: '1rem',
+        fontWeight: "bold",
+        color: '#fff',
+        position: "fixed",
+        bottom: 5,
+        width: "100px",
+        textAlign: "center"
+    },
+    icon: {
+        position: "fixed",
+        left: '4rem',
+        fontSize: '1.2rem',
+    },
 }
