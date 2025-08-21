@@ -56,9 +56,11 @@ create table if not exists tb_alocacao(
   foreign key (id_uni) references tb_uni_epi(id)
 );
 
-insert into phpmyadmin.tb_estado values (null,'Novo');
-insert into phpmyadmin.tb_estado values (null,'Seminovo');
-insert into phpmyadmin.tb_estado values (null,'Usado');
-insert into phpmyadmin.tb_estado values (null,'Muito Usado');
-insert into phpmyadmin.tb_estado values (null,'Quebrado');
-insert into phpmyadmin.tb_estado values (null,'Avariado');
+#insert into phpmyadmin.tb_estado values (null,'Novo');
+#insert into phpmyadmin.tb_estado values (null,'Seminovo');
+#insert into phpmyadmin.tb_estado values (null,'Usado');
+#insert into phpmyadmin.tb_estado values (null,'Muito Usado');
+#insert into phpmyadmin.tb_estado values (null,'Quebrado');
+#insert into phpmyadmin.tb_estado values (null,'Avariado');
+
+#insert into phpmyadmin.tb_cargo values (null,'Administrador Geral');

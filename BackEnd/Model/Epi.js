@@ -26,7 +26,7 @@ class Epi {
         const Connection = require('../Config/Connection');
 
         try {
-            const [resultado] = await Connection.query(
+            const resultado = await Connection.query(
                 'INSERT INTO tb_epi (nome) VALUES (?)',
                 [nome]
             );

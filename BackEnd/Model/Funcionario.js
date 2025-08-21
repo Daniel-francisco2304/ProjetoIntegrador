@@ -2,11 +2,11 @@ const Connection = require('../Config/Connection');
 const md5 = require('md5');
 
 class Funcionario {
-    constructor(id, nome, email, senha, cargo) {
+    constructor(id, nome, email, dtContratacao, cargo) {
         this._id = id;
         this._nome = nome;
         this._email = email;
-        this._senha = senha;
+        this._dtContratacao = dtContratacao;
         this._cargo = cargo;
     }
     //#region Atributos
@@ -28,11 +28,11 @@ class Funcionario {
     set email(email) {
         this._email = email;
     }
-    get senha() {
-        return this._senha;
+    get dtContratacao() {
+        return this._dtContratacao;
     }
-    set senha(senha) {
-        this._senha = senha;
+    set dtContratacao(dtContratacao) {
+        this._dtContratacao = dtContratacao;
     }
     get cargo() {
         return this._cargo;
@@ -43,15 +43,27 @@ class Funcionario {
     //#endregion
 
     //#region Método
-    static async criarfuncionario(nome, email, senha) {
+    static async criarfuncionario(nome, email, dtContratacao) {
         const Connection = require('../Config/Connection');
-        const resultado = await Connection.query(
-            'INSERT INTO tb_funcionario (nome,email) VALUES (?,?,?)',
-            [nome, email, md5(senha)]
-        );
-        return resultado.insertId;
+        try {
+            if (dtContratacao === null) {
+                const resultado = await Connection.query(
+                    'INSERT INTO tb_funcionario (nome,email,id_cargo) VALUES (?,?,1)',
+                    [nome, email]
+                );
+                return resultado.insertId;
+            } else {
+                const resultado = await Connection.query(
+                    'INSERT INTO tb_funcionario (nome,email,contratacao,id_cargo) VALUES (?,?,?,1)',
+                    [nome, email, dtContratacao]
+                );
+                return resultado.insertId;
+            }
+        }
+        catch (error) {
+            console.log(error)
+        }
     }
-
     static async alterarfuncionario(nome, id) {
         const Connection = require('../Config/Connection');
         const resultado = await Connection.query(
@@ -96,12 +108,12 @@ class Funcionario {
         } else {
             sql += ` ORDER BY f.nome`; // padrão de segurança
         }
-        
+
         try {
             const rows = await Connection.query(sql, valores);
             return rows;
         } catch (err) {
-            throw err; // deixa o controller lidar com o erro
+            throw err;
         }
     }
     //#endregion
