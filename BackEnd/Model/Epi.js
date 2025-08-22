@@ -18,10 +18,16 @@ class Epi {
         this._idUni = idUni;    //id do Estado
         this._est = est;        //Estado de uso
 
+        this._idLote = idLote   //id do lote
+        this._dtAqui = dtAqui   //data da aquisição
+        this._dtVld = dtVld     //data de validade do EPI
+        this._qtd = qtd     //data de validade do EPI
+
         this._idAloc = idAloc   //id da alocação
         this._dtAloc = dtAloc   //data da alocação
-        this._dvAloc = dvAloc   //data da devolução do EPI
+        this._dtAloc = dtAloc   //data da devolução do EPI
     }
+
     static async criarNomeEpi(nome) {
         const Connection = require('../Config/Connection');
 
@@ -40,7 +46,7 @@ class Epi {
         const Connection = require('../Config/Connection');
 
         try {
-            const [resultado] = await Connection.query(
+            const resultado = await Connection.query(
                 'INSERT INTO tb_ca (ca) VALUES (?)',
                 [ca]
             );
@@ -54,7 +60,7 @@ class Epi {
         const Connection = require('../Config/Connection');
 
         try {
-            const [resultado] = await Connection.query(
+            const resultado = await Connection.query(
                 'INSERT INTO tb_fornecedor (nome) VALUES (?)',
                 [forn]
             );
@@ -62,6 +68,14 @@ class Epi {
         } catch (err) {
             console.error("Erro ao inserir fornecedor:", err);
             throw err;
+        }
+    }
+    static async criarLoteEpi(nome, forn, dtAqui, dtVld, qtd) {
+        const Connection = require('../Config/Connection');
+        try {
+            
+        } catch (error) {
+            
         }
     }
 }

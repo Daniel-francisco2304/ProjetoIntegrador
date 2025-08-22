@@ -12,8 +12,8 @@ async function testar() {
     //console.log('Lista de usuários:');
     //console.table(usuarios);
 
-    const idEpi = await Epi.criarNomeEpi('Luva')
-    console.log('Epi criado com ID: ',idEpi);
+    //const idEpi = await Epi.criarNomeEpi('Luva')
+    //console.log('Epi criado com ID: ',idEpi);
   } catch (err) {
     console.error('Erro durante o teste:', err);
   }
