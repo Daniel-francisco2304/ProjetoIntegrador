@@ -28,6 +28,14 @@ class Connection {
     close() {
         this.Connection.end();
     }
+    execute(sql, params = []) {
+        return new Promise((resolve, reject) => {
+            this.Connection.execute(sql, params, (err, results) => {
+                if (err) return reject(err);
+                resolve(results);
+            });
+        });
+    }
 }
 
 module.exports = new Connection();

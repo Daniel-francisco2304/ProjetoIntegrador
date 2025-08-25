@@ -72,10 +72,51 @@ class Epi {
     }
     static async criarLoteEpi(nome, forn, dtAqui, dtVld, qtd) {
         const Connection = require('../Config/Connection');
+
         try {
-            
+            await Connection.query('START TRANSACTION');
+            let refused = false;
+            let idEpi = await Connection.execute('SELECT id FROM tb_epi WHERE nome = ?', [nome]);
+            if (!idEpi.find(id => id.id)) {
+                const respEpi = await Connection.execute('INSERT INTO tb_epi (nome) VALUE (?)', [nome]);
+                idEpi = respEpi.insertId;
+                //console.log(idEpi);
+                //refused = true;
+            } else {
+                idEpi = (idEpi[0].id)
+                //console.log(idForn[0].id)
+            }
+            let idForn = await Connection.execute('SELECT id FROM tb_fornecedor WHERE nome = ?', [forn]);
+            if (!idForn.find(id => id.id)) {
+                const respForn = await Connection.execute('INSERT INTO tb_fornecedor (nome) VALUE (?)', [forn]);
+                idForn = respForn.insertId;
+                //console.log(idForn);
+                //refused = true;
+            } else {
+                idForn = (idForn[0].id)
+                //console.log(idForn[0].id)
+            }
+            const dtString = new Date(dtAqui);
+            const dtVString = new Date(dtVld);
+
+            //console.log(resultado)
+            console.log(idEpi);
+            console.log(idForn);
+            console.log(dtString);
+            console.log(dtVString);
+
+            const resultado = await Connection.execute('INSERT INTO tb_lote_epi (id_epi,qtd,dt_aquisicao,dt_validade,id_fornecedor) VALUES (?,?,?,?,?)',
+                [idEpi, qtd, dtString, dtVString, idForn]
+            )
+
+            if (refused) {
+                await Connection.query('ROLLBACK')
+            } else {
+                await Connection.query('COMMIT');
+                return resultado.insertId;
+            }
         } catch (error) {
-            
+            console.log(error)
         }
     }
 }

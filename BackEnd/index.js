@@ -14,6 +14,9 @@ async function testar() {
 
     //const idEpi = await Epi.criarNomeEpi('Luva')
     //console.log('Epi criado com ID: ',idEpi);
+
+    const idLote = await Epi.criarLoteEpi('Óculos','Vanessa da Mata SA','2005-04-23 6:32:52','2005-04-23 6:32:52',250);
+    //console.log(idLote);
   } catch (err) {
     console.error('Erro durante o teste:', err);
   }
