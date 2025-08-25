@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { BsBellFill } from "react-icons/bs";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-
 export function MyCanva() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isNoti, setIsNoti] = useState(false);
     const navigate = useNavigate();
+
     return (
         <div style={style.view}>
             <div style={style.container}>
@@ -24,8 +26,8 @@ export function MyCanva() {
                 </h3>
                 <text
                     style={style.hamburger}
-                    onClick={() => { alert() }}>
-                    <GiHamburgerMenu size={30} color="white" />
+                    onClick={() => { setIsNoti(!isNoti) }}>
+                    <BsBellFill size={30} color="white" />
                 </text>
             </div>
             <div>
@@ -72,6 +74,23 @@ export function MyCanva() {
                     }
                 </AnimatePresence>
             </div>
+
+            <div>
+                <AnimatePresence>
+                    {
+                        isNoti && (
+                            <motion.div
+                                style={style.offNotif}
+                                initial={{ x: (window.innerWidth), opacity: 1 }}
+                                animate={{ x: (window.innerWidth)-(window.innerWidth*0.2), opacity: 1 }}
+                                exit={{ x: (window.innerWidth), duration: 0.15, opacity: 1 }}
+                                transition={{ duration: 0.35, type: "tween", }}
+                            >
+                            </motion.div>
+                        )
+                    }
+                </AnimatePresence>
+            </div>
         </div>
     );
 }
@@ -92,8 +111,8 @@ const style = {
         alignItems: 'center',
         padding: '0.5 rem',
         cursor: "pointer",
-        marginLeft: 10,
-        marginRight: 10,
+        marginLeft: '1rem',
+        marginRight: '1rem',
     },
     offCavas: {
         flex: 1,
@@ -105,8 +124,19 @@ const style = {
         alignItems: 'center',
         width: '20%',
     },
+    offNotif: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: '#e6ffe6',
+        position: 'fixed',
+        height: '100%',
+        alignItems: 'center',
+        width: '20%',
+        borderLeft:'2px solid #d3d3d3',
+        borderRight:'2px solid #d3d3d3',
+    },
     link: {
-        //backgroundColor: '#000',
         display: 'flex',
         flexDirection: 'row',
         borderTop: "1px solid #d3d3d3",
@@ -121,7 +151,7 @@ const style = {
         textAlign: "center",
     },
     linkOut: {
-        //display: 'flex',
+        display: 'flex',
         borderTop: "1px solid #d3d3d3",
         borderBottom: "1px solid #d3d3d3",
         padding: "1rem",
@@ -130,13 +160,9 @@ const style = {
         fontSize: '1rem',
         fontWeight: "bold",
         color: '#fff',
-        alignItems: 'center',
-        textAlign: "center",
-        marginBot
     },
     icon: {
-        //position: "fixed",
-        //left: '4rem',
         fontSize: '1.2rem',
+        marginRight: '1rem'
     },
 }
