@@ -20,15 +20,15 @@ export const variantStyles = {
 }
 export const sizeStyles = {
     sm: {
-        padding: "6px 12px",
+        padding: "6px 6px",
         fontSize: "0.8rem",
     },
     md: {
-        padding: "10px 20px",
+        padding: "10px 10px",
         fontSize: "1rem",
     },
     lg: {
-        padding: "14px 28px",
+        padding: "14px 14px",
         fontSize: "1.2rem",
     },
 
@@ -225,7 +225,7 @@ export const containerSizeStyles = {
         padding: "30px",
         gap: "30px",
         width: "90%",
-        alingSelf:"center"
+        alingSelf: "center"
         //marginLeft: "5%",
         //marginRight: "5%",
     }

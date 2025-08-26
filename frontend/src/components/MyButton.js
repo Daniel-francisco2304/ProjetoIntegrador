@@ -7,6 +7,7 @@ function MyButton(props) {
         onClick,
         type,
         value,
+        //Children,
         onChange,
         style: customStyle,
         variant = "default",
@@ -19,7 +20,7 @@ function MyButton(props) {
         border: "none",
         borderRadius: "4px",
         cursor: "pointer",
-        minWidth: "120px",
+        minWidth: "60px",
     };
 
     const combinedStyle = {
