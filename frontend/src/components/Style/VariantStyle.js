@@ -22,14 +22,18 @@ export const sizeStyles = {
     sm: {
         padding: "6px 6px",
         fontSize: "0.8rem",
+        margin:10,
     },
     md: {
         padding: "10px 10px",
         fontSize: "1rem",
+        margin:10,
+
     },
     lg: {
         padding: "14px 14px",
         fontSize: "1.2rem",
+        margin:10,
     },
 
     smStrong: {

@@ -9,7 +9,7 @@ Meu projeto pretende desenvolver, até Novembro de 2025 um sistema completo, doc
 3 - Produzir relatório;
 4 - Produzir fichas de moderação de EPI;
 5 - Mapear locais de acidentes;
-6 - Mapear doenças comuns por setor;
+6 - Mapear as doenças comuns por setor;
 7 - Mapear os acidentes mais comuns por setor;
 8 - Detectar os acidentes em comum;
 
