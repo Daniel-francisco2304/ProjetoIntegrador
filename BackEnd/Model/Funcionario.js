@@ -66,17 +66,27 @@ class Funcionario {
     }
     static async alterarfuncionario(nome, id) {
         const Connection = require('../Config/Connection');
-        const resultado = await Connection.query(
-            'UPDATE tb_funcionario SET nome = (?) WHERE id = (?)',
-            [nome, id]
-        );
-        return resultado.insertId;
+        try {
+            const resultado = await Connection.query(
+                'UPDATE tb_funcionario SET nome = (?) WHERE id = (?)',
+                [nome, id]
+            );
+            return resultado.affectedRows;
+        } catch (error) {
+            return error
+        }
     }
 
     static async excluirFuncionario(id) {
-        const sql = 'DELETE FROM tb_funcionario WHERE id = ?';
-        const resultado = await Connection.query(sql, [id]);
-        return resultado.affectedRows;
+        const Connection = require('../Config/Connection');
+        try {
+            const resultado = await Connection.query('DELETE FROM tb_funcionario WHERE id = ?',
+                [id]
+            );
+            return resultado.affectedRows;
+        } catch (error) {
+
+        }
     }
 
     static async listarTodos(callback) {
