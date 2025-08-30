@@ -8,9 +8,9 @@ async function testar() {
     //console.log('Usuário criado com ID:', novoId);
 
     // Listar todos os usuários
-    //const usuarios = await Funcionarios.selecFuncionario('');
-    //console.log('Lista de usuários:');
-    //console.table(usuarios);
+    const usuarios = await Funcionarios.selecFuncionario('','dt_contratacao');
+    console.log('Lista de usuários:');
+    console.table(usuarios);
 
     //const idEpi = await Epi.criarNomeEpi('Luva')
     //console.log('Epi criado com ID: ',idEpi);

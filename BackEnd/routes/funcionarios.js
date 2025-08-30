@@ -5,6 +5,7 @@ const Funcionario = require('../Model/Funcionario');
 router.get('/', async (req, res) => {
   const { q, f } = req.query;
   console.log('Recebido f:', f)
+  console.log('Recebido f:', q)
 
   try {
     const rows = await Funcionario.selecFuncionario(q, f);
@@ -18,10 +19,10 @@ router.get('/', async (req, res) => {
 
 
 router.post('/', async (req, res) => {
-  const { nome, email, senha } = req.body;
+  const { nome, email, dtContratacao } = req.body;
   try {
-    const novoId = await Funcionario.criarfuncionario(nome, email, senha);
-    res.status(201).json({ id: novoId, nome, senha, email });
+    const novoId = await Funcionario.criarfuncionario(nome, email, dtContratacao);
+    res.status(201).json({ id: novoId, nome, dtContratacao, email });
   } catch (err) {
     console.error(err);
     res.status(500).json({ erro: 'Erro ao adicionar funcionário' });

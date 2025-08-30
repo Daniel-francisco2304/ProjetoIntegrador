@@ -20,7 +20,7 @@ function FuncionarioTable() {
 
   function carregarFuncionarios(searchParam = '') {
     const endpoint = searchParam
-      ? `http://localhost:3001/funcionarios?q=${param}&f=${filtro.value}`
+      ? `http://localhost:3001/funcionarios?q='${param}'&f=${filtro.value}`
       : 'http://localhost:3001/funcionarios';
     console.log(filtro.value);
     axios.get(endpoint)

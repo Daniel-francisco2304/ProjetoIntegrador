@@ -110,8 +110,7 @@ class Funcionario {
             }
             valores.push(`%${param}%`);
         }
-
-        const colunas = ['f.nome', 'email', 'dt_contratacao'];
+        const colunas = ['f.nome', 'email', 'contratacao'];
 
         if (colunas.includes(filtro)) {
             sql += ` ORDER BY ${filtro}`;

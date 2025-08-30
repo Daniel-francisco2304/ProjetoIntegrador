@@ -64,3 +64,16 @@ create table if not exists tb_alocacao(
 #insert into phpmyadmin.tb_estado values (null,'Avariado');
 
 #insert into phpmyadmin.tb_cargo values (null,'Administrador Geral');
+
+#SELECT e.nome      AS epi,
+#       f.nome      AS fornecedor,
+#       l.qtd       AS quantidade_lote,
+#       l.dt_aquisicao,
+#       l.dt_validade,
+#       est.nome    AS estado,
+#       u.id        AS unidade
+#FROM tb_uni_epi u
+#LEFT JOIN tb_lote_epi l ON u.id_lote = l.id
+#LEFT JOIN tb_epi e      ON l.id_epi = e.id
+#LEFT JOIN tb_fornecedor f ON l.id_fornecedor = f.id
+#LEFT JOIN tb_estado est ON u.id_estado = est.id;

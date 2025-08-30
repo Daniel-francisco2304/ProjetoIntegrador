@@ -21,7 +21,7 @@ function Funcionarios() {
         <MyButton size='md' title={<><BsPersonFillAdd /> <MyText size=''>Novo Funcionário</MyText></>} />
       </MyContainer>
       <MyContainer variant='light' size='lg'>
-
+        
       </MyContainer>
     </div >
   );
