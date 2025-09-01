@@ -6,6 +6,7 @@ import { BsSearch, BsPlus, BsPersonFillAdd } from "react-icons/bs";
 import { MyCanva } from '../components/MyCanvas';
 import MyText from "../components/MyText";
 import { getAllFuncionarios } from '../model/funcionario';
+import { MySelect } from '../components/MySelect';
 
 function Funcionarios() {
   const [nome, setNome] = useState('')
@@ -15,14 +16,25 @@ function Funcionarios() {
       <h3>Funcionários</h3>
       <MyContainer size='lg' variant='success'>
         <text style={{ fontSize: 20 }}>Buscar Funcionário</text><br />
-        <MyInput style={{width:'100%'}} /> <br/>
-        <MyButton size='md' style={{marginLeft:'0'}} title={<><BsSearch /> Consultar</>}>
+        <MyInput
+          style={{ width: '100%' }}
+          onChange={(e) => { setNome(e.target.value) }}
+        /> <br />
+        <MyButton size='md' style={{ marginLeft: '0' }} title={<><BsSearch /> Consultar</>}>
           Consultar
         </MyButton>
-        <MyButton size='md' title={<><BsPersonFillAdd /> <MyText size=''>Novo Funcionário</MyText></>} />
+        <MyButton size='md' title={<><BsPersonFillAdd /> Novo Funcionário</>} />
+        <MySelect>
+          nome
+        </MySelect>
+        <select>
+          <option>nome</option>
+          <option>email</option>
+          <option>data de contratação</option>
+        </select>
       </MyContainer>
       <MyContainer variant='light' size='lg'>
-        <button onClick={()=>{getAllFuncionarios('@v','')}}></button>
+        <button onClick={() => { getAllFuncionarios(nome, '') }}></button>
       </MyContainer>
     </div >
   );

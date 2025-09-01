@@ -1,6 +1,6 @@
 import { MyCanva } from '../components/MyCanvas';
 
-function EpiScreen() {
+function Epi() {
 
 
     return (
@@ -18,4 +18,4 @@ const styles = {
     },
 };
 
-export default EpiScreen;
+export default Epi;
