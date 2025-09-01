@@ -26,3 +26,6 @@ Pacotes utilizados:
 * npm install axios;
 * npm install firebase;
 * npm install framer-motion;
+
+#alerta:
+A partir do primeiro ano do funcionário, enviar uma notificação para os adm's avisando sobre os funcionários que precisam de fazer exames anuais.

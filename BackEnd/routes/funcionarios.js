@@ -5,11 +5,11 @@ const Funcionario = require('../Model/Funcionario');
 router.get('/', async (req, res) => {
   const { q, f } = req.query;
   console.log('Recebido f:', f)
-  console.log('Recebido f:', q)
+  console.log('Recebido q:', q)
 
   try {
     const rows = await Funcionario.selecFuncionario(q, f);
-    //console.log('Funcionários retornados:', rows);
+    console.log('Funcionários retornados:', rows);
     res.json(rows);
   } catch (err) {
     console.error(err);

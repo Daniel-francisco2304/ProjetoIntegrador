@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import BackgroundSlideshow from "../components/background.js";
 import MyInput from "../components/MyInput.js";
 import MyButton from "../components/MyButton.js";
+import MyText from "../components/MyText.js";
 
 function ResetScreen() {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function ResetScreen() {
           onClick={() => handleReset(email)}
         />
         <br />
+        <MyText link="default" onClick={()=>{navigate("/")}}> _Voltar para login_ </MyText>
       </div>
     </BackgroundSlideshow>
   );
