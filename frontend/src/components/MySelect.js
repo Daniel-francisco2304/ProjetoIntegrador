@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import { variantStyles, sizeStyles, textStyles } from "./Style/VariantStyle";
 
 export function MySelect(props) {
@@ -10,11 +10,13 @@ export function MySelect(props) {
         autoFocus,
         multiple = false,
         onChangeCapture,
+        onChange,
         required = false,
         style: customStyle,
         text = "default",
         variant = 'default',
         size = 'md',
+        children
     } = props
 
     const baseStyle = {
@@ -34,8 +36,10 @@ export function MySelect(props) {
 
     return (
         <select
+            name={name}
             style={combinedStyle}
             value={value}
+            onChange={onChange}
             defaultValue={defaultValue}
             autoComplete={autoComplete}
             autoFocus={autoFocus}
@@ -43,7 +47,7 @@ export function MySelect(props) {
             multiple={multiple}
             required={required}
         >
-            <option>{props.Children}</option>
+            {children}
         </select>
     )
 }

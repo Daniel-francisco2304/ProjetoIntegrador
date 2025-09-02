@@ -6,3 +6,4 @@
 /*2.2 - Pipovers para as notificações;
 /*2.3 - Sempre que um novo usuario for cadastrado será mostrado para o administrador geral.
 /*2.3.1 - Será mostrado a hora, quem cadastrou e o cargo do cadastrado e do cadastrador.
+/*3 - adicionar a tabela funcionário o campo de CPF e nº de registro.
