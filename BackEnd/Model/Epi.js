@@ -84,7 +84,7 @@ class Epi {
             }
             let idForn = await Connection.execute('SELECT id FROM tb_fornecedor WHERE nome = ?', [forn]);
             if (!idForn.find(id => id.id)) {
-                const respForn = await Connection.execute('INSERT INTO tb_fornecedor (nome) VALUE (?)', [forn]);
+      1          const respForn = await Connection.execute('INSERT INTO tb_fornecedor (nome) VALUE (?)', [forn]);
                 idForn = respForn.insertId;
             } else {
                 idForn = (idForn[0].id)
