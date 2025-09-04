@@ -13,6 +13,7 @@ export async function getAllFuncionarios(p, f) {
         return funcionarios.data;
     } catch (error) {
         alert('error ao buscar funcionários!', error);
-        return [0];
+        const funcionarios = false
+        return funcionarios;
     }
 }

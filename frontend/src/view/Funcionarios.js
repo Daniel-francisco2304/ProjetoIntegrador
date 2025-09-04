@@ -49,6 +49,7 @@ function Funcionarios() {
           style={{
             width: '100%',
             border: '1px solid #d3d3d3',
+            textAlign: 'center',
           }}>
           <thead>
             <tr>
@@ -56,7 +57,7 @@ function Funcionarios() {
               <th>Email</th>
               <th>Data de contratação</th>
               <th>Cargo</th>
-              <th style={{ width: '20%' }}>Ação</th>
+              <th>Ação</th>
             </tr>
           </thead>
           <tbody>
@@ -69,7 +70,7 @@ function Funcionarios() {
                     <td style={{ textAlign: 'center' }}>{func.email}</td>
                     <td style={{ textAlign: 'center' }}>{func.contratacao}</td>
                     <td style={{ textAlign: 'center' }}>{func.c_nome}</td>
-                    <td style={{ textAlign: 'center' }}>
+                    <td style={{ textAlign: 'center', width: '20%' }}>
                       <MyButton size='sm' variant='warning' title={<><BsPencilSquare /></>} />
                       <MyButton size='sm' variant='danger' title={<><BsFillTrashFill /></>} />
                     </td>
@@ -77,7 +78,7 @@ function Funcionarios() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="3">Nenhum funcionário encontrado ou erro ao buscar</td>
+                  <td colSpan="3" style={{ textAlign: 'center' }}>Nenhum funcionário encontrado ou erro ao buscar</td>
                 </tr>
               )
             }
