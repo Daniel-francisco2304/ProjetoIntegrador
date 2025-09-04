@@ -21,7 +21,7 @@ class Epi {
         this._idLote = idLote   //id do lote
         this._dtAqui = dtAqui   //data da aquisição
         this._dtVld = dtVld     //data de validade do EPI
-        this._qtd = qtd     //data de validade do EPI
+        this._qtd = qtd         //data de validade do EPI
 
         this._idAloc = idAloc   //id da alocação
         this._dtAloc = dtAloc   //data da alocação
