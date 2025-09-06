@@ -38,7 +38,7 @@ function Funcionarios() {
         >
           <option value={'1'}>Nome</option>
           <option value={'2'}>Email</option>
-          <option >Data de Contratação</option>
+          <option value={'3'}>Data de Contratação</option>
           <option >Cargo</option>
         </MySelect>
       </MyContainer>
