@@ -21,6 +21,8 @@ function MyButton(props) {
         borderRadius: "4px",
         cursor: "pointer",
         minWidth: "60px",
+        alingContent:'center',
+        alingSelf:'center'
     };
 
     const combinedStyle = {

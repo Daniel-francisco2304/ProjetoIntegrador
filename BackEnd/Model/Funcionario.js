@@ -2,60 +2,48 @@ const Connection = require('../Config/Connection');
 const md5 = require('md5');
 
 class Funcionario {
-    constructor(id, nome, email, dtContratacao, cargo) {
+    constructor(id, nome, cpf, email, dtContratacao, cargo) {
         this._id = id;
         this._nome = nome;
+        this._cpf = cpf;
         this._email = email;
         this._dtContratacao = dtContratacao;
         this._cargo = cargo;
     }
     //#region Atributos
-    get id() {
-        return this._id;
-    }
-    set id(id) {
-        this._id = id;
-    }
-    get nome() {
-        return this._nome;
-    }
-    set nome(nome) {
-        this._nome = nome;
-    }
-    get email() {
-        return this._email;
-    }
-    set email(email) {
-        this._email = email;
-    }
-    get dtContratacao() {
-        return this._dtContratacao;
-    }
-    set dtContratacao(dtContratacao) {
-        this._dtContratacao = dtContratacao;
-    }
-    get cargo() {
-        return this._cargo;
-    }
-    set cargo(cargo) {
-        this._cargo = cargo;
-    }
+    get id() { return this._id; }
+    set id(id) { this._id = id; }
+
+    get nome() { return this._nome; }
+    set nome(nome) { this._nome = nome; }
+
+    get cpf() { return this._cpf }
+    set cpf(cpf) { this._cpf = cpf; }
+
+    get email() { return this._email; }
+    set email(email) { this._email = email; }
+
+    get dtContratacao() { return this._dtContratacao; }
+    set dtContratacao(dtContratacao) { this._dtContratacao = dtContratacao; }
+
+    get cargo() { return this._cargo; }
+    set cargo(cargo) { this._cargo = cargo; }
     //#endregion
 
     //#region Método
-    static async criarfuncionario(nome, email, dtContratacao) {
+    static async criarfuncionario(nome, cpf, email, dtContratacao) {
         const Connection = require('../Config/Connection');
         try {
             if (dtContratacao === null) {
                 const resultado = await Connection.query(
-                    'INSERT INTO tb_funcionario (nome,email,id_cargo) VALUES (?,?,1)',
-                    [nome, email]
+                    'INSERT INTO tb_funcionario (nome,email,cpf,id_cargo) VALUES (?,?,?,1)',
+                    [nome, cpf, email]
                 );
                 return resultado.insertId;
             } else {
                 const resultado = await Connection.query(
-                    'INSERT INTO tb_funcionario (nome,email,contratacao,id_cargo) VALUES (?,?,?,1)',
-                    [nome, email, dtContratacao]
+                    'INSERT INTO tb_funcionario (nome,cpf,email,contratacao,id_cargo) VALUES (?,?,?,?,1)',
+                    [nome, cpf, email, dtContratacao]
                 );
                 return resultado.insertId;
             }

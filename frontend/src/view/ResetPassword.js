@@ -49,7 +49,7 @@ const styles = {
     padding: "20px",
     textAlign: "center",
     borderRadius: "10px",
-    boxShadow: "0 0 20px rgba(0,0,0,0.5)",
+    boxShadow: "0 0 20px #00000080",
     backgroundColor: "white",
   },
 };
