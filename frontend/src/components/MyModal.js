@@ -61,30 +61,54 @@ export function MyModal() {
                             <div
                                 style={{
                                     display: "flex",
-                                    width: '100%',
+                                    flexDirection: 'row',
+                                    marginLeft: '5%',
                                 }}
                             >
-                                <div>
+                                <div style={{
+                                    width: '45%',
+                                }}>
+                                    <MyText
+                                        style={{
+                                            display: "flex",
+                                            fontSize: '20px',
+                                            fontWeight: 'bold',
+                                            padding: 0,
+                                            marginTop: 10,
+                                            marginBottom: 10,
+                                            margin: 0,
+                                        }}
+                                    >
+                                        CPF:
+                                    </MyText>
+                                    <MyInput size='lg' style={{
+                                        width: '100%',
+                                    }} />
+                                </div>
+                                <div style={{
+                                    marginLeft: '5%',
+                                    width: '45%',
+                                }}
+                                >
                                     <MyText
                                         style={{
                                             display: "flex",
                                             fontSize: '20px',
                                             fontWeight: 'bold',
                                             justifyContent: 'flex-start',
-                                            //marginLeft: '4%'
+                                            margin: 0,
+                                            padding: 0,
+                                            marginTop: 10,
+                                            marginBottom: 10,
                                         }}
                                     >
-                                        CPF:
+                                        Data da Contratação:
                                     </MyText>
                                     <MyInput size='lg' style={{
-                                        //display: "flex",
-                                        //justifyContent: 'flex-start',
-                                        //width: '40%',
-                                        //marginLeft: '5%'
+                                        width: '100%',
                                     }} />
                                 </div>
                             </div>
-
 
                             <div style={{
                                 display: "flex",
@@ -109,7 +133,7 @@ export function MyModal() {
                                             alignItems: "center",
                                             gap: "6px",
                                             justifyContent: "center",
-                                            marginRight: 0
+                                            marginRight: '5%'
                                         }}
                                         title={<><RxCross1 />Cancelar</>}
                                         onClick={() => setIsOpen(false)}>
