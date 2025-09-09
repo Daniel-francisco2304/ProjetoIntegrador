@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MyContainer from '../components/MyContainer'
 import MyInput from '../components/MyInput'
 import MyButton from '../components/MyButton';
-import { BsSearch, BsPersonFillAdd, BsFillTrashFill, BsPencilSquare } from "react-icons/bs";
+import { BsSearch, BsPersonFillAdd, BsFillTrashFill, BsPencilSquare, BsInfoCircle } from "react-icons/bs";
 import { MyCanva } from '../components/MyCanvas';
 import MyText from "../components/MyText";
 import { getAllFuncionarios } from '../model/funcionario';
@@ -70,8 +70,8 @@ function Funcionarios() {
                     <td style={{ textAlign: 'center' }}>{func.email}</td>
                     <td style={{ textAlign: 'center' }}>{func.contratacao}</td>
                     <td style={{ textAlign: 'center' }}>{func.c_nome}</td>
-                    <td style={{ textAlign: 'center', width: '20%' }}>
-                      <MyButton size='sm' variant='warning' title={<><BsPencilSquare /></>} />
+                    <td style={{ textAlign: 'center', width: '10%' }}>
+                      <MyButton size='sm' variant='warning' title={<><BsInfoCircle /></>} />
                       <MyButton size='sm' variant='danger' title={<><BsFillTrashFill /></>} />
                     </td>
                   </tr>

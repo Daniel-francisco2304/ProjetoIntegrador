@@ -16,6 +16,12 @@ export const variantStyles = {
     },
     warning: {
         backgroundColor: "#ffc107",
+    },
+    info:{
+        backgroundColor:"#0ce3e8"
+    },
+    cinzaClaro:{
+        backgroundColor:"#e9e2da"
     }
 }
 export const sizeStyles = {
