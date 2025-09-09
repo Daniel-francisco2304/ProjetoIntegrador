@@ -47,6 +47,7 @@ function MyTextArea(props) {
             onFocus={onFocus}
             name={name}
             id={id}
+            rows={row}
             disabled={disabled}
             style={combinedStyle}
         />

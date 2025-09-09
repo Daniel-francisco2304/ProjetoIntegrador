@@ -74,7 +74,7 @@ export function MyModal() {
                             >
                                 Funcionario:
                             </MyText>
-                            <MyInput size='lg' disabled={true} />
+                            <MyInput size='lg' />
                             <div
                                 style={{
                                     display: "flex",
