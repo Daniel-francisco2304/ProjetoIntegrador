@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import MyInput from '../components/MyInput'
 import MyText from "./MyText";
@@ -10,26 +10,22 @@ import MyTextArea from "./MyTextArea";
 import { MySelect } from "./MySelect";
 
 
-export function MyModal() {
-    const [isOpen, setIsOpen] = useState(false);
+export function MyModal({ isOpen, setIsOpen }) {
+    //const [isOpen, setIsOpen] = useState(defaultOpen);
     const [nome, setNome] = useState('example');
-    
     const [cpf, setCpf] = useState('example');
     const [email, setEmail] = useState('example');
-    
     const [contato1, setContato1] = useState('example');
     const [contato_2, setContato2] = useState('example');
     const [dtContratacao, setDtContratacao] = useState('example');
-
     const [cargo, setCargo] = useState('example');
     const [filial, setFilial] = useState('example');
     const [status, setStatus] = useState('example');
-
     const [Alergia, setAlergia] = useState('example');
-
     const [emergencia, setEmergencia] = useState('example');
     const [acidente, setAcidente] = useState('example');
     const [sangue, setSangue] = useState('example');
+    if (!isOpen) return null;
     return (
         <div>
             <div>
@@ -74,7 +70,7 @@ export function MyModal() {
                             >
                                 Funcionario:
                             </MyText>
-                            <MyInput size='lg' />
+                            <MyInput size='lg' onChange={(e) => { setNome(e.target.value) }} />
                             <div
                                 style={{
                                     display: "flex",
@@ -98,9 +94,9 @@ export function MyModal() {
                                     >
                                         CPF:
                                     </MyText>
-                                    <MyInput size='lg' style={{
-                                        width: '100%',
-                                    }} />
+                                    <MyInput size='lg' style={{ width: '100%', }}
+                                        onChange={(e) => setCpf(e.target.value)}
+                                    />
                                 </div>
                                 <div style={{
                                     marginLeft: '5%',
@@ -121,9 +117,9 @@ export function MyModal() {
                                     >
                                         Email:
                                     </MyText>
-                                    <MyInput size='lg' style={{
-                                        width: '100%',
-                                    }} />
+                                    <MyInput size='lg' style={{ width: '100%', }}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
                                 </div>
                             </div>
                             <div
@@ -155,7 +151,9 @@ export function MyModal() {
                                         width: '100%',
                                         alignItems: "center",
                                         justifyContent: "center",
-                                    }} />
+                                    }}
+                                        onChange={(e) => setContato1(e.target.value)}
+                                    />
                                 </div>
                                 <div style={{
                                     width: '30%',
@@ -179,7 +177,9 @@ export function MyModal() {
                                         width: '100%',
                                         alignItems: "center",
                                         justifyContent: "center",
-                                    }} />
+                                    }}
+                                        onChange={(e) => setContato2(e.target.value)}
+                                    />
                                 </div>
                                 <div style={{
                                     marginLeft: '5%',
@@ -208,7 +208,9 @@ export function MyModal() {
                                         width: '100%',
                                         alignItems: "center",
                                         justifyContent: "center",
-                                    }} />
+                                    }}
+                                        onChange={(e) => setDtContratacao(e.target.value)}
+                                    />
                                 </div>
                             </div>
                             <div
@@ -240,7 +242,9 @@ export function MyModal() {
                                         width: '100%',
                                         alignItems: "center",
                                         justifyContent: "center",
-                                    }} />
+                                    }}
+                                        onChange={(e) => setCargo(e.target.value)}
+                                    />
                                 </div>
                                 <div style={{
                                     width: '30%',
@@ -264,7 +268,9 @@ export function MyModal() {
                                         width: '100%',
                                         alignItems: "center",
                                         justifyContent: "center",
-                                    }} />
+                                    }}
+                                        onChange={(e) => setFilial(e.target.value)}
+                                    />
                                 </div>
                                 <div style={{
                                     marginLeft: '5%',
@@ -293,7 +299,9 @@ export function MyModal() {
                                         width: '100%',
                                         alignItems: "center",
                                         justifyContent: "center",
-                                    }} />
+                                    }}
+                                        onChange={(e) => setStatus(e.target.value)}
+                                    />
                                 </div>
                             </div>
                             <div>
@@ -311,6 +319,7 @@ export function MyModal() {
                                 <MyTextArea
                                     size='lg'
                                     multiline={true}
+                                    onChange={(e) => setAlergia(e.target.value)}
                                 />
                             </div>
                             <div
@@ -343,7 +352,9 @@ export function MyModal() {
                                         width: '100%',
                                         alignItems: "center",
                                         justifyContent: "center",
-                                    }} />
+                                    }}
+                                        onChange={(e) => setEmergencia(e.target.value)}
+                                    />
                                 </div>
                                 <div style={{
                                     width: '30%',
@@ -368,7 +379,9 @@ export function MyModal() {
                                         alignItems: "center",
                                         justifyContent: "center",
                                         marginLeft: '4%',
-                                    }} />
+                                    }}
+                                        onChange={(e) => { setAcidente(e.target.value) }}
+                                    />
                                 </div>
                                 <div
                                     style={{
@@ -392,16 +405,17 @@ export function MyModal() {
                                             marginTop: 0,
                                             marginBottom: 10,
                                         }}
+                                        onChange={(e) => { setSangue(e.target.value) }}
                                         variant='cinzaClaro'
                                     >
-                                        <option>O+</option>
-                                        <option>O-</option>
-                                        <option>A+</option>
-                                        <option>A-</option>
-                                        <option>B+</option>
-                                        <option>B-</option>
-                                        <option>AB+</option>
-                                        <option>AB-</option>
+                                        <option value={'1'} >O+</option>
+                                        <option value={'2'} >O-</option>
+                                        <option value={'3'} >A+</option>
+                                        <option value={'4'} >A-</option>
+                                        <option value={'5'} >B+</option>
+                                        <option value={'6'} >B-</option>
+                                        <option value={'7'} >AB+</option>
+                                        <option value={'8'} >AB-</option>
                                     </MySelect>
                                 </div>
                             </div>
@@ -439,18 +453,7 @@ export function MyModal() {
                     </>
                 )}
             </div>
-            <MyButton onClick={() => { setIsOpen(!isOpen) }} />
+            {/*<MyButton onClick={() => { setIsOpen(!isOpen) }} />*/}
         </div>
     )
 }
-/*
-O que falta coloca no modal/BD:
-V - Tipo sanguineo;
-Filial vinculada;
-Status de cadastro;
-Cargo;
-V - Email;
-V - Contato;
-V - Contato de emergência;
-V - Ultimo acidente sofrido;
-*/

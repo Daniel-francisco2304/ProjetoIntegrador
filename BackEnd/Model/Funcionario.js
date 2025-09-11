@@ -76,15 +76,6 @@ class Funcionario {
 
         }
     }
-
-    static async listarTodos(callback) {
-        const sql = 'SELECT * FROM tb_funcionario ;';
-        Connection.query(sql, (err, results) => {
-            if (err) return callback(err);
-            callback(null, results)
-        })
-    }
-
     static async selecFuncionario(param, filtro) {
         let sql = 'SELECT f.id, f.nome AS f_nome, f.email, f.contratacao, c.nome AS c_nome FROM phpmyadmin.tb_funcionario f LEFT JOIN tb_cargo c ON f.id_cargo = c.id WHERE TRUE';
         const valores = [];

@@ -7,8 +7,10 @@ import { MyCanva } from '../components/MyCanvas';
 import MyText from "../components/MyText";
 import { getAllFuncionarios } from '../model/funcionario';
 import { MySelect } from '../components/MySelect';
+import { MyModal } from '../components/MyModal';
 
 function Funcionarios() {
+  const [isOpen, setIsOpen] = useState(false);
   const [nome, setNome] = useState('');
   const [filter, setFilter] = useState('Nome');
   const [funcionarios, setFuncionarios] = useState([]);
@@ -71,7 +73,7 @@ function Funcionarios() {
                     <td style={{ textAlign: 'center' }}>{func.contratacao}</td>
                     <td style={{ textAlign: 'center' }}>{func.c_nome}</td>
                     <td style={{ textAlign: 'center', width: '10%' }}>
-                      <MyButton size='sm' variant='warning' title={<><BsInfoCircle /></>} />
+                      <MyButton size='sm' variant='warning' title={<><BsInfoCircle /></>} onClick={() => {setIsOpen(true)}} />
                       <MyButton size='sm' variant='danger' title={<><BsFillTrashFill /></>} />
                     </td>
                   </tr>
@@ -85,6 +87,7 @@ function Funcionarios() {
           </tbody>
         </table>
       </MyContainer>
+      <MyModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div >
   );
 }
