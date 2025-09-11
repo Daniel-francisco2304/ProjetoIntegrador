@@ -52,7 +52,8 @@ export function MyModal({ isOpen, setIsOpen }) {
                                 background: "white",
                                 width: '60%',
                                 minWidth: 500,
-                                alignContent: 'center',
+
+                                //alignContent: 'center',
                                 alignItems: 'center',
                                 padding: 20,
                                 borderRadius: 10,
@@ -70,7 +71,8 @@ export function MyModal({ isOpen, setIsOpen }) {
                             >
                                 Funcionario:
                             </MyText>
-                            <MyInput size='lg' onChange={(e) => { setNome(e.target.value) }} />
+
+                            <MyInput size='lg' onChange={(e) => { setNome(e.target.value) }} style={{ marginLeft: '5%', }} />
                             <div
                                 style={{
                                     display: "flex",
@@ -320,6 +322,7 @@ export function MyModal({ isOpen, setIsOpen }) {
                                     size='lg'
                                     multiline={true}
                                     onChange={(e) => setAlergia(e.target.value)}
+                                    style={{ marginLeft: '5%', }}
                                 />
                             </div>
                             <div
