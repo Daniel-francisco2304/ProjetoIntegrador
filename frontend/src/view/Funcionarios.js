@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import MyContainer from '../components/MyContainer'
 import MyInput from '../components/MyInput'
 import MyButton from '../components/MyButton';
-import { BsSearch, BsPersonFillAdd, BsFillTrashFill, BsPencilSquare, BsInfoCircle } from "react-icons/bs";
-import { MyCanva } from '../components/MyCanvas';
 import MyText from "../components/MyText";
+import { BsSearch, BsPersonFillAdd, BsFillTrashFill, BsInfoCircle } from "react-icons/bs";
+import { MyCanva } from '../components/MyCanvas';
 import { getAllFuncionarios } from '../model/funcionario';
 import { MySelect } from '../components/MySelect';
 import { MyModal } from '../components/MyModal';
@@ -24,7 +24,7 @@ function Funcionarios() {
     <div style={styles.container}>
       <MyCanva />
       <h3>Funcionários</h3>
-      <MyContainer size='lg' variant='success'>
+      <MyContainer size='lg' variant='success' style={{ minWidth: 500, }}>
         <text style={{ fontSize: 20 }}>Buscar Funcionário</text><br />
 
         <MyInput
@@ -44,9 +44,9 @@ function Funcionarios() {
           <option >Cargo</option>
         </MySelect>
       </MyContainer>
-      <MyContainer variant='light' size='lg'>
+      <MyContainer variant='light' size='lg' style={{ minWidth: 500, }}>
         <table
-          border="1"
+          //        border="1"
           cellPadding={1}
           style={{
             width: '100%',
@@ -55,32 +55,32 @@ function Funcionarios() {
           }}>
           <thead>
             <tr>
-              <th>Nome</th>
-              <th>Email</th>
-              <th>Data de contratação</th>
-              <th>Cargo</th>
-              <th>Ação</th>
+              <th style={{ border: '1px solid #d3d3d3', }}>Nome</th>
+              <th style={{ border: '1px solid #d3d3d3', }}>Email</th>
+              <th style={{ border: '1px solid #d3d3d3', }}>Data de contratação</th>
+              <th style={{ border: '1px solid #d3d3d3', }}>Cargo</th>
+              <th style={{ border: '1px solid #d3d3d3', }}>Ação</th>
             </tr>
           </thead>
           <tbody>
             {Array.isArray(funcionarios) && funcionarios.length > 0 ?
               (
                 funcionarios.map((func, i) => (
-                  <tr key={i}>
+                  <tr key={i} style={{ border: '1px solid #d3d3d3', }}>
 
-                    <td style={{ textAlign: 'center' }}>{func.f_nome}</td>
-                    <td style={{ textAlign: 'center' }}>{func.email}</td>
-                    <td style={{ textAlign: 'center' }}>{func.contratacao}</td>
-                    <td style={{ textAlign: 'center' }}>{func.c_nome}</td>
-                    <td style={{ textAlign: 'center', width: '10%' }}>
-                      <MyButton size='sm' variant='warning' title={<><BsInfoCircle /></>} onClick={() => {setIsOpen(true)}} />
+                    <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{func.f_nome}</td>
+                    <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{func.email}</td>
+                    <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{func.contratacao}</td>
+                    <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{func.c_nome}</td>
+                    <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', width: '15%' }}>
+                      <MyButton size='sm' variant='warning' title={<><BsInfoCircle /></>} onClick={() => { setIsOpen(true) }} />
                       <MyButton size='sm' variant='danger' title={<><BsFillTrashFill /></>} />
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="3" style={{ textAlign: 'center' }}>Nenhum funcionário encontrado ou erro ao buscar</td>
+                  <td colSpan="5" style={{ textAlign: 'center' }}>Nenhum funcionário encontrado ou erro ao buscar</td>
                 </tr>
               )
             }

@@ -13,7 +13,14 @@ export async function getAllFuncionarios(p, f) {
         return funcionarios.data;
     } catch (error) {
         alert('error ao buscar funcionários!', error);
-        const funcionarios = false
+        const funcionarios = [
+            {
+                f_nome: "Carlos",
+                email: "carlos@gmail.com",
+                contratacao:"2005-04-20",
+                c_nome:"Administrador Geral"
+            }
+        ]
         return funcionarios;
     }
 }

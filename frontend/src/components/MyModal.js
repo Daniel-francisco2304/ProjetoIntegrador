@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import MyInput from '../components/MyInput'
-import MyText from "./MyText";
-import MyButton from "./MyButton";
-import { BsFloppy, BsX } from "react-icons/bs";
+import { BsFloppy } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
 import { RxCross1 } from "react-icons/rx";
-import MyTextArea from "./MyTextArea";
 import { MySelect } from "./MySelect";
 
+import MyText from "./MyText";
+import MyTextArea from "./MyTextArea";
+import MyButton from "./MyButton";
+import MyInput from '../components/MyInput'
 
 export function MyModal({ isOpen, setIsOpen }) {
     //const [isOpen, setIsOpen] = useState(defaultOpen);
@@ -53,7 +53,7 @@ export function MyModal({ isOpen, setIsOpen }) {
                                 width: '60%',
                                 minWidth: 500,
 
-                                //alignContent: 'center',
+                                alignContent: 'center',
                                 alignItems: 'center',
                                 padding: 20,
                                 borderRadius: 10,
@@ -79,9 +79,10 @@ export function MyModal({ isOpen, setIsOpen }) {
                                     flexDirection: 'row',
                                     marginLeft: '5%',
                                 }}
-                            >
+                                >
                                 <div style={{
-                                    width: '45%',
+                                    width: '30%',
+                                    marginRight: '5%',
                                 }}>
                                     <MyText
                                         style={{
@@ -101,8 +102,30 @@ export function MyModal({ isOpen, setIsOpen }) {
                                     />
                                 </div>
                                 <div style={{
+                                    width: '30%',
+                                }}>
+                                    <MyText
+                                        style={{
+                                            display: "flex",
+                                            fontSize: '20px',
+                                            fontWeight: 'bold',
+                                            padding: 0,
+                                            marginTop: 10,
+                                            marginBottom: 10,
+                                            margin: 0,
+
+                                        }}
+                                    >
+                                        Nº Registro:
+                                    </MyText>
+                                    <MyInput size='lg' style={{ width: '100%', }}
+                                        onChange={(e) => setCpf(e.target.value)}
+                                    />
+                                </div>
+                                <div style={{
                                     marginLeft: '5%',
-                                    width: '45%',
+                                    marginRight: '5%',
+                                    width: '30%',
                                 }}
                                 >
                                     <MyText
@@ -292,7 +315,6 @@ export function MyModal({ isOpen, setIsOpen }) {
                                             marginTop: 10,
                                             marginBottom: 10,
                                             alignItems: "center",
-                                            justifyContent: "center",
                                         }}
                                     >
                                         Status:

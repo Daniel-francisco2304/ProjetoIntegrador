@@ -43,6 +43,13 @@ export function MyCanva() {
                             >
                                 <text
                                     style={style.link}
+                                    onClick={() => { navigate("/Home") }}
+                                >
+                                    <i className="bi bi-house-door-fill" style={style.icon}></i>
+                                    Home
+                                </text>
+                                <text
+                                    style={style.link}
                                     onClick={() => { navigate("/Funcionarios") }}
                                 >
                                     <i className="bi bi-person-lines-fill" style={style.icon}></i>
@@ -82,7 +89,7 @@ export function MyCanva() {
                             <motion.div
                                 style={style.offNotif}
                                 initial={{ x: (window.innerWidth), opacity: 1 }}
-                                animate={{ x: (window.innerWidth)-(window.innerWidth*0.2), opacity: 1 }}
+                                animate={{ x: (window.innerWidth) - (window.innerWidth * 0.2), opacity: 1 }}
                                 exit={{ x: (window.innerWidth), duration: 0.15, opacity: 1 }}
                                 transition={{ duration: 0.35, type: "tween", }}
                             >
@@ -94,6 +101,7 @@ export function MyCanva() {
         </div>
     );
 }
+console.log(window.innerWidth);
 const style = {
     view: {
         width: '100%',
@@ -104,6 +112,7 @@ const style = {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        minWidth: 500,
     },
     hamburger: {
         display: 'flex',
@@ -123,6 +132,7 @@ const style = {
         height: '100%',
         alignItems: 'center',
         width: '20%',
+        minWidth: 250,
     },
     offNotif: {
         flex: 1,
@@ -133,8 +143,9 @@ const style = {
         height: '100%',
         alignItems: 'center',
         width: '20%',
-        borderLeft:'2px solid #d3d3d3',
-        borderRight:'2px solid #d3d3d3',
+        borderLeft: '2px solid #d3d3d3',
+        borderRight: '2px solid #d3d3d3',
+        minWidth: 250,
     },
     link: {
         display: 'flex',
