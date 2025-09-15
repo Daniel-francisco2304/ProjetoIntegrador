@@ -14,40 +14,41 @@ function LoginScreen() {
   const [senha, setSenha] = useState("");
 
   async function handleLogin(email, senha) {
-    //console.log(await Login(email, senha))
     if (await Login(email, senha)) navigate("/Home");
   }
 
   return (
     <BackgroundSlideshow interval={5000}>
       <div style={styles.container}>
-        <h2>Login</h2>
-        <label>Email</label>
-        <br />
-        <MyInput
-          placeholder="Digite seu Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
+        <form onSubmit={(e) => { e.preventDefault(); handleLogin(email, senha); }}>
+          <h2>Login</h2>
+          <label>Email</label>
+          <br />
+          <MyInput
+            placeholder="Digite seu Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <br />
 
-        <label>Senha</label>
-        <br />
-        <MyInput
-          type="password"
-          placeholder="Digite sua Senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-        />
-        <br />
-        <br />
+          <label>Senha</label>
+          <br />
+          <MyInput
+            type="password"
+            placeholder="Digite sua Senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
+          <br />
+          <br />
 
-        <MyButton
-          title="Acessar"
-          onClick={() => handleLogin(email, senha)}
-        />
-        <br />
-        <MyText link="default" onClick={()=>{navigate("/ResetPassword")}}>Esqueceu sua senha?</MyText>
+          <MyButton
+            title="Acessar"
+            type="submit"
+           // onClick={() => handleLogin(email, senha)}
+          />
+        </form>
+        <MyText link="default" onClick={() => { navigate("/ResetPassword") }}>Esqueceu sua senha?</MyText>
       </div>
     </BackgroundSlideshow>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { BsFloppy } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
@@ -14,6 +14,7 @@ export function MyModal({ isOpen, setIsOpen }) {
     //const [isOpen, setIsOpen] = useState(defaultOpen);
     const [nome, setNome] = useState('example');
     const [cpf, setCpf] = useState('example');
+    const [nRegistro, setNRegistro] = useState('example');
     const [email, setEmail] = useState('example');
     const [contato1, setContato1] = useState('example');
     const [contato_2, setContato2] = useState('example');
@@ -24,7 +25,7 @@ export function MyModal({ isOpen, setIsOpen }) {
     const [Alergia, setAlergia] = useState('example');
     const [emergencia, setEmergencia] = useState('example');
     const [acidente, setAcidente] = useState('example');
-    const [sangue, setSangue] = useState('example');
+    const [sangue, setSangue] = useState('1');
     if (!isOpen) return null;
     return (
         <div>
@@ -72,14 +73,18 @@ export function MyModal({ isOpen, setIsOpen }) {
                                 Funcionario:
                             </MyText>
 
-                            <MyInput size='lg' onChange={(e) => { setNome(e.target.value) }} style={{ marginLeft: '5%', }} />
+                            <MyInput size='lg'
+                                value={nome}
+                                onChange={(e) => { setNome(e.target.value) }}
+                                style={{ marginLeft: '5%', }}
+                            />
                             <div
                                 style={{
                                     display: "flex",
                                     flexDirection: 'row',
                                     marginLeft: '5%',
                                 }}
-                                >
+                            >
                                 <div style={{
                                     width: '30%',
                                     marginRight: '5%',
@@ -97,8 +102,11 @@ export function MyModal({ isOpen, setIsOpen }) {
                                     >
                                         CPF:
                                     </MyText>
-                                    <MyInput size='lg' style={{ width: '100%', }}
+                                    <MyInput
+                                        size='lg'
+                                        value={cpf}
                                         onChange={(e) => setCpf(e.target.value)}
+                                        style={{ width: '100%', }}
                                     />
                                 </div>
                                 <div style={{
@@ -118,8 +126,10 @@ export function MyModal({ isOpen, setIsOpen }) {
                                     >
                                         Nº Registro:
                                     </MyText>
-                                    <MyInput size='lg' style={{ width: '100%', }}
-                                        onChange={(e) => setCpf(e.target.value)}
+                                    <MyInput size='lg'
+                                        value={nRegistro}
+                                        onChange={(e) => setNRegistro(e.target.value)}
+                                        style={{ width: '100%', }}
                                     />
                                 </div>
                                 <div style={{
@@ -138,12 +148,19 @@ export function MyModal({ isOpen, setIsOpen }) {
                                             padding: 0,
                                             marginTop: 10,
                                             marginBottom: 10,
+                                            alignItems: "center",
                                         }}
                                     >
-                                        Email:
+                                        Contratação:
                                     </MyText>
-                                    <MyInput size='lg' style={{ width: '100%', }}
-                                        onChange={(e) => setEmail(e.target.value)}
+                                    <MyInput size='lg'
+                                        value={dtContratacao}
+                                        onChange={(e) => setDtContratacao(e.target.value)}
+                                        style={{
+                                            width: '100%',
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -155,7 +172,7 @@ export function MyModal({ isOpen, setIsOpen }) {
                                 }}
                             >
                                 <div style={{
-                                    width: '30%',
+                                    width: '32%',
                                 }}>
                                     <MyText
                                         style={{
@@ -172,16 +189,18 @@ export function MyModal({ isOpen, setIsOpen }) {
                                     >
                                         Contato 1:
                                     </MyText>
-                                    <MyInput size='lg' style={{
-                                        width: '100%',
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
+                                    <MyInput size='lg'
+                                        value={contato1}
                                         onChange={(e) => setContato1(e.target.value)}
+                                        style={{
+                                            width: '100%',
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
                                     />
                                 </div>
                                 <div style={{
-                                    width: '30%',
+                                    width: '32%',
                                 }}>
                                     <MyText
                                         style={{
@@ -198,21 +217,22 @@ export function MyModal({ isOpen, setIsOpen }) {
                                     >
                                         Contato 2:
                                     </MyText>
-                                    <MyInput size='lg' style={{
-                                        width: '100%',
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
+                                    <MyInput size='lg'
+                                        value={contato_2}
                                         onChange={(e) => setContato2(e.target.value)}
+                                        style={{
+                                            width: '100%',
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
                                     />
                                 </div>
                                 <div style={{
-                                    marginLeft: '5%',
-                                    width: '30%',
+                                    marginLeft: '0',
+                                    width: '32%',
                                     alignItems: "center",
                                     justifyContent: "center",
-                                }}
-                                >
+                                }}>
                                     <MyText
                                         style={{
                                             display: "flex",
@@ -223,18 +243,14 @@ export function MyModal({ isOpen, setIsOpen }) {
                                             padding: 0,
                                             marginTop: 10,
                                             marginBottom: 10,
-                                            alignItems: "center",
-                                            justifyContent: "center",
                                         }}
                                     >
-                                        Contratação:
+                                        Email:
                                     </MyText>
-                                    <MyInput size='lg' style={{
-                                        width: '100%',
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
-                                        onChange={(e) => setDtContratacao(e.target.value)}
+                                    <MyInput
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        size='lg' style={{ width: '100%', }}
                                     />
                                 </div>
                             </div>
@@ -263,12 +279,14 @@ export function MyModal({ isOpen, setIsOpen }) {
                                     >
                                         Cargo:
                                     </MyText>
-                                    <MyInput size='lg' style={{
-                                        width: '100%',
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
+                                    <MyInput size='lg'
+                                        value={cargo}
                                         onChange={(e) => setCargo(e.target.value)}
+                                        style={{
+                                            width: '100%',
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
                                     />
                                 </div>
                                 <div style={{
@@ -289,12 +307,14 @@ export function MyModal({ isOpen, setIsOpen }) {
                                     >
                                         Filial:
                                     </MyText>
-                                    <MyInput size='lg' style={{
-                                        width: '100%',
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
+                                    <MyInput size='lg'
+                                        value={filial}
                                         onChange={(e) => setFilial(e.target.value)}
+                                        style={{
+                                            width: '100%',
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
                                     />
                                 </div>
                                 <div style={{
@@ -319,12 +339,14 @@ export function MyModal({ isOpen, setIsOpen }) {
                                     >
                                         Status:
                                     </MyText>
-                                    <MyInput size='lg' style={{
-                                        width: '100%',
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
+                                    <MyInput size='lg'
+                                        value={status}
                                         onChange={(e) => setStatus(e.target.value)}
+                                        style={{
+                                            width: '100%',
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -343,6 +365,7 @@ export function MyModal({ isOpen, setIsOpen }) {
                                 <MyTextArea
                                     size='lg'
                                     multiline={true}
+                                    value={Alergia}
                                     onChange={(e) => setAlergia(e.target.value)}
                                     style={{ marginLeft: '5%', }}
                                 />
@@ -373,12 +396,14 @@ export function MyModal({ isOpen, setIsOpen }) {
                                     >
                                         Emergência:
                                     </MyText>
-                                    <MyInput size='lg' style={{
-                                        width: '100%',
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
+                                    <MyInput size='lg'
+                                        value={emergencia}
                                         onChange={(e) => setEmergencia(e.target.value)}
+                                        style={{
+                                            width: '100%',
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
                                     />
                                 </div>
                                 <div style={{
@@ -399,13 +424,15 @@ export function MyModal({ isOpen, setIsOpen }) {
                                     >
                                         Ult. Acid.:
                                     </MyText>
-                                    <MyInput size='lg' style={{
-                                        width: '100%',
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        marginLeft: '4%',
-                                    }}
+                                    <MyInput size='lg'
+                                        value={acidente}
                                         onChange={(e) => { setAcidente(e.target.value) }}
+                                        style={{
+                                            width: '100%',
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            marginLeft: '4%',
+                                        }}
                                     />
                                 </div>
                                 <div
@@ -430,6 +457,7 @@ export function MyModal({ isOpen, setIsOpen }) {
                                             marginTop: 0,
                                             marginBottom: 10,
                                         }}
+                                        value={sangue}
                                         onChange={(e) => { setSangue(e.target.value) }}
                                         variant='cinzaClaro'
                                     >
@@ -478,7 +506,6 @@ export function MyModal({ isOpen, setIsOpen }) {
                     </>
                 )}
             </div>
-            {/*<MyButton onClick={() => { setIsOpen(!isOpen) }} />*/}
         </div>
     )
 }
