@@ -14,11 +14,11 @@ function Funcionarios() {
   const [nome, setNome] = useState('');
   const [filter, setFilter] = useState('Nome');
   const [funcionarios, setFuncionarios] = useState([]);
+  const [obj, setObj] = useState([])
 
   async function getAll(nome, filter) {
     setFuncionarios(await getAllFuncionarios(nome, filter))
   }
-
   useEffect(() => { setFuncionarios(getAll(nome, filter)) }, [nome, filter])
   return (
     <div style={styles.container}>
@@ -73,8 +73,8 @@ function Funcionarios() {
                     <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{func.contratacao}</td>
                     <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{func.c_nome}</td>
                     <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', width: '15%' }}>
-                      <MyButton size='sm' variant='warning' title={<><BsInfoCircle /></>} onClick={() => { setIsOpen(true) }} />
-                      <MyButton size='sm' variant='danger' title={<><BsFillTrashFill /></>} />
+                      <MyButton size='sm' variant='warning' value={func.Registro} title={<><BsInfoCircle /></>} onClick={() => { setIsOpen(true); setObj(func); }} />
+                      <MyButton size='sm' variant='danger' value={func.Registro} title={<><BsFillTrashFill /></>} onClick={() => { alert(obj) }} />
                     </td>
                   </tr>
                 ))
@@ -87,7 +87,7 @@ function Funcionarios() {
           </tbody>
         </table>
       </MyContainer>
-      <MyModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <MyModal isOpen={isOpen} setIsOpen={setIsOpen} func={obj} />
     </div >
   );
 }

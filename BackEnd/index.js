@@ -1,16 +1,16 @@
 const Funcionarios = require('./Model/Funcionario');
-const Epi = require('./Model/Epi')
+//const Epi = require('./Model/Epi')
 
 async function testar() {
   try {
     // Criar novo usuário
-    //const novoId = await Funcionarios.criarfuncionario('Francisco Chico','zlll8193@gmaill.com',null);
-    //console.log('Usuário criado com ID:', novoId);
+    const novoId = await Funcionarios.criarfuncionario('Francisco Jô Soares','12345678941','zllll8193@gmaill.com',null,'12345678910','00000000000','00000000000',1,"água e nazista");
+    console.log('Usuário criado com ID:', novoId);
 
     // Listar todos os usuários
     const usuarios = await Funcionarios.selecFuncionario('','dt_contratacao');
     console.log('Lista de usuários:');
-    console.table(usuarios);
+    console.log(usuarios);
 
     //const idEpi = await Epi.criarNomeEpi('Luva')
     //console.log('Epi criado com ID: ',idEpi);

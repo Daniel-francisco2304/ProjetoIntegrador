@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { BsFloppy } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
@@ -10,22 +10,41 @@ import MyTextArea from "./MyTextArea";
 import MyButton from "./MyButton";
 import MyInput from '../components/MyInput'
 
-export function MyModal({ isOpen, setIsOpen }) {
-    //const [isOpen, setIsOpen] = useState(defaultOpen);
-    const [nome, setNome] = useState('example');
-    const [cpf, setCpf] = useState('example');
-    const [nRegistro, setNRegistro] = useState('example');
-    const [email, setEmail] = useState('example');
-    const [contato1, setContato1] = useState('example');
-    const [contato_2, setContato2] = useState('example');
-    const [dtContratacao, setDtContratacao] = useState('example');
-    const [cargo, setCargo] = useState('example');
-    const [filial, setFilial] = useState('example');
-    const [status, setStatus] = useState('example');
-    const [Alergia, setAlergia] = useState('example');
-    const [emergencia, setEmergencia] = useState('example');
-    const [acidente, setAcidente] = useState('example');
+export function MyModal({ isOpen, setIsOpen, func }) {
+    const [nome, setNome] = useState(func?.f_nome || '');
+    const [cpf, setCpf] = useState(func?.cpf || '');
+    const [nRegistro, setNRegistro] = useState(func?.Registro || '');
+    const [email, setEmail] = useState(func?.email || '');
+    const [contato1, setContato1] = useState(func?.contato1 || '');
+    const [contato2, setContato2] = useState(func?.contato2 || '');
+    const [dtContratacao, setDtContratacao] = useState(func?.contratacao || '');
+    const [cargo, setCargo] = useState(func?.c_nome || '');
+    const [filial, setFilial] = useState(func?.Loja || '');
+    const [status, setStatus] = useState(func?.CStatus || '');
+    const [Alergia, setAlergia] = useState(func?.alergia || '');
+    const [emergencia, setEmergencia] = useState(func?.emergencia || '');
+    const [acidente, setAcidente] = useState('');
     const [sangue, setSangue] = useState('1');
+
+    useEffect(() => {
+        if (!func) return;
+
+        setNome(func.f_nome || '');
+        setCpf(func.cpf || '');
+        setNRegistro(func.Registro || '');
+        setEmail(func.email || '');
+        setContato1(func.contato1 || '');
+        setContato2(func.contato2 || '');
+        setDtContratacao(func.contratacao || '');
+        setCargo(func.c_nome || '');
+        setFilial(func.Loja || '');
+        setStatus(func.CStatus || '');
+        setAlergia(func.alergia || '');
+        setEmergencia(func.emergencia || '');
+        setAcidente(func.acidente || '');
+        setSangue('1'); // ou func.sangue se vier do servidor
+    }, [func]);
+
     if (!isOpen) return null;
     return (
         <div>
@@ -42,7 +61,7 @@ export function MyModal({ isOpen, setIsOpen }) {
                                 backgroundColor: "#00000080",
                                 zIndex: 10
                             }}
-                            onClick={() => setIsOpen(false)}
+                            onClick={() => { setIsOpen(false); }}
                         ></div>
                         <div
                             style={{
@@ -53,7 +72,6 @@ export function MyModal({ isOpen, setIsOpen }) {
                                 background: "white",
                                 width: '60%',
                                 minWidth: 500,
-
                                 alignContent: 'center',
                                 alignItems: 'center',
                                 padding: 20,
@@ -218,7 +236,7 @@ export function MyModal({ isOpen, setIsOpen }) {
                                         Contato 2:
                                     </MyText>
                                     <MyInput size='lg'
-                                        value={contato_2}
+                                        value={contato2}
                                         onChange={(e) => setContato2(e.target.value)}
                                         style={{
                                             width: '100%',
@@ -498,7 +516,7 @@ export function MyModal({ isOpen, setIsOpen }) {
                                             marginRight: '5%'
                                         }}
                                         title={<><RxCross1 />Cancelar</>}
-                                        onClick={() => setIsOpen(false)}>
+                                        onClick={() => { setIsOpen(false); }}>
                                     </MyButton>
                                 </IconContext.Provider>
                             </div>

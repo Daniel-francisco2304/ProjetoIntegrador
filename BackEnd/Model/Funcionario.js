@@ -31,19 +31,19 @@ class Funcionario {
     //#endregion
 
     //#region Método
-    static async criarfuncionario(nome, cpf, email, dtContratacao) {
+    static async criarfuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
         const Connection = require('../Config/Connection');
         try {
             if (dtContratacao === null) {
                 const resultado = await Connection.query(
-                    'INSERT INTO tb_funcionario (nome,email,cpf,id_cargo) VALUES (?,?,?,1)',
-                    [nome, cpf, email]
+                    'INSERT INTO tb_funcionario (nome, cpf, email, contato1, contato2, emergencia, status, alergia, id_cargo, id_filial) VALUES (?,?,?,?,?,?,?,?,1,1)',
+                    [nome, cpf, email, contato1, contato2, emergencia, status, alergia]
                 );
                 return resultado.insertId;
             } else {
                 const resultado = await Connection.query(
                     'INSERT INTO tb_funcionario (nome,cpf,email,contratacao,id_cargo) VALUES (?,?,?,?,1)',
-                    [nome, cpf, email, dtContratacao]
+                    [nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia]
                 );
                 return resultado.insertId;
             }
@@ -77,7 +77,7 @@ class Funcionario {
         }
     }
     static async selecFuncionario(param, filtro) {
-        let sql = 'SELECT f.id, f.nome AS f_nome, f.email, f.contratacao, c.nome AS c_nome FROM phpmyadmin.tb_funcionario f LEFT JOIN tb_cargo c ON f.id_cargo = c.id WHERE TRUE';
+        let sql = 'SELECT f.id as Registro, f.nome AS f_nome, f.cpf, f.email, f.contato1, f.contato2, f.emergencia, f.status as CStatus, f.alergia, f.contratacao, c.nome AS c_nome, l.nome AS Loja FROM phpmyadmin.tb_funcionario f LEFT JOIN tb_filial l ON f.id_filial = l.id_filial LEFT JOIN tb_cargo c ON f.id_cargo = c.id WHERE TRUE';
         const valores = [];
 
         if (param) {

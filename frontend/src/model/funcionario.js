@@ -24,3 +24,7 @@ export async function getAllFuncionarios(p, f) {
         return funcionarios;
     }
 }
+
+export async function postFuncionario() {
+    
+}
