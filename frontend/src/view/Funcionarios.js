@@ -32,7 +32,7 @@ function Funcionarios() {
           onChange={(e) => { setNome(e.target.value) }}
         /> <br />
         <MyButton size='md' onClick={() => { getAll(nome, filter) }} style={{ marginLeft: '0' }} title={<><BsSearch /> Consultar</>} />
-        <MyButton size='md' onClick={() => { }} title={<><BsPersonFillAdd /> Novo Funcionário</>} />
+        <MyButton size='md' onClick={() => { setIsOpen(true); setObj(false)}} title={<><BsPersonFillAdd /> Novo Funcionário</>} />
         <MyText>Filtrar por:</MyText>
         <MySelect
           defaltValue='Nome'

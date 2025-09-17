@@ -42,7 +42,7 @@ class Funcionario {
                 return resultado.insertId;
             } else {
                 const resultado = await Connection.query(
-                    'INSERT INTO tb_funcionario (nome,cpf,email,contratacao,id_cargo) VALUES (?,?,?,?,1)',
+                    'INSERT INTO tb_funcionario (nome, cpf, email, contratacao, contato1, contato2, emergencia, status, alergia, id_cargo, id_filial) VALUES (?,?,?,?,?,?,?,?,?,1,1)',
                     [nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia]
                 );
                 return resultado.insertId;
@@ -50,6 +50,7 @@ class Funcionario {
         }
         catch (error) {
             console.log(error)
+            throw error;
         }
     }
     static async alterarfuncionario(nome, id) {

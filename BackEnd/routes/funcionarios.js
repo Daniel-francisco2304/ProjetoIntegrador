@@ -19,10 +19,10 @@ router.get('/', async (req, res) => {
 
 
 router.post('/', async (req, res) => {
-  const { nome, cpf, email, contato1, contato2, emergencia, status, alergia } = req.body;
+  const { nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia } = req.body;
   try {
-    const novoId = await Funcionario.criarfuncionario(nome, cpf, email, contato1, contato2, emergencia, status, alergia);
-    res.status(201).json({ id: novoId, nome, cpf, email, contato1, contato2, emergencia, status, alergia });
+    const novoId = await Funcionario.criarfuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
+    res.status(201).json({ id: novoId, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia });
   } catch (err) {
     console.error(err);
     res.status(500).json({ erro: 'Erro ao adicionar funcionário' });
