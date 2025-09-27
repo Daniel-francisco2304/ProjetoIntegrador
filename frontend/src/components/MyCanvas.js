@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { BsBellFill } from "react-icons/bs";
+import { BsBellFill, BsBoxSeamFill } from "react-icons/bs";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 export function MyCanva() {
@@ -64,7 +64,20 @@ export function MyCanva() {
                                 </text>
                                 <text
                                     style={style.link}
-                                    onClick={() => { navigate("/Home") }}
+                                    onClick={() => { navigate("/Fornecedor") }}
+                                >
+                                    <i className="bi bi-box-seam-fill" style={style.icon}></i>
+                                    Fornecedor
+                                </text><text
+                                    style={style.link}
+                                    onClick={() => { navigate("/Filial") }}
+                                >
+                                    <i className="bi bi-buildings-fill" style={style.icon}></i>
+                                    Filiais
+                                </text>
+                                <text
+                                    style={style.link}
+                                    onClick={() => { navigate("/Acidente") }}
                                 >
                                     <i className="bi bi-exclamation-triangle-fill" style={style.icon}></i>
                                     Acidentes

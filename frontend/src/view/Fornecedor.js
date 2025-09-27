@@ -9,7 +9,7 @@ import { getAllFuncionarios } from '../model/funcionario';
 import { MySelect } from '../components/MySelect';
 import { MyModal } from '../components/MyModal';
 
-function Epi() {
+function Fornecedor() {
     const [isOpen, setIsOpen] = useState(false);
     const [nome, setNome] = useState('');
     const [filter, setFilter] = useState('Nome');
@@ -20,28 +20,28 @@ function Epi() {
         setFuncionarios(await getAllFuncionarios(nome, filter))
     }
     //useEffect(() => { setFuncionarios(getAll(nome, filter)) }, [nome, filter])
+
     return (
         <div style={styles.container}>
             <MyCanva />
-            <h3>EPI</h3>
+            <h3>Fornecedor</h3>
             <MyContainer size='lg' variant='success' style={{ minWidth: 500, }}>
-                <text style={{ fontSize: 20 }}>Buscar Funcionário</text><br />
+                <text style={{ fontSize: 20 }}>Buscar Fornecedor</text><br />
 
                 <MyInput
                     style={{ width: '100%' }}
-                    onChange={(e) => { setNome(e.target.value) }}
+                    onChange={(e) => { }}
                 /> <br />
-                <MyButton size='md' onClick={() => { getAll(nome, filter) }} style={{ marginLeft: '0' }} title={<><BsSearch /> Consultar</>} />
-                <MyButton size='md' onClick={() => { setIsOpen(true); setObj(false) }} title={<><BsPersonFillAdd /> Novo Funcionário</>} />
+                <MyButton size='md' onClick={() => { }} style={{ marginLeft: '0' }} title={<><BsSearch /> Consultar</>} />
+                <MyButton size='md' onClick={() => { }} title={<><BsPersonFillAdd /> Novo Fornecedor</>} />
                 <MyText>Filtrar por:</MyText>
                 <MySelect
                     defaltValue='Nome'
                     onChange={(e) => setFilter(e.target.value)}
                 >
                     <option value={'1'}>Nome</option>
-                    <option value={'2'}>Email</option>
-                    <option value={'3'}>Data de Contratação</option>
-                    <option >Cargo</option>
+                    <option value={'2'}>Fornecedor</option>
+                    <option value={'3'}>Ult. Compra</option>
                 </MySelect>
             </MyContainer>
             <MyContainer variant='light' size='lg' style={{ minWidth: 500, }}>
@@ -68,13 +68,13 @@ function Epi() {
                                 funcionarios.map((func, i) => (
                                     <tr key={i} style={{ border: '1px solid #d3d3d3', }}>
 
-                                        <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{func.f_nome}</td>
-                                        <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{func.email}</td>
-                                        <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{func.contratacao}</td>
-                                        <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{func.c_nome}</td>
+                                        <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{ }</td>
+                                        <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{ }</td>
+                                        <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{ }</td>
+                                        <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{ }</td>
                                         <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', width: '15%' }}>
-                                            <MyButton size='sm' variant='warning' value={func.Registro} title={<><BsInfoCircle /></>} onClick={() => { setIsOpen(true); setObj(func); }} />
-                                            <MyButton size='sm' variant='danger' value={func.Registro} title={<><BsFillTrashFill /></>} onClick={() => { alert(obj) }} />
+                                            <MyButton size='sm' variant='warning' value={null} title={<><BsInfoCircle /></>} onClick={() => { }} />
+                                            <MyButton size='sm' variant='danger' value={null} title={<><BsFillTrashFill /></>} onClick={() => { }} />
                                         </td>
                                     </tr>
                                 ))
@@ -87,7 +87,6 @@ function Epi() {
                     </tbody>
                 </table>
             </MyContainer>
-            <MyModal isOpen={isOpen} setIsOpen={setIsOpen} func={obj} />
         </div >
     );
 }
@@ -100,4 +99,4 @@ const styles = {
     },
 };
 
-export default Epi;
+export default Fornecedor;
