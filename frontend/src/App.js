@@ -10,6 +10,7 @@ import EpiScreen from './view/Epi';
 import Fornecedor from './view/Fornecedor';
 import Filial from './view/Filial';
 import Acidente from './view/Acidante';
+import Usuario from './view/Usuario';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/Fornecedor" element={<Fornecedor />} />
         <Route path="/Filial" element={<Filial />} />
         <Route path="/ResetPassword" element={<ResetScreen />} />
+        <Route path="/Usuario" element={<Usuario />} />
         <Route path="/funcionarios/*" element={<Funcionarios />} />
       </Routes>
     </Router>

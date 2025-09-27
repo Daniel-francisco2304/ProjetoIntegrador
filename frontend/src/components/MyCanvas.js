@@ -83,6 +83,13 @@ export function MyCanva() {
                                     Acidentes
                                 </text>
                                 <text
+                                    style={style.link}
+                                    onClick={() => { navigate("/Usuario") }}
+                                >
+                                    <i className="bi bi-person-circle" style={style.icon}></i>
+                                    Área do Usuário
+                                </text>
+                                <text
                                     style={style.linkOut}
                                     onClick={() => { navigate("/") }}
                                 >

@@ -23,16 +23,17 @@ function Acidente() {
     return (
       <div style={styles.container}>
         <MyCanva />
-        <h3>Funcionários</h3>
+        <h3>Acidentes</h3>
         <MyContainer size='lg' variant='success' style={{ minWidth: 500, }}>
           <text style={{ fontSize: 20 }}>Buscar Funcionário</text><br />
 
           <MyInput
             style={{ width: '100%' }}
             onChange={(e) => { setNome(e.target.value) }}
+            placeholder="Pesquise por Nome, Acidente, Doenças do Trabalho..."
           /> <br />
           <MyButton size='md' onClick={() => { getAll(nome, filter) }} style={{ marginLeft: '0' }} title={<><BsSearch /> Consultar</>} />
-          <MyButton size='md' onClick={() => { setIsOpen(true); setObj(false)}} title={<><BsPersonFillAdd /> Novo Funcionário</>} />
+          <MyButton size='md' onClick={() => { setIsOpen(true); setObj(false)}} title={<><BsPersonFillAdd /> Novo Incidente</>} />
           <MyText>Filtrar por:</MyText>
           <MySelect
             defaltValue='Nome'
