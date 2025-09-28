@@ -78,7 +78,7 @@ class Funcionario {
         }
     }
     static async selecFuncionario(param, filtro) {
-        let sql = 'SELECT f.id as Registro, f.nome AS f_nome, f.cpf, f.email, f.contato1, f.contato2, f.emergencia, f.status as CStatus, f.alergia, f.contratacao, c.nome AS c_nome, l.nome AS Loja FROM phpmyadmin.tb_funcionario f LEFT JOIN tb_filial l ON f.id_filial = l.id_filial LEFT JOIN tb_cargo c ON f.id_cargo = c.id WHERE TRUE';
+        let sql = 'SELECT f.id as Registro, f.nome AS f_nome, f.alergia, f.cpf, f.email, f.contato1, f.contato2, f.emergencia, f.status as CStatus, f.alergia, f.contratacao, c.nome AS c_nome, l.nome AS Loja, s.sangue AS TipoSanguineo FROM phpmyadmin.tb_funcionario f LEFT JOIN tb_filial l ON f.id_filial = l.id_filial LEFT JOIN tb_sangue s ON f.id_sangue = s.id_sangue LEFT JOIN tb_cargo c ON f.id_cargo = c.id WHERE TRUE';
         const valores = [];
 
         if (param) {

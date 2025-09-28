@@ -31,52 +31,67 @@ export function MyCanva() {
                 </text>
             </div>
             <div>
+
                 <AnimatePresence>
                     {
                         isOpen && (
-                            <motion.div
-                                style={style.offCavas}
-                                initial={{ x: -300, opacity: 1 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                exit={{ x: -400, duration: 0.15, opacity: 1 }}
-                                transition={{ duration: 0.35, type: "tween", }}
-                            >
-                                <text
-                                    style={style.link}
-                                    onClick={() => { navigate("/Home") }}
+                            <div>
+                                <div
+                                    style={{
+                                        position: "fixed",
+                                        top: 0,
+                                        left: 0,
+                                        width: "100%",
+                                        height: "100%",
+                                        //backgroundColor: "#00000080",
+                                        zIndex: 10
+                                    }}
+                                    onClick={() => { setIsOpen(false); }}
+                                ></div>
+                                <motion.div
+                                    style={style.offCavas}
+                                    initial={{ x: -300, opacity: 1 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    exit={{ x: -400, duration: 0.15, opacity: 1 }}
+                                    transition={{ duration: 0.35, type: "tween", }}
                                 >
-                                    <i className="bi bi-house-door-fill" style={style.icon}></i>
-                                    Home
-                                </text>
-                                <text
-                                    style={style.link}
-                                    onClick={() => { navigate("/Funcionarios") }}
-                                >
-                                    <i className="bi bi-person-lines-fill" style={style.icon}></i>
-                                    Funcionarios
-                                </text>
-                                <text
-                                    style={style.link}
-                                    onClick={() => { navigate("/epi") }}
-                                >
-                                    <i className="bi bi-headset-vr" style={style.icon}></i>
-                                    EPI's
-                                </text>
-                                <text
-                                    style={style.link}
-                                    onClick={() => { navigate("/Home") }}
-                                >
-                                    <i className="bi bi-exclamation-triangle-fill" style={style.icon}></i>
-                                    Acidentes
-                                </text>
-                                <text
-                                    style={style.linkOut}
-                                    onClick={() => { navigate("/") }}
-                                >
-                                    <i className="bi bi-box-arrow-right" style={style.icon}></i>
-                                    Sair
-                                </text>
-                            </motion.div>
+                                    <text
+                                        style={style.link}
+                                        onClick={() => { navigate("/Home") }}
+                                    >
+                                        <i className="bi bi-house-door-fill" style={style.icon}></i>
+                                        Home
+                                    </text>
+                                    <text
+                                        style={style.link}
+                                        onClick={() => { navigate("/Funcionarios") }}
+                                    >
+                                        <i className="bi bi-person-lines-fill" style={style.icon}></i>
+                                        Funcionarios
+                                    </text>
+                                    <text
+                                        style={style.link}
+                                        onClick={() => { navigate("/epi") }}
+                                    >
+                                        <i className="bi bi-headset-vr" style={style.icon}></i>
+                                        EPI's
+                                    </text>
+                                    <text
+                                        style={style.link}
+                                        onClick={() => { navigate("/Home") }}
+                                    >
+                                        <i className="bi bi-exclamation-triangle-fill" style={style.icon}></i>
+                                        Acidentes
+                                    </text>
+                                    <text
+                                        style={style.linkOut}
+                                        onClick={() => { navigate("/") }}
+                                    >
+                                        <i className="bi bi-box-arrow-right" style={style.icon}></i>
+                                        Sair
+                                    </text>
+                                </motion.div>
+                            </div>
                         )
                     }
                 </AnimatePresence>
@@ -105,6 +120,7 @@ console.log(window.innerWidth);
 const style = {
     view: {
         width: '100%',
+        //zindex: 1000,
     },
     container: {
         backgroundColor: '#65a765',
@@ -132,6 +148,7 @@ const style = {
         height: '100%',
         alignItems: 'center',
         width: '20%',
+        zIndex: 1000,
         minWidth: 250,
     },
     offNotif: {
@@ -160,6 +177,7 @@ const style = {
         width: "80%",
         alignItems: 'center',
         textAlign: "center",
+        zindex: 1000,
     },
     linkOut: {
         display: 'flex',
