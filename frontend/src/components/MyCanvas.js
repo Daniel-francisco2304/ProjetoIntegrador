@@ -31,7 +31,6 @@ export function MyCanva() {
                 </text>
             </div>
             <div>
-
                 <AnimatePresence>
                     {
                         isOpen && (
