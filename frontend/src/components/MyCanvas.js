@@ -125,6 +125,7 @@ console.log(window.innerWidth);
 const style = {
     view: {
         width: '100%',
+
     },
     container: {
         backgroundColor: '#65a765',
@@ -152,6 +153,7 @@ const style = {
         height: '100%',
         alignItems: 'center',
         width: '20%',
+
         minWidth: 250,
     },
     offNotif: {
@@ -180,6 +182,7 @@ const style = {
         width: "80%",
         alignItems: 'center',
         textAlign: "center",
+
     },
     linkOut: {
         display: 'flex',
