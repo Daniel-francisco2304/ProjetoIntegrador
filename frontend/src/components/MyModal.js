@@ -9,6 +9,7 @@ import MyText from "./MyText";
 import MyTextArea from "./MyTextArea";
 import MyButton from "./MyButton";
 import MyInput from '../components/MyInput'
+
 import { postFuncionario } from "../model/funcionario";
 
 export function MyModal({ isOpen, setIsOpen, func }) {
@@ -134,6 +135,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             size='lg'
                                             value={cpf}
                                             onChange={(e) => setCpf(e.target.value)}
+
                                             style={{ width: '100%', }}
                                         />
                                     </div>
@@ -188,6 +190,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                                 width: '100%',
                                                 alignItems: "center",
                                                 justifyContent: "center",
+                                                //height: '1000%',
                                             }}
                                         />
                                     </div>
@@ -257,7 +260,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                     </div>
                                     <div style={{
                                         marginLeft: '0',
-                                        width: '32%',
+                                        width: '31%',
                                         alignItems: "center",
                                         justifyContent: "center",
                                     }}>
@@ -291,6 +294,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                 >
                                     <div style={{
                                         width: '30%',
+                                        //marginRight: '5%',
                                     }}>
                                         <MyText
                                             style={{
@@ -311,13 +315,17 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             value={cargo}
                                             onChange={(e) => setCargo(e.target.value)}
                                             style={{
-                                                width: '100%',
+                                                width: '95%',
+                                                //height:'1000%',
+                                                margin: 0,
                                                 alignItems: "center",
                                                 justifyContent: "center",
                                             }}
                                         />
                                     </div>
                                     <div style={{
+                                        marginLeft: '3%',
+                                        marginRight: '3%',
                                         width: '30%',
                                     }}>
                                         <MyText
@@ -335,18 +343,24 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                         >
                                             Filial:
                                         </MyText>
-                                        <MyInput size='lg'
+                                        <select
                                             value={filial}
                                             onChange={(e) => setFilial(e.target.value)}
                                             style={{
+                                                display: "flex",
                                                 width: '100%',
+                                                borderRadius: 4,
+                                                border: "1px solid #ccc",
                                                 alignItems: "center",
                                                 justifyContent: "center",
+                                                padding: "10px 14px",
+                                                fontSize: "18px",
                                             }}
-                                        />
+                                        >
+                                            
+                                        </select>
                                     </div>
                                     <div style={{
-                                        marginLeft: '5%',
                                         width: '30%',
                                         alignItems: "center",
                                         justifyContent: "center",
@@ -515,7 +529,24 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             }}
                                             title={<><BsFloppy></BsFloppy>salvar</>}
                                             type="submit"
-                                            onClick={() => { /*setIsOpen(false); /*alert('Salvo com sucesso')*/ }}>
+                                            onClick={() => {
+                                                setNome('');
+                                                setCpf('');
+                                                setNRegistro('');
+                                                setEmail('');
+                                                setContato1('');
+                                                setContato2('');
+                                                setDtContratacao('');
+                                                setCargo('');
+                                                setFilial('');
+                                                setStatus('');
+                                                setAlergia('');
+                                                setEmergencia('');
+                                                setAcidente('');
+                                                setSangue('1');
+                                                setIsOpen(false); // fecha o modal também
+                                            }}
+                                        >
                                         </MyButton>
                                         <MyButton
                                             variant='danger'

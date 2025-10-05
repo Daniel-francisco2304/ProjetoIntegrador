@@ -1,5 +1,4 @@
 const Connection = require('../Config/Connection');
-const md5 = require('md5');
 
 class Epi {
     constructor(id, nome, idForn, forn, idCa, Ca, idEst, est, idAloc, dtAloc, dvAloc) {
@@ -84,7 +83,7 @@ class Epi {
             }
             let idForn = await Connection.execute('SELECT id FROM tb_fornecedor WHERE nome = ?', [forn]);
             if (!idForn.find(id => id.id)) {
-      1          const respForn = await Connection.execute('INSERT INTO tb_fornecedor (nome) VALUE (?)', [forn]);
+                const respForn = await Connection.execute('INSERT INTO tb_fornecedor (nome) VALUE (?)', [forn]);
                 idForn = respForn.insertId;
             } else {
                 idForn = (idForn[0].id)

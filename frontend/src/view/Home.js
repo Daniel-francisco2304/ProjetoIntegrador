@@ -12,12 +12,6 @@ function Home() {
         <div style={styles.container} onKeyDown={handleKeyDown}>
             <MyCanva />
             <MyModal />
-            {key && <h2>Pressed Key: {key}</h2>}
-            <input
-                type="text"
-                onKeyDown={handleKeyDown}
-                placeholder="Press here..."
-            />
         </div>
     );
 }

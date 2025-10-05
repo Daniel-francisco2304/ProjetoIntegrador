@@ -1,5 +1,5 @@
 import React from "react";
-import { variantStyles, sizeStyles, textStyles } from "./Style/VariantStyle";
+import { variantStyles, sizeStyles, textStyles, } from "./Style/VariantStyle";
 
 export function MySelect(props) {
     const {

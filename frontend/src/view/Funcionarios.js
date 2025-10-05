@@ -74,7 +74,7 @@ function Funcionarios() {
                     <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{func.c_nome}</td>
                     <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', width: '15%' }}>
                       <MyButton size='sm' variant='warning' value={func.Registro} title={<><BsInfoCircle /></>} onClick={() => { setIsOpen(true); setObj(func); }} />
-                      <MyButton size='sm' variant='danger' value={func.Registro} title={<><BsFillTrashFill /></>} onClick={() => { alert(obj) }} />
+                      <MyButton size='sm' variant='danger' value={func.Registro} title={<><BsFillTrashFill /></>} onClick={() => { }} />
                     </td>
                   </tr>
                 ))
