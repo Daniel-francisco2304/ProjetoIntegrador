@@ -168,7 +168,7 @@ const style = {
         height: '100%',
         alignItems: 'center',
         width: '20%',
-
+        zIndex: 1000,
         minWidth: 250,
     },
     offNotif: {
