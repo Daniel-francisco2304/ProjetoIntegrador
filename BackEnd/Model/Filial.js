@@ -18,10 +18,11 @@ class Filial {
             )
             return resultado.insertId;
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            throw error
         }
     }
-    static async selecFilial(nome) {
+    static async selecFilial() {
         const Connection = require('../Config/Connection');
 
         try {

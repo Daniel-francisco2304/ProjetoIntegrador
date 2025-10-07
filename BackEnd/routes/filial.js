@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 
   try {
     const rows = await Filial.selecFilial();
-    console.log('Filial retornados:', rows);
+    //console.log('Filial retornados:', rows);
     res.json(rows);
   } catch (err) {
     //console.error(err);

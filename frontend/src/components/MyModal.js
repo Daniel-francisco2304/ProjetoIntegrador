@@ -43,9 +43,9 @@ export function MyModal({ isOpen, setIsOpen, func }) {
         const carregarFiliais = async () => {
             try {
                 const data = await getAllFilial();
-                console.log("Data:",data);
+                console.log("Data:", data);
                 setFkey(data);
-                console.log("F Key:",fkey)
+                console.log("F Key:", fkey)
             } catch (err) {
                 alert("err", err);
             }
@@ -199,6 +199,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             Contratação:
                                         </MyText>
                                         <MyInput size='lg'
+                                            type={"date"}
                                             value={dtContratacao}
                                             onChange={(e) => setDtContratacao(e.target.value)}
                                             style={{
@@ -373,7 +374,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             }}
                                         >
                                             {Array.isArray(fkey) ? (fkey.map((fkey, i) => (
-                                                <option key={i} value={fkey.Registro}>{fkey.Razao}</option>))) : (<></>)}
+                                                <option key={i} value={fkey.id_filial}>{fkey.nome}</option>))) : (<></>)}
                                         </select>
                                     </div>
                                     <div style={{
@@ -545,6 +546,23 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             }}
                                             title={<><BsFloppy></BsFloppy>salvar</>}
                                             type="submit"
+                                            onClick={() => {
+                                                setNome('');
+                                                setCpf('');
+                                                setNRegistro('');
+                                                setEmail('');
+                                                setContato1('');
+                                                setContato2('');
+                                                setDtContratacao('');
+                                                setCargo('');
+                                                setFilial('');
+                                                setStatus('');
+                                                setAlergia('');
+                                                setEmergencia('');
+                                                setAcidente('');
+                                                setSangue('1');
+                                                setIsOpen(false); // fecha o modal também
+                                            }}
                                         >
                                         </MyButton>
                                         <MyButton

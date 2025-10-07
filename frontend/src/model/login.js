@@ -1,6 +1,9 @@
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../services/firebaseCloud';
 
+export async function controle(email) {
+
+}
 export async function Login(email, senha) {
     try {
         await signInWithEmailAndPassword(auth, email, senha)
