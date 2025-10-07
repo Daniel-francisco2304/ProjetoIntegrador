@@ -9,19 +9,19 @@ export async function getAllFuncionarios(p, f) {
             default: f = 'f.nome';
         }
         const funcionarios = await axios.get(`http://localhost:3001/funcionarios?q=${p}&f=${f}`);
-        console.log(funcionarios);
+        //console.log(funcionarios);
         return funcionarios.data;
     } catch (error) {
-        alert('error ao buscar funcionários!', error);
-        const funcionarios = [
-            {
-                f_nome: "Carlos",
-                email: "carlos@gmail.com",
-                contratacao: "2005-04-20",
-                c_nome: "Administrador Geral"
-            }
-        ]
-        return funcionarios;
+        //alert('error ao buscar funcionários!', error);
+        //const funcionarios = [
+        //    {
+        //        f_nome: "Carlos",
+        //        email: "carlos@gmail.com",
+        //        contratacao: "2005-04-20",
+        //        c_nome: "Administrador Geral"
+        //    }
+        //]
+        //return funcionarios;
     }
 }
 

@@ -9,6 +9,9 @@ app.use(express.json());
 const rotaFuncionarios = require('./routes/funcionarios');
 app.use('/funcionarios', rotaFuncionarios);
 
+const rotaFilial = require('./routes/filial');
+app.use('/filial', rotaFilial);
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);

@@ -11,6 +11,7 @@ import MyButton from "./MyButton";
 import MyInput from '../components/MyInput'
 
 import { postFuncionario } from "../model/funcionario";
+import { getAllFilial } from "../model/filial";
 
 export function MyModal({ isOpen, setIsOpen, func }) {
     const [nome, setNome] = useState(func?.f_nome || '');
@@ -21,6 +22,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
     const [contato2, setContato2] = useState(func?.contato2 || '');
     const [dtContratacao, setDtContratacao] = useState(func?.contratacao || '');
     const [cargo, setCargo] = useState(func?.c_nome || '');
+    const [fkey, setFkey] = useState([]);
     const [filial, setFilial] = useState(func?.Loja || '');
     const [status, setStatus] = useState(func?.CStatus || '');
     const [alergia, setAlergia] = useState(func?.alergia || '');
@@ -30,13 +32,26 @@ export function MyModal({ isOpen, setIsOpen, func }) {
 
     async function handleSave(obj, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
         if (obj === false) {
-            console.log(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia)
+            //console.log(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia)
             await postFuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia)
-            alert("Cadastrar usuário")
+            //alert("Cadastrar usuário")
         } else {
             alert("Editar usuário")
         }
     }
+    useEffect(() => {
+        const carregarFiliais = async () => {
+            try {
+                const data = await getAllFilial();
+                console.log("Data:",data);
+                setFkey(data);
+                console.log("F Key:",fkey)
+            } catch (err) {
+                alert("err", err);
+            }
+        }
+        carregarFiliais()
+    }, [isOpen])
     useEffect(() => {
         if (!func) return;
 
@@ -357,7 +372,8 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                                 fontSize: "18px",
                                             }}
                                         >
-                                            
+                                            {Array.isArray(fkey) ? (fkey.map((fkey, i) => (
+                                                <option key={i} value={fkey.Registro}>{fkey.Razao}</option>))) : (<></>)}
                                         </select>
                                     </div>
                                     <div style={{
@@ -529,23 +545,6 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             }}
                                             title={<><BsFloppy></BsFloppy>salvar</>}
                                             type="submit"
-                                            onClick={() => {
-                                                setNome('');
-                                                setCpf('');
-                                                setNRegistro('');
-                                                setEmail('');
-                                                setContato1('');
-                                                setContato2('');
-                                                setDtContratacao('');
-                                                setCargo('');
-                                                setFilial('');
-                                                setStatus('');
-                                                setAlergia('');
-                                                setEmergencia('');
-                                                setAcidente('');
-                                                setSangue('1');
-                                                setIsOpen(false); // fecha o modal também
-                                            }}
                                         >
                                         </MyButton>
                                         <MyButton
@@ -585,6 +584,6 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                     </>
                 )}
             </div>
-        </div>
+        </div >
     )
 }

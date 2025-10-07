@@ -1,6 +1,6 @@
 const Connection = require('../Config/Connection');
 
-class Epi {
+class Filial {
     constructor(id, nome, cep, cnpj, contato) {
         this._id = id;          //id do epi
         this._nome = nome;      //nome do epi
@@ -9,49 +9,28 @@ class Epi {
         this._contato = contato
     }
 
-    static async criarFilial(nome, forn, dtAqui, dtVld, qtd, idEst) {
+    static async criarFilial(nome, cep, cnpj, contato) {
         const Connection = require('../Config/Connection');
         try {
             await Connection.query('START TRANSACTION');
-            let refused = false;
-            let idEpi = await Connection.execute('SELECT id FROM tb_epi WHERE nome = ?', [nome]);
-            if (!idEpi.find(id => id.id)) {
-                const respEpi = await Connection.execute('INSERT INTO tb_epi (nome) VALUE (?)', [nome]);
-                idEpi = respEpi.insertId;
-            } else {
-                idEpi = (idEpi[0].id)
-            }
-            let idForn = await Connection.execute('SELECT id FROM tb_fornecedor WHERE nome = ?', [forn]);
-            if (!idForn.find(id => id.id)) {
-                const respForn = await Connection.execute('INSERT INTO tb_fornecedor (nome) VALUE (?)', [forn]);
-                idForn = respForn.insertId;
-            } else {
-                idForn = (idForn[0].id)
-            }
-            const dtString = new Date(dtAqui);
-            const dtVString = new Date(dtVld);
-
-            const resultado = await Connection.execute('INSERT INTO tb_lote_epi (id_epi,qtd,dt_aquisicao,dt_validade,id_fornecedor) VALUES (?,?,?,?,?)',
-                [idEpi, qtd, dtString, dtVString, idForn]
+            const resultado = await Connection.execute('INSERT INTO tb_filial (nome,cnpj,contato,cep) VALUES (?,?,?,?)',
+                [nome, cnpj, contato, cep]
             )
-
-            for (var i = 0; i < qtd; i++) {
-                const uniEpi = await Connection.execute('INSERT INTO tb_uni_epi (id_lote,id_estado) VALUES (?,?)',
-                    [resultado.insertId, idEst]
-                );
-                console.log(uniEpi);
-            }
-
-            if (refused) {
-                await Connection.query('ROLLBACK')
-            } else {
-                await Connection.query('COMMIT');
-                return resultado.insertId;
-            }
+            return resultado.insertId;
         } catch (error) {
             console.log(error)
         }
     }
+    static async selecFilial(nome) {
+        const Connection = require('../Config/Connection');
+
+        try {
+            const resultado = await Connection.query('SELECT id_filial, nome FROM tb_filial WHERE TRUE');
+            return resultado;
+        } catch (err) {
+            throw err;
+        }
+    }
 }
 
-module.exports = Epi;
+module.exports = Filial;
