@@ -546,23 +546,6 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             }}
                                             title={<><BsFloppy></BsFloppy>salvar</>}
                                             type="submit"
-                                            onClick={() => {
-                                                setNome('');
-                                                setCpf('');
-                                                setNRegistro('');
-                                                setEmail('');
-                                                setContato1('');
-                                                setContato2('');
-                                                setDtContratacao('');
-                                                setCargo('');
-                                                setFilial('');
-                                                setStatus('');
-                                                setAlergia('');
-                                                setEmergencia('');
-                                                setAcidente('');
-                                                setSangue('1');
-                                                setIsOpen(false); // fecha o modal também
-                                            }}
                                         >
                                         </MyButton>
                                         <MyButton

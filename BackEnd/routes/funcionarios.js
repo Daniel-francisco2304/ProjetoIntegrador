@@ -4,8 +4,8 @@ const Funcionario = require('../Model/Funcionario');
 
 router.get('/', async (req, res) => {
   const { q, f } = req.query;
-  //console.log('Recebido f:', f)
-  //console.log('Recebido q:', q)
+  //  console.log('Recebido f:', f)
+  //  console.log('Recebido q:', q)
 
   try {
     const rows = await Funcionario.selecFuncionario(q, f);
@@ -20,6 +20,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia } = req.body;
+  //console.log(req.body)
   try {
     const novoId = await Funcionario.criarfuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
     res.status(201).json({ id: novoId, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia });

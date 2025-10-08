@@ -27,17 +27,21 @@ export async function getAllFuncionarios(p, f) {
 
 export async function postFuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
     try {
-        await axios.post(`http://localhost:3001/funcionarios`, {
-            nome: nome,
-            cpf: cpf,
-            email: email,
-            dtContratacao: dtContratacao,
-            contato1: contato1,
-            contato2: contato2,
-            emergencia: emergencia,
-            status: status,
-            alergia: alergia
-        });
+        if (nome === '' || cpf === '' || email === '' || dtContratacao === '' || contato1 === '' || contato2 === '' || emergencia === '' || status === '' || alergia === ''){
+            alert("Campos vazios!");
+            return;
+        }
+            await axios.post(`http://localhost:3001/funcionarios`, {
+                nome: nome,
+                cpf: cpf,
+                email: email,
+                dtContratacao: dtContratacao,
+                contato1: contato1,
+                contato2: contato2,
+                emergencia: emergencia,
+                status: status,
+                alergia: alergia
+            });
         alert('Salvo com sucesso');
         return true;
     } catch (error) {
