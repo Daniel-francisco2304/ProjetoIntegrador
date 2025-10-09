@@ -12,8 +12,8 @@ async function testar() {
     //console.log('Lista de usuários:');
     //console.log(usuarios);
 
-    const p = await Filial.selecFilial();
-    console.log(p)
+    //const p = await Filial.selecFilial();
+    //console.log(p)
 
     //const idEpi = await Epi.criarNomeEpi('Luva')
     //console.log('Epi criado com ID: ',idEpi);

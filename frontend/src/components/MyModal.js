@@ -9,9 +9,11 @@ import MyText from "./MyText";
 import MyTextArea from "./MyTextArea";
 import MyButton from "./MyButton";
 import MyInput from '../components/MyInput'
+import { CadCargos } from "./cadCargos";
 
 import { postFuncionario } from "../model/funcionario";
 import { getAllFilial } from "../model/filial";
+import { getAllCargo } from "../model/cargo";
 
 export function MyModal({ isOpen, setIsOpen, func }) {
     const [nome, setNome] = useState(func?.f_nome || '');
@@ -22,6 +24,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
     const [contato2, setContato2] = useState(func?.contato2 || '');
     const [dtContratacao, setDtContratacao] = useState(func?.contratacao || '');
     const [cargo, setCargo] = useState(func?.c_nome || '');
+    const [ckey, setCKey] = useState([]);
     const [fkey, setFkey] = useState([]);
     const [filial, setFilial] = useState(func?.Loja || '');
     const [status, setStatus] = useState(func?.CStatus || '');
@@ -29,6 +32,8 @@ export function MyModal({ isOpen, setIsOpen, func }) {
     const [emergencia, setEmergencia] = useState(func?.emergencia || '');
     const [acidente, setAcidente] = useState('');
     const [sangue, setSangue] = useState('1');
+
+    const [openIs, setOpenIs] = useState(false)
 
     async function handleSave(obj, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
         if (obj === false) {
@@ -39,7 +44,28 @@ export function MyModal({ isOpen, setIsOpen, func }) {
             alert("Editar usuário")
         }
     }
+    const carregarCargos = async () => {
+        try {
+            const data = await getAllCargo();
+            //console.log("Data:", data);
+            setCKey(data);
+            //console.log("C Key:", ckey)
+        } catch (err) {
+            alert("err", err);
+        }
+    }
     useEffect(() => {
+        const novoCargo = (cargo) => {
+            if (cargo === '0') {
+                alert(cargo);
+                setOpenIs(true);
+            }
+        }
+        novoCargo(cargo);
+        carregarCargos();
+    }, [cargo])
+    useEffect(() => {
+
         const carregarFiliais = async () => {
             try {
                 const data = await getAllFilial();
@@ -50,7 +76,8 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                 alert("err", err);
             }
         }
-        carregarFiliais()
+        carregarFiliais();
+        carregarCargos();
     }, [isOpen])
     useEffect(() => {
         if (!func) return;
@@ -327,17 +354,25 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                         >
                                             Cargo:
                                         </MyText>
-                                        <MyInput size='lg'
+                                        <select
                                             value={cargo}
                                             onChange={(e) => setCargo(e.target.value)}
                                             style={{
-                                                width: '95%',
-                                                //height:'1000%',
-                                                margin: 0,
+                                                display: "flex",
+                                                width: '100%',
+                                                borderRadius: 4,
+                                                border: "1px solid #ccc",
                                                 alignItems: "center",
                                                 justifyContent: "center",
+                                                padding: "10px 14px",
+                                                fontSize: "18px",
                                             }}
-                                        />
+                                        >
+                                            {Array.isArray(ckey) ? (ckey.map((ckey, i) => (
+                                                <option key={i} value={ckey.id}>{ckey.nome}</option>))) : (<></>)
+                                            }
+                                            <option value={'0'} onClick={() => { alert('click') }}>Adicionar um cargo?</option>
+                                        </select>
                                     </div>
                                     <div style={{
                                         marginLeft: '3%',
@@ -585,6 +620,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                     </>
                 )}
             </div>
+            {<CadCargos openIs={openIs} setOpenIs={setOpenIs}></CadCargos>}
         </div >
     )
 }

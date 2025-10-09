@@ -12,6 +12,9 @@ app.use('/funcionarios', rotaFuncionarios);
 const rotaFilial = require('./routes/filial');
 app.use('/filial', rotaFilial);
 
+const rotaCargos = require('./routes/cargo');
+app.use('/cargo',rotaCargos);
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
