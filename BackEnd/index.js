@@ -1,6 +1,8 @@
 //const Funcionarios = require('./Model/Funcionario');
-const Epi = require('./Model/Epi')
+//const Epi = require('./Model/Epi')
 //const Filial = require('./Model/Filial')
+const Acidente = require('./Model/Acidente')
+
 async function testar() {
   try {
     // Criar novo usuário
@@ -21,8 +23,12 @@ async function testar() {
     //const idLote = await Epi.criarLoteEpi('Óculos','Vanessa da Mata SA','2005-04-23 6:32:52','2005-04-23 6:32:52',5,1);
     //console.log(idLote);
 
-    const p =await Epi.selecEpi(null,null);
-    console.table(p);
+    //const p =await Epi.selecEpi(null,null);
+    //console.table(p);
+    const x = new Date();
+    const p = await Acidente.criarAcidente('3', '1', 'Queda de escada à 2 metros do chão, ocasionando fratura simples no radio.',x);
+    console.log(p)
+
   } catch (err) {
     console.error('Erro durante o teste:', err);
   }

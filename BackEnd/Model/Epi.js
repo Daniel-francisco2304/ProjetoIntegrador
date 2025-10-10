@@ -29,7 +29,7 @@ class Epi {
 
     //static async criarNomeEpi(nome) {
     //    const Connection = require('../Config/Connection');
-//
+    //
     //    try {
     //        const resultado = await Connection.query(
     //            'INSERT INTO tb_epi (nome) VALUES (?)',
@@ -43,7 +43,7 @@ class Epi {
     //}
     //static async criarCa(ca) {
     //    const Connection = require('../Config/Connection');
-//
+    //
     //    try {
     //        const resultado = await Connection.query(
     //            'INSERT INTO tb_ca (ca) VALUES (?)',
@@ -57,7 +57,7 @@ class Epi {
     //}
     //static async criarFornecedor(forn) {
     //    const Connection = require('../Config/Connection');
-//
+    //
     //    try {
     //        const resultado = await Connection.query(
     //            'INSERT INTO tb_fornecedor (nome) VALUES (?)',
@@ -117,20 +117,20 @@ class Epi {
         const valores = [];
 
         //if (param) {
-            //const isEmail = param.includes('@') || param.includes('.');
-            //if (isEmail) {
-            //    sql += ' AND email LIKE ? ';
-            //} else {
-            //    sql += ' AND f.nome LIKE ? ';
-            //}
+        //const isEmail = param.includes('@') || param.includes('.');
+        //if (isEmail) {
+        //    sql += ' AND email LIKE ? ';
+        //} else {
+        //    sql += ' AND f.nome LIKE ? ';
+        //}
         //    valores.push(`%${param}%`);
         //}
         //const colunas = ['f_nome', 'email', 'contratacao'];
-//
+        //
         //if (colunas.includes(filtro)) {
         //    sql += ` ORDER BY ${filtro}`;
         //} else {
-        //    sql += ` ORDER BY f.nome`; // padrão de segurança
+        sql += ` ORDER BY p.nome`; // padrão de segurança
         //}
 
         try {

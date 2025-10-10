@@ -11,7 +11,6 @@ function Home() {
     return (
         <div style={styles.container} onKeyDown={handleKeyDown}>
             <MyCanva />
-            <MyModal />
         </div>
     );
 }
