@@ -8,16 +8,17 @@ import MyButton from "./MyButton";
 import MyInput from '../components/MyInput'
 import { postCargo } from "../model/cargo";
 
-export function CadCargos({ openIs, setOpenIs, }) {
+export function CadCargos({ openIs, setOpenIs, setCargo }) {
     const [nome, setNome] = useState('')
     const cadastrarCargo = async () => {
         try {
             if (nome === '') {
-                alert('campos vazios')
+                alert('campos vazios');
+                setCargo('1');
                 return;
             }
             const promise = await postCargo(nome);
-            alert(promise);
+            console.log(promise);
         } catch (error) {
             alert(error)
             return;
@@ -105,7 +106,10 @@ export function CadCargos({ openIs, setOpenIs, }) {
                                         }}
                                         type="reset"
                                         title={<><RxCross1 />Cancelar</>}
-
+                                        onClick={() => {
+                                            setOpenIs(false);
+                                            setCargo('1');
+                                        }}
                                     >
                                     </MyButton>
                                 </IconContext.Provider>

@@ -77,3 +77,5 @@ create table if not exists tb_alocacao(
 #LEFT JOIN tb_epi e      ON l.id_epi = e.id
 #LEFT JOIN tb_fornecedor f ON l.id_fornecedor = f.id
 #LEFT JOIN tb_estado est ON u.id_estado = est.id;
+
+# ;

@@ -112,6 +112,54 @@ class Epi {
             console.log(error)
         }
     }
-}
+    static async selecEpi(param, filtro) {
+        let sql = 'SELECT u.id AS registro, l.id AS lote, p.nome AS equipamento, l.qtd AS quantidade, l.dt_aquisicao AS aquisicao, l.dt_validade AS validade, c.ca AS CA, f.nome AS fornecedor, e.nome AS estado FROM phpmyadmin.tb_uni_epi u JOIN phpmyadmin.tb_lote_epi l ON u.id_lote = l.id LEFT JOIN phpmyadmin.tb_epi p ON p.id = l.id_epi LEFT JOIN phpmyadmin.tb_estado e ON e.id = u.id_estado LEFT JOIN phpmyadmin.tb_fornecedor f ON f.id = l.id_fornecedor LEFT JOIN phpmyadmin.tb_ca c ON c.id = p.id_ca WHERE TRUE';
+        const valores = [];
 
+        //if (param) {
+            //const isEmail = param.includes('@') || param.includes('.');
+            //if (isEmail) {
+            //    sql += ' AND email LIKE ? ';
+            //} else {
+            //    sql += ' AND f.nome LIKE ? ';
+            //}
+        //    valores.push(`%${param}%`);
+        //}
+        //const colunas = ['f_nome', 'email', 'contratacao'];
+//
+        //if (colunas.includes(filtro)) {
+        //    sql += ` ORDER BY ${filtro}`;
+        //} else {
+        //    sql += ` ORDER BY f.nome`; // padrão de segurança
+        //}
+
+        try {
+            const rows = await Connection.query(sql, valores);
+            return rows;
+        } catch (err) {
+            throw err;
+        }
+    }
+}
+/*
+SELECT 
+    u.id AS registro,
+    l.id AS lote,
+    l.qtd AS quantidade,
+    l.dt_aquisicao AS aquisicao,
+    l.dt_validade AS validade,
+    p.nome AS equipamento,
+    f.nome AS fornecedor,
+    e.nome AS estado
+FROM 
+    phpmyadmin.tb_uni_epi u
+JOIN 
+    phpmyadmin.tb_lote_epi l ON u.id_lote = l.id
+LEFT JOIN 
+    phpmyadmin.tb_epi p ON p.id = l.id_epi
+LEFT JOIN 
+    phpmyadmin.tb_estado e ON e.id = u.id_estado
+LEFT JOIN 
+    phpmyadmin.tb_fornecedor f ON f.id = l.id_fornecedor;
+*/
 module.exports = Epi;

@@ -5,7 +5,7 @@ import MyButton from '../components/MyButton';
 import MyText from "../components/MyText";
 import { BsSearch, BsPersonFillAdd, BsFillTrashFill, BsInfoCircle } from "react-icons/bs";
 import { MyCanva } from '../components/MyCanvas';
-import { getAllFuncionarios } from '../model/funcionario';
+import { deleteFuncionario, getAllFuncionarios } from '../model/funcionario';
 import { MySelect } from '../components/MySelect';
 import { MyModal } from '../components/MyModal';
 
@@ -18,6 +18,11 @@ function Funcionarios() {
 
   async function getAll(nome, filter) {
     setFuncionarios(await getAllFuncionarios(nome, filter))
+  }
+  async function handleDelete(id) {
+    await deleteFuncionario(id);
+    setFuncionarios(getAll(nome, filter));
+    return;
   }
   useEffect(() => { setFuncionarios(getAll(nome, filter)) }, [nome, filter])
   return (
@@ -32,7 +37,7 @@ function Funcionarios() {
           onChange={(e) => { setNome(e.target.value) }}
         /> <br />
         <MyButton size='md' onClick={() => { getAll(nome, filter) }} style={{ marginLeft: '0' }} title={<><BsSearch /> Consultar</>} />
-        <MyButton size='md' onClick={() => { setIsOpen(true); setObj(false)}} title={<><BsPersonFillAdd /> Novo Funcionário</>} />
+        <MyButton size='md' onClick={() => { setIsOpen(true); setObj(false) }} title={<><BsPersonFillAdd /> Novo Funcionário</>} />
         <MyText>Filtrar por:</MyText>
         <MySelect
           defaltValue='Nome'
@@ -74,7 +79,7 @@ function Funcionarios() {
                     <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', }}>{func.c_nome}</td>
                     <td style={{ textAlign: 'center', border: '1px solid #d3d3d3', width: '15%' }}>
                       <MyButton size='sm' variant='warning' value={func.Registro} title={<><BsInfoCircle /></>} onClick={() => { setIsOpen(true); setObj(func); }} />
-                      <MyButton size='sm' variant='danger' value={func.Registro} title={<><BsFillTrashFill /></>} onClick={() => { }} />
+                      <MyButton size='sm' variant='danger' value={func.Registro} title={<><BsFillTrashFill /></>} onClick={() => { handleDelete(func.Registro) }} />
                     </td>
                   </tr>
                 ))

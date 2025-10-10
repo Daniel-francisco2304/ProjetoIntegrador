@@ -12,39 +12,50 @@ export async function getAllFuncionarios(p, f) {
         //console.log(funcionarios);
         return funcionarios.data;
     } catch (error) {
-        //alert('error ao buscar funcionários!', error);
-        //const funcionarios = [
-        //    {
-        //        f_nome: "Carlos",
-        //        email: "carlos@gmail.com",
-        //        contratacao: "2005-04-20",
-        //        c_nome: "Administrador Geral"
-        //    }
-        //]
-        //return funcionarios;
+        alert('error ao buscar funcionários!', error);
+        return;
     }
 }
 
-export async function postFuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
+export async function postFuncionario(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
     try {
-        if (nome === '' || cpf === '' || email === '' || dtContratacao === '' || contato1 === '' || contato2 === '' || emergencia === '' || status === '' || alergia === ''){
-            alert("Campos vazios!");
-            return;
-        }
-            await axios.post(`http://localhost:3001/funcionarios`, {
-                nome: nome,
-                cpf: cpf,
-                email: email,
-                dtContratacao: dtContratacao,
-                contato1: contato1,
-                contato2: contato2,
-                emergencia: emergencia,
-                status: status,
-                alergia: alergia
-            });
+        //if (!nome || !cpf || !email || !dtContratacao || !contato1 || !contato2 || !emergencia || !status || !alergia) {
+        //    alert("Campos vazios!");
+        //    return;
+        //}
+        const data = JSON.stringify(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
+        console.log(data);
+        alert(data);
+        //await axios.post(`http://localhost:3001/funcionarios`, {
+        //    nome: nome,
+        //    cpf: cpf,
+        //    email: email,
+        //    dtContratacao: dtContratacao,
+        //    contato1: contato1,
+        //    contato2: contato2,
+        //    emergencia: emergencia,
+        //    status: status,
+        //    alergia: alergia
+        //});
         alert('Salvo com sucesso');
-        return true;
+        return;
     } catch (error) {
-        alert('Error ao salvar!', error)
+        alert('Error ao salvar!', error);
+        return;
+    }
+}
+
+export async function deleteFuncionario(id) {
+    if (!id) {
+        alert('Usuário não encontrado');
+        return;
+    }
+    try {
+        axios.delete(`http://localhost:3001/funcionarios/${id}`);
+        alert("Funcionário excluido com sucesso!");
+        return;
+    } catch (error) {
+        alert("Error ao excluir funcionário!");
+        return;
     }
 }

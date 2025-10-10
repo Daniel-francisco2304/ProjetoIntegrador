@@ -16,7 +16,7 @@ class Cargo {
             return resultado.insertId;
         } catch (error) {
             console.log(error);
-            throw error
+            throw error;
         }
     }
     static async selecCargo() {

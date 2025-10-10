@@ -32,24 +32,21 @@ export function MyModal({ isOpen, setIsOpen, func }) {
     const [emergencia, setEmergencia] = useState(func?.emergencia || '');
     const [acidente, setAcidente] = useState('');
     const [sangue, setSangue] = useState('1');
+    const [id, setId] = useState(func.Registro);
 
     const [openIs, setOpenIs] = useState(false)
 
     async function handleSave(obj, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
         if (obj === false) {
-            //console.log(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia)
             await postFuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia)
-            //alert("Cadastrar usuário")
         } else {
-            alert("Editar usuário")
+            postFuncionario(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
         }
     }
     const carregarCargos = async () => {
         try {
             const data = await getAllCargo();
-            //console.log("Data:", data);
             setCKey(data);
-            //console.log("C Key:", ckey)
         } catch (err) {
             alert("err", err);
         }
@@ -57,7 +54,6 @@ export function MyModal({ isOpen, setIsOpen, func }) {
     useEffect(() => {
         const novoCargo = (cargo) => {
             if (cargo === '0') {
-                alert(cargo);
                 setOpenIs(true);
             }
         }
@@ -69,9 +65,9 @@ export function MyModal({ isOpen, setIsOpen, func }) {
         const carregarFiliais = async () => {
             try {
                 const data = await getAllFilial();
-                console.log("Data:", data);
+                //console.log("Data:", data);
                 setFkey(data);
-                console.log("F Key:", fkey)
+                //console.log("F Key:", fkey)
             } catch (err) {
                 alert("err", err);
             }
@@ -620,7 +616,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                     </>
                 )}
             </div>
-            {<CadCargos openIs={openIs} setOpenIs={setOpenIs}></CadCargos>}
+            {<CadCargos openIs={openIs} setOpenIs={setOpenIs} setCargo={setCargo}></CadCargos>}
         </div >
     )
 }

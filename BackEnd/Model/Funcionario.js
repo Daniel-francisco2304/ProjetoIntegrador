@@ -62,19 +62,19 @@ class Funcionario {
             );
             return resultado.affectedRows;
         } catch (error) {
-            return error
+            throw error;
         }
     }
 
     static async excluirFuncionario(id) {
         const Connection = require('../Config/Connection');
         try {
-            const resultado = await Connection.query('DELETE FROM tb_funcionario WHERE id = ?',
+            const resultado = await Connection.query('DELETE FROM phpmyadmin.tb_funcionario WHERE id = (?)',
                 [id]
             );
             return resultado.affectedRows;
         } catch (error) {
-
+            throw error;
         }
     }
     static async selecFuncionario(param, filtro) {
