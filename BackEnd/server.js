@@ -18,7 +18,10 @@ app.use('/cargo',rotaCargos);
 const rotaEpi = require('./routes/epi');
 app.use('/epi',rotaEpi);
 
+const rotaAcidentes = require('./routes/acidentes');
+app.use('/acidentes',rotaAcidentes);
+
 const PORT = 3001;
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+console.log(`Servidor rodando na porta ${PORT}`);
 });

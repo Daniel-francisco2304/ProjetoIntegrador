@@ -5,7 +5,6 @@ const Cargo = require('../Model/cargo');
 router.get('/', async (req, res) => {
   try {
     const rows = await Cargo.selecCargo();
-    //console.log('Filial retornados:', rows);
     res.json(rows);
   } catch (err) {
     console.error(err);
@@ -15,7 +14,6 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { nome } = req.body;
-  //console.log(req.body)
   try {
     const novoId = await Cargo.criarCargo(nome);
     res.status(201).json({ id: novoId, nome });
