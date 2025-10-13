@@ -85,8 +85,23 @@ e.nome AS epi,
 #LEFT JOIN tb_epi e      ON l.id_epi = e.id
 #LEFT JOIN tb_fornecedor f ON l.id_fornecedor = f.id
 #LEFT JOIN tb_estado est ON u.id_estado = est.id;
+SELECT
+  l.id AS N_epi,
+  a.id AS N_Registro,
+  f.nome AS Funcionario,
+  e.nome AS Epi,
+  a.acidente AS descricao,
+  a.dt_acidente AS dt_acidente
+FROM
+  phpmyadmin.tb_acidentes a
+  LEFT JOIN phpmyadmin.tb_uni_epi u ON a.id_epi = u.id
+  LEFT JOIN phpmyadmin.tb_lote_epi l ON l.id = u.id_lote
+  LEFT JOIN phpmyadmin.tb_epi e ON e.id = l.id_epi
+  LEFT JOIN phpmyadmin.tb_funcionario f ON f.id = a.id_funcionario
+WHERE
+  TRUE;
 
-SELECT l.id AS N_epi, a.id AS N_Registro, f.nome AS Funcionario, e.nome AS Epi, a.acidente AS descricao, a.dt_acidente AS dt_acidente FROM phpmyadmin.tb_acidentes a LEFT JOIN phpmyadmin.tb_uni_epi u ON a.id_epi = u.id LEFT JOIN phpmyadmin.tb_lote_epi l ON l.id = u.id_lote LEFT JOIN phpmyadmin.tb_epi e ON e.id = l.id_epi LEFT JOIN phpmyadmin.tb_funcionario f ON f.id = a.id_funcionario WHERE TRUE;
+SELECT f.id as Registro, f.nome AS f_nome, f.cpf, f.email, f.contato1, f.contato2, f.emergencia, f.status as CStatus, f.alergia, f.contratacao, c.nome AS c_nome, l.nome AS Loja s._status AS status FROM phpmyadmin.tb_funcionario f LEFT JOIN tb_filial l ON f.id_filial = l.id_filial LEFT JOIN tb_cargo c ON f.id_cargo = c.id LEFT JOIN tb_status s ON f.status = s.id_status WHERE TRUE
 
 -- MySQL Workbench Forward Engineering
 SET

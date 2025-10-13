@@ -24,7 +24,6 @@ class Filial {
     }
     static async selecFilial() {
         const Connection = require('../Config/Connection');
-
         try {
             const resultado = await Connection.query('SELECT id_filial, nome FROM tb_filial WHERE TRUE');
             return resultado;

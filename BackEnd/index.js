@@ -1,5 +1,5 @@
 //const Funcionarios = require('./Model/Funcionario');
-const Epi = require('./Model/Epi')
+//const Epi = require('./Model/Epi')
 //const Filial = require('./Model/Filial')
 //const Acidente = require('./Model/Acidente')
 

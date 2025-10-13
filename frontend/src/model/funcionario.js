@@ -9,7 +9,7 @@ export async function getAllFuncionarios(p, f) {
             default: f = 'f.nome';
         }
         const funcionarios = await axios.get(`http://localhost:3001/funcionarios?q=${p}&f=${f}`);
-        //console.log(funcionarios);
+        console.log(funcionarios);
         return funcionarios.data;
     } catch (error) {
         alert('error ao buscar funcionários!', error);
@@ -17,26 +17,27 @@ export async function getAllFuncionarios(p, f) {
     }
 }
 
-export async function postFuncionario(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
+export async function postFuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia, id) {
     try {
-        //if (!nome || !cpf || !email || !dtContratacao || !contato1 || !contato2 || !emergencia || !status || !alergia) {
-        //    alert("Campos vazios!");
-        //    return;
-        //}
+        if (!nome || !cpf || !email || !dtContratacao || !contato1 || !contato2 || !emergencia || !status || !alergia) {
+            console.log(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
+            alert("Campos vazios!");
+            return;
+        }
         const data = JSON.stringify(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
         console.log(data);
         alert(data);
-        //await axios.post(`http://localhost:3001/funcionarios`, {
-        //    nome: nome,
-        //    cpf: cpf,
-        //    email: email,
-        //    dtContratacao: dtContratacao,
-        //    contato1: contato1,
-        //    contato2: contato2,
-        //    emergencia: emergencia,
-        //    status: status,
-        //    alergia: alergia
-        //});
+        await axios.post(`http://localhost:3001/funcionarios`, {
+            nome: nome,
+            cpf: cpf,
+            email: email,
+            dtContratacao: dtContratacao,
+            contato1: contato1,
+            contato2: contato2,
+            emergencia: emergencia,
+            status: status,
+            alergia: alergia
+        });
         alert('Salvo com sucesso');
         return;
     } catch (error) {

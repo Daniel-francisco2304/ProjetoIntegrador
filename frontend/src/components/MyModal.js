@@ -14,6 +14,7 @@ import { CadCargos } from "./cadCargos";
 import { postFuncionario } from "../model/funcionario";
 import { getAllFilial } from "../model/filial";
 import { getAllCargo } from "../model/cargo";
+import { getAllStatus } from "../model/status";
 
 export function MyModal({ isOpen, setIsOpen, func }) {
     const [nome, setNome] = useState(func?.f_nome || '');
@@ -24,23 +25,53 @@ export function MyModal({ isOpen, setIsOpen, func }) {
     const [contato2, setContato2] = useState(func?.contato2 || '');
     const [dtContratacao, setDtContratacao] = useState(func?.contratacao || '');
     const [cargo, setCargo] = useState(func?.c_nome || '');
-    const [ckey, setCKey] = useState([]);
-    const [fkey, setFkey] = useState([]);
     const [filial, setFilial] = useState(func?.Loja || '');
-    const [status, setStatus] = useState(func?.CStatus || '');
+    const [status, setStatus] = useState(func?.status || '');
     const [alergia, setAlergia] = useState(func?.alergia || '');
     const [emergencia, setEmergencia] = useState(func?.emergencia || '');
     const [acidente, setAcidente] = useState('');
     const [sangue, setSangue] = useState('1');
     const [id, setId] = useState(func.Registro);
 
+    const [ckey, setCKey] = useState([]);
+    const [fkey, setFkey] = useState([]);
+    const [skey, setSkey] = useState([]);
+
     const [openIs, setOpenIs] = useState(false)
 
+    const setDefault = () => {
+        setNome('');
+        setCpf('');
+        setNRegistro('');
+        setEmail('');
+        setContato1('');
+        setContato2('');
+        setDtContratacao('');
+        setCargo('');
+        setFilial('');
+        setStatus('');
+        setAlergia('');
+        setEmergencia('');
+        setAcidente('');
+        setSangue('1');
+        setIsOpen(false);
+    }
     async function handleSave(obj, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
         if (obj === false) {
-            await postFuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia)
+            await postFuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
+            setDefault();
+
         } else {
-            postFuncionario(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
+            await postFuncionario(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
+            setDefault();
+        }
+    }
+    const carregarStatus = async () => {
+        try {
+            const data = await getAllStatus();
+            setSkey(data);
+        } catch (err) {
+            alert("err", err);
         }
     }
     const carregarCargos = async () => {
@@ -59,22 +90,22 @@ export function MyModal({ isOpen, setIsOpen, func }) {
         }
         novoCargo(cargo);
         carregarCargos();
-    }, [cargo])
-    useEffect(() => {
+        carregarStatus();
+    }, [cargo]);
 
+    useEffect(() => {
         const carregarFiliais = async () => {
             try {
                 const data = await getAllFilial();
-                //console.log("Data:", data);
                 setFkey(data);
-                //console.log("F Key:", fkey)
             } catch (err) {
                 alert("err", err);
             }
         }
         carregarFiliais();
         carregarCargos();
-    }, [isOpen])
+    }, [isOpen]);
+
     useEffect(() => {
         if (!func) return;
 
@@ -87,13 +118,14 @@ export function MyModal({ isOpen, setIsOpen, func }) {
         setDtContratacao(func.contratacao || '');
         setCargo(func.c_nome || '');
         setFilial(func.Loja || '');
-        setStatus(func.CStatus || '');
+        setStatus(func.status || '');
         setAlergia(func.alergia || '');
         setEmergencia(func.emergencia || '');
         setAcidente(func.acidente || '');
-        setSangue('1'); // ou func.sangue se vier do servidor
+        setSangue('1');
     }, [func]);
     if (!isOpen) return null;
+
     return (
         <div>
             <div>
@@ -111,7 +143,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                             }}
                             onClick={() => { setIsOpen(false); }}
                         ></div>
-                        <form onSubmit={(e) => { e.preventDefault(); handleSave(func, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia); setIsOpen(false) }}>
+                        <form onSubmit={(e) => { e.preventDefault(); handleSave(func, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia, id); }}>
                             <div
                                 style={{
                                     position: "fixed",
@@ -229,7 +261,6 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                                 width: '100%',
                                                 alignItems: "center",
                                                 justifyContent: "center",
-                                                //height: '1000%',
                                             }}
                                         />
                                     </div>
@@ -333,7 +364,6 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                 >
                                     <div style={{
                                         width: '30%',
-                                        //marginRight: '5%',
                                     }}>
                                         <MyText
                                             style={{
@@ -352,6 +382,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                         </MyText>
                                         <select
                                             value={cargo}
+                                            defaultValue={1}
                                             onChange={(e) => setCargo(e.target.value)}
                                             style={{
                                                 display: "flex",
@@ -392,6 +423,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                         </MyText>
                                         <select
                                             value={filial}
+                                            defaultValue={1}
                                             onChange={(e) => setFilial(e.target.value)}
                                             style={{
                                                 display: "flex",
@@ -429,15 +461,24 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                         >
                                             Status:
                                         </MyText>
-                                        <MyInput size='lg'
+                                        <select
                                             value={status}
+                                            defaultValue={1}
                                             onChange={(e) => setStatus(e.target.value)}
                                             style={{
+                                                display: "flex",
                                                 width: '100%',
+                                                borderRadius: 4,
+                                                border: "1px solid #ccc",
                                                 alignItems: "center",
                                                 justifyContent: "center",
+                                                padding: "10px 14px",
+                                                fontSize: "18px",
                                             }}
-                                        />
+                                        >
+                                            {Array.isArray(skey) ? (skey.map((skey, i) => (
+                                                <option key={i} value={skey.id_status}>{skey._status}</option>))) : (<></>)}
+                                        </select>
                                     </div>
                                 </div>
                                 <div>
@@ -515,13 +556,13 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             Ult. Acid.:
                                         </MyText>
                                         <MyInput size='lg'
+                                            type={"date"}
                                             value={acidente}
-                                            onChange={(e) => { setAcidente(e.target.value) }}
+                                            onChange={(e) => setAcidente(e.target.value)}
                                             style={{
                                                 width: '100%',
                                                 alignItems: "center",
                                                 justifyContent: "center",
-                                                marginLeft: '4%',
                                             }}
                                         />
                                     </div>
@@ -605,7 +646,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                                 setEmergencia('');
                                                 setAcidente('');
                                                 setSangue('1');
-                                                setIsOpen(false); // fecha o modal também
+                                                setIsOpen(false);
                                             }}
                                         >
                                         </MyButton>
