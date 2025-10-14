@@ -26,7 +26,7 @@ export async function postFuncionario(nome, cpf, email, dtContratacao, contato1,
         }
         const data = JSON.stringify(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
         console.log(data);
-        alert(data);
+        //alert(data);
         await axios.post(`http://localhost:3001/funcionarios`, {
             nome: nome,
             cpf: cpf,
@@ -46,6 +46,10 @@ export async function postFuncionario(nome, cpf, email, dtContratacao, contato1,
     }
 }
 
+export async function putFuncionario(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
+    const funcionario = JSON.stringify(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
+    alert(funcionario);
+} 
 export async function deleteFuncionario(id) {
     if (!id) {
         alert('Usuário não encontrado');

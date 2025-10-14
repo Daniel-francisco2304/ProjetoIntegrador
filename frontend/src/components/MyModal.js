@@ -11,7 +11,7 @@ import MyButton from "./MyButton";
 import MyInput from '../components/MyInput'
 import { CadCargos } from "./cadCargos";
 
-import { postFuncionario } from "../model/funcionario";
+import { postFuncionario, putFuncionario } from "../model/funcionario";
 import { getAllFilial } from "../model/filial";
 import { getAllCargo } from "../model/cargo";
 import { getAllStatus } from "../model/status";
@@ -62,7 +62,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
             setDefault();
 
         } else {
-            await postFuncionario(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
+            await putFuncionario(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
             setDefault();
         }
     }
