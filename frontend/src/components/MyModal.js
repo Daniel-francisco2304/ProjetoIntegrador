@@ -14,7 +14,7 @@ import { CadCargos } from "./cadCargos";
 import { postFuncionario, putFuncionario } from "../model/funcionario";
 import { getAllFilial } from "../model/filial";
 import { getAllCargo } from "../model/cargo";
-import { getAllStatus } from "../model/status";
+import { getAllSangue, getAllStatus } from "../model/status";
 
 export function MyModal({ isOpen, setIsOpen, func }) {
     const [nome, setNome] = useState(func?.f_nome || '');
@@ -30,12 +30,13 @@ export function MyModal({ isOpen, setIsOpen, func }) {
     const [alergia, setAlergia] = useState(func?.alergia || '');
     const [emergencia, setEmergencia] = useState(func?.emergencia || '');
     const [acidente, setAcidente] = useState('');
-    const [sangue, setSangue] = useState('1');
+    const [sangue, setSangue] = useState('');
     const [id, setId] = useState(func.Registro);
 
-    const [ckey, setCKey] = useState([]);
-    const [fkey, setFkey] = useState([]);
-    const [skey, setSkey] = useState([]);
+    const [ckey, setCKey] = useState([]); // cargo
+    const [fkey, setFkey] = useState([]); // funcionário
+    const [skey, setSkey] = useState([]); // status
+    const [bkey, setBkey] = useState([]); // sangue => Blood 
 
     const [openIs, setOpenIs] = useState(false)
 
@@ -56,10 +57,12 @@ export function MyModal({ isOpen, setIsOpen, func }) {
         setSangue('1');
         setIsOpen(false);
     }
-    async function handleSave(obj, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
+    async function handleSave(obj, nome, cpf, email, dtContratacao, contato1, contato2, cargo, filial, emergencia, status, alergia, sangue, id) {
         if (obj === false) {
-            await postFuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
-            setDefault();
+            if (await postFuncionario(nome, cpf, email, dtContratacao, contato1, contato2, cargo, filial, emergencia, status, alergia, sangue, id)) {
+                setDefault();
+                setIsOpen(false);
+            };
 
         } else {
             await putFuncionario(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
@@ -82,6 +85,15 @@ export function MyModal({ isOpen, setIsOpen, func }) {
             alert("err", err);
         }
     }
+    const carregarSangue = async () => {
+        try {
+            const data = await getAllSangue();
+            setBkey(data);
+        } catch (err) {
+            alert("err", err);
+        }
+    }
+
     useEffect(() => {
         const novoCargo = (cargo) => {
             if (cargo === '0') {
@@ -91,6 +103,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
         novoCargo(cargo);
         carregarCargos();
         carregarStatus();
+        carregarSangue();
     }, [cargo]);
 
     useEffect(() => {
@@ -143,7 +156,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                             }}
                             onClick={() => { setIsOpen(false); }}
                         ></div>
-                        <form onSubmit={(e) => { e.preventDefault(); handleSave(func, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia, id); }}>
+                        <form onSubmit={(e) => { e.preventDefault(); handleSave(func, nome, cpf, email, dtContratacao, contato1, contato2, cargo, filial, emergencia, status, alergia, sangue, id); }}>
                             <div
                                 style={{
                                     position: "fixed",
@@ -395,6 +408,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                                 fontSize: "18px",
                                             }}
                                         >
+                                            <option>Selecione uma opção</option>
                                             {Array.isArray(ckey) ? (ckey.map((ckey, i) => (
                                                 <option key={i} value={ckey.id}>{ckey.nome}</option>))) : (<></>)
                                             }
@@ -436,6 +450,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                                 fontSize: "18px",
                                             }}
                                         >
+                                            <option>Selecione uma opção</option>
                                             {Array.isArray(fkey) ? (fkey.map((fkey, i) => (
                                                 <option key={i} value={fkey.id_filial}>{fkey.nome}</option>))) : (<></>)}
                                         </select>
@@ -476,6 +491,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                                 fontSize: "18px",
                                             }}
                                         >
+                                            <option>Selecione uma opção</option>
                                             {Array.isArray(skey) ? (skey.map((skey, i) => (
                                                 <option key={i} value={skey.id_status}>{skey._status}</option>))) : (<></>)}
                                         </select>
@@ -583,24 +599,25 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                                 marginBottom: 10,
                                             }}
                                         >Tipo Sanguineo</MyText>
-                                        <MySelect
-                                            style={{
-                                                marginTop: 0,
-                                                marginBottom: 10,
-                                            }}
+                                        <select
                                             value={sangue}
-                                            onChange={(e) => { setSangue(e.target.value) }}
-                                            variant='cinzaClaro'
+                                            defaultValue={1}
+                                            onChange={(e) => setSangue(e.target.value)}
+                                            style={{
+                                                display: "flex",
+                                                width: '100%',
+                                                borderRadius: 4,
+                                                border: "1px solid #ccc",
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                                padding: "10px 14px",
+                                                fontSize: "18px",
+                                            }}
                                         >
-                                            <option value={'1'} >O+</option>
-                                            <option value={'2'} >O-</option>
-                                            <option value={'3'} >A+</option>
-                                            <option value={'4'} >A-</option>
-                                            <option value={'5'} >B+</option>
-                                            <option value={'6'} >B-</option>
-                                            <option value={'7'} >AB+</option>
-                                            <option value={'8'} >AB-</option>
-                                        </MySelect>
+                                            {Array.isArray(bkey) ? (bkey.map((bkey, i) => (
+                                                <option key={i} value={bkey.id_sangue}>{bkey.sangue}</option>))) : (<></>)
+                                            }
+                                        </select>
                                     </div>
                                 </div>
                                 <div style={{

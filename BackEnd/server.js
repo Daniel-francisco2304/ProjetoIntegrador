@@ -24,6 +24,9 @@ app.use('/acidentes', rotaAcidentes);
 const rotaStatus = require('./routes/status');
 app.use('/status', rotaStatus);
 
+const rotaSangue = require('./routes/sangue');
+app.use('/sangue', rotaSangue);
+
 const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);

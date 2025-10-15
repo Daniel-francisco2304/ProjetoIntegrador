@@ -5,6 +5,16 @@ export async function getAllStatus() {
         //console.log(filiais)
         return filiais.data;
     } catch (error) {
-        alert('err',error)
+        alert('err', error)
+    }
+}
+
+export async function getAllSangue() {
+    try {
+        const sangue = await axios.get(`http://localhost:3001/sangue`);
+        //console.log(filiais)
+        return sangue.data;
+    } catch (error) {
+        alert('err', error)
     }
 }

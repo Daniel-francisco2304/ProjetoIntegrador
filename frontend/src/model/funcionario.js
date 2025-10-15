@@ -17,39 +17,47 @@ export async function getAllFuncionarios(p, f) {
     }
 }
 
-export async function postFuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia, id) {
+export async function postFuncionario(nome, cpf, email, dtContratacao, contato1, contato2, cargo, filial, emergencia, status, alergia, sangue, id) {
     try {
-        if (!nome || !cpf || !email || !dtContratacao || !contato1 || !contato2 || !emergencia || !status || !alergia) {
-            console.log(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
-            alert("Campos vazios!");
-            return;
+        if (!nome || !cpf || !email || !contato1 || !alergia) {
+            console.log({ nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia });
+            alert("Campos obrigatórios faltando!");
+            return false;
         }
-        const data = JSON.stringify(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
-        console.log(data);
-        //alert(data);
-        await axios.post(`http://localhost:3001/funcionarios`, {
-            nome: nome,
-            cpf: cpf,
-            email: email,
-            dtContratacao: dtContratacao,
-            contato1: contato1,
-            contato2: contato2,
-            emergencia: emergencia,
-            status: status,
-            alergia: alergia
-        });
+
+        // Não precisa do JSON.stringify aqui — axios aceita objeto direto
+        const body = {
+            nome,
+            cpf,
+            email,
+            dtContratacao: dtContratacao || null, // manda null se vazio
+            contato1,
+            contato2,
+            cargo,
+            filial,
+            emergencia,
+            status,
+            alergia,
+            sangue
+        };
+
+        console.log('Enviando:', body);
+
+        await axios.post(`http://localhost:3001/funcionarios`, body);
         alert('Salvo com sucesso');
-        return;
+        return true;
     } catch (error) {
-        alert('Error ao salvar!', error);
-        return;
+        console.error('Erro ao salvar funcionário:', error);
+        // exiba mensagem amigável; se quiser, mostre error.response.data
+        alert('Erro ao salvar! Veja o console para detalhes.');
+        return false;
     }
 }
 
 export async function putFuncionario(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
     const funcionario = JSON.stringify(id, nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia);
     alert(funcionario);
-} 
+}
 export async function deleteFuncionario(id) {
     if (!id) {
         alert('Usuário não encontrado');

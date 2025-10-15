@@ -31,28 +31,30 @@ class Funcionario {
     //#endregion
 
     //#region Método
-    static async criarfuncionario(nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia) {
+    static async criarfuncionario(nome, cpf, email, dtContratacao, contato1, contato2, cargo, filial, emergencia, status, alergia, sangue) {
         const Connection = require('../Config/Connection');
         try {
-            if (dtContratacao === null) {
+            if (dtContratacao === null || dtContratacao === undefined || dtContratacao === '') {
+                // Sem contratacao: 11 colunas -> 11 placeholders
                 const resultado = await Connection.query(
-                    'INSERT INTO tb_funcionario (nome, cpf, email, contato1, contato2, emergencia, status, alergia, id_cargo, id_filial) VALUES (?,?,?,?,?,?,?,?,1,1)',
-                    [nome, cpf, email, contato1, contato2, emergencia, status, alergia]
+                    'INSERT INTO tb_funcionario (nome, cpf, email, contato1, contato2, id_cargo, id_filial, emergencia, status, alergia, id_sangue) VALUES (?,?,?,?,?,?,?,?,?,?,?)',
+                    [nome, cpf, email, contato1, contato2, cargo, filial, emergencia, status, alergia, sangue]
                 );
                 return resultado.insertId;
             } else {
+                // Com contratacao: 12 colunas -> 12 placeholders
                 const resultado = await Connection.query(
-                    'INSERT INTO tb_funcionario (nome, cpf, email, contratacao, contato1, contato2, emergencia, status, alergia, id_cargo, id_filial) VALUES (?,?,?,?,?,?,?,?,?,1,1)',
-                    [nome, cpf, email, dtContratacao, contato1, contato2, emergencia, status, alergia]
+                    'INSERT INTO tb_funcionario (nome, cpf, email, contratacao, contato1, contato2, id_cargo, id_filial, emergencia, status, alergia, id_sangue) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',
+                    [nome, cpf, email, dtContratacao, contato1, contato2, cargo, filial, emergencia, status, alergia, sangue]
                 );
                 return resultado.insertId;
             }
-        }
-        catch (error) {
-            console.log(error)
+        } catch (error) {
+            console.log(error);
             throw error;
         }
     }
+    
     static async alterarfuncionario(nome, id) {
         const Connection = require('../Config/Connection');
         try {
