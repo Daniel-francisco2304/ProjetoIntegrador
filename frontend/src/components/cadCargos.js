@@ -19,6 +19,7 @@ export function CadCargos({ openIs, setOpenIs, setCargo }) {
             }
             const promise = await postCargo(nome);
             console.log(promise);
+            alert("Cargo salvo com sucesso!");
         } catch (error) {
             alert(error)
             return;
@@ -91,6 +92,7 @@ export function CadCargos({ openIs, setOpenIs, setCargo }) {
                                         //type="submit"
                                         onClick={() => {
                                             cadastrarCargo(nome);
+                                            setCargo('-1');
                                             setOpenIs(false)
                                         }}
                                     >
@@ -108,7 +110,7 @@ export function CadCargos({ openIs, setOpenIs, setCargo }) {
                                         title={<><RxCross1 />Cancelar</>}
                                         onClick={() => {
                                             setOpenIs(false);
-                                            setCargo('1');
+                                            setCargo('-1');
                                         }}
                                     >
                                     </MyButton>

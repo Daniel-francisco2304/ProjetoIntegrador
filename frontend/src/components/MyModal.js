@@ -16,6 +16,8 @@ import { getAllFilial } from "../model/filial";
 import { getAllCargo } from "../model/cargo";
 import { getAllSangue, getAllStatus } from "../model/status";
 
+import { masCnt, masCpf, masCemail, masCnome, MasCdata } from "../model/util/mascaras";
+
 export function MyModal({ isOpen, setIsOpen, func }) {
     const [nome, setNome] = useState(func?.f_nome || '');
     const [cpf, setCpf] = useState(func?.cpf || '');
@@ -186,8 +188,9 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                 </MyText>
 
                                 <MyInput size='lg'
+                                    placeholder="Digite o nome do funcionário"
                                     value={nome}
-                                    onChange={(e) => { setNome(e.target.value) }}
+                                    onChange={(e) => { setNome(masCnome(e.target.value)) }}
                                     style={{ marginLeft: '5%', }}
                                 />
                                 <div
@@ -216,8 +219,9 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                         </MyText>
                                         <MyInput
                                             size='lg'
+                                            placeholder="xxx.xxx.xxx-xx"
                                             value={cpf}
-                                            onChange={(e) => setCpf(e.target.value)}
+                                            onChange={(e) => setCpf(masCpf(e.target.value))}
 
                                             style={{ width: '100%', }}
                                         />
@@ -240,6 +244,8 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             Nº Registro:
                                         </MyText>
                                         <MyInput size='lg'
+                                        placeholder="Ex.:123"
+                                            disabled={true}
                                             value={nRegistro}
                                             onChange={(e) => setNRegistro(e.target.value)}
                                             style={{ width: '100%', }}
@@ -267,9 +273,9 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             Contratação:
                                         </MyText>
                                         <MyInput size='lg'
-                                            type={"date"}
+                                            type={"text"}
                                             value={dtContratacao}
-                                            onChange={(e) => setDtContratacao(e.target.value)}
+                                            onChange={(e) => setDtContratacao(MasCdata(e.target.value))}
                                             style={{
                                                 width: '100%',
                                                 alignItems: "center",
@@ -304,8 +310,9 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             Contato 1:
                                         </MyText>
                                         <MyInput size='lg'
+                                            placeholder="(xx)xxxxx-xxxx"
                                             value={contato1}
-                                            onChange={(e) => setContato1(e.target.value)}
+                                            onChange={(e) => setContato1(masCnt(e.target.value))}
                                             style={{
                                                 width: '100%',
                                                 alignItems: "center",
@@ -332,8 +339,9 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             Contato 2:
                                         </MyText>
                                         <MyInput size='lg'
+                                            placeholder="(xx)xxxxx-xxxx"
                                             value={contato2}
-                                            onChange={(e) => setContato2(e.target.value)}
+                                            onChange={(e) => setContato2(masCnt(e.target.value))}
                                             style={{
                                                 width: '100%',
                                                 alignItems: "center",
@@ -362,8 +370,9 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             Email:
                                         </MyText>
                                         <MyInput
+                                        placeholder="Digite o email do funcionario"
                                             value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
+                                            onChange={(e) => setEmail(masCemail(e.target.value))}
                                             size='lg' style={{ width: '100%', }}
                                         />
                                     </div>
@@ -408,7 +417,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                                 fontSize: "18px",
                                             }}
                                         >
-                                            <option>Selecione uma opção</option>
+                                            <option value={'-1'} >Selecione uma opção</option>
                                             {Array.isArray(ckey) ? (ckey.map((ckey, i) => (
                                                 <option key={i} value={ckey.id}>{ckey.nome}</option>))) : (<></>)
                                             }
@@ -511,6 +520,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                     </MyText>
                                     <MyTextArea
                                         size='lg'
+                                        placeholder="Digite aqui todas as alergias e doenças prévias de seus funcionários"
                                         multiline={true}
                                         value={alergia}
                                         onChange={(e) => setAlergia(e.target.value)}
@@ -544,8 +554,9 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             Emergência:
                                         </MyText>
                                         <MyInput size='lg'
+                                            placeholder="(xx)xxxxx-xxxx"
                                             value={emergencia}
-                                            onChange={(e) => setEmergencia(e.target.value)}
+                                            onChange={(e) => setEmergencia(masCnt(e.target.value))}
                                             style={{
                                                 width: '100%',
                                                 alignItems: "center",
