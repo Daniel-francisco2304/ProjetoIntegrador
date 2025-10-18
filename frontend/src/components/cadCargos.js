@@ -18,7 +18,7 @@ export function CadCargos({ openIs, setOpenIs, setCargo }) {
                 return;
             }
             const promise = await postCargo(nome);
-            console.log(promise);
+            //console.log(promise);
             alert("Cargo salvo com sucesso!");
         } catch (error) {
             alert(error)

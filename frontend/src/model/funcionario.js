@@ -49,7 +49,7 @@ export async function postFuncionario(nome, cpf, email, dtContratacao, contato1,
     } catch (error) {
         console.error('Erro ao salvar funcionário:', error);
         // exiba mensagem amigável; se quiser, mostre error.response.data
-        alert('Erro ao salvar! Veja o console para detalhes.');
+        alert('Erro ao salvar!');
         return false;
     }
 }

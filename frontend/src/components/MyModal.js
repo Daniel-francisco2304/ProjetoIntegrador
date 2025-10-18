@@ -244,7 +244,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             Nº Registro:
                                         </MyText>
                                         <MyInput size='lg'
-                                        placeholder="Ex.:123"
+                                            placeholder="Ex.:123"
                                             disabled={true}
                                             value={nRegistro}
                                             onChange={(e) => setNRegistro(e.target.value)}
@@ -273,6 +273,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             Contratação:
                                         </MyText>
                                         <MyInput size='lg'
+                                            placeholder="dd/mm/aaaa"
                                             type={"text"}
                                             value={dtContratacao}
                                             onChange={(e) => setDtContratacao(MasCdata(e.target.value))}
@@ -370,7 +371,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             Email:
                                         </MyText>
                                         <MyInput
-                                        placeholder="Digite o email do funcionario"
+                                            placeholder="Digite o email do funcionario"
                                             value={email}
                                             onChange={(e) => setEmail(masCemail(e.target.value))}
                                             size='lg' style={{ width: '100%', }}
@@ -421,7 +422,7 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             {Array.isArray(ckey) ? (ckey.map((ckey, i) => (
                                                 <option key={i} value={ckey.id}>{ckey.nome}</option>))) : (<></>)
                                             }
-                                            <option value={'0'} onClick={() => { alert('click') }}>Adicionar um cargo?</option>
+                                            <option value={'0'}>Adicionar um cargo?</option>
                                         </select>
                                     </div>
                                     <div style={{
@@ -583,9 +584,10 @@ export function MyModal({ isOpen, setIsOpen, func }) {
                                             Ult. Acid.:
                                         </MyText>
                                         <MyInput size='lg'
-                                            type={"date"}
+                                            placeholder="dd/mm/aaaa"
+                                            type={"text"}
                                             value={acidente}
-                                            onChange={(e) => setAcidente(e.target.value)}
+                                            onChange={(e) => setAcidente(MasCdata(e.target.value))}
                                             style={{
                                                 width: '100%',
                                                 alignItems: "center",
